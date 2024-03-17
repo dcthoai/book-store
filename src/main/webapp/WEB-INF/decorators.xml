@@ -1,0 +1,9 @@
+<decorators defaultdir="/layouts/">
+	<decorator name="user" page="user/base.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	
+	<decorator name="admin" page="admin/base.jsp">
+		<pattern>/admin*</pattern>
+	</decorator>
+</decorators>
