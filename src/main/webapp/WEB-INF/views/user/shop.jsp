@@ -150,7 +150,7 @@
                     <div class="row mt-5">
                         <div class="col-lg-3 col-md-4 col-6 mb-4">
                             <div class="product">
-                                <a href="/shop/product" class="product__link">
+                                <a href="/bookstore/product" class="product__link">
                                     <div class="product__img">
                                         <img src="assets/images/doi-thua.jpg" alt="product image">
                                     </div>
@@ -179,7 +179,7 @@
                         
                         <div class="col-lg-3 col-md-4 col-6 mb-4">
                             <div class="product">
-                                <a href="/shop/product" class="product__link">
+                                <a href="/bookstore/product" class="product__link">
                                     <div class="product__img">
                                         <img src="assets/images/doi-thua.jpg" alt="product image">
                                     </div>
@@ -208,7 +208,7 @@
 
                         <div class="col-lg-3 col-md-4 col-6 mb-4">
                             <div class="product">
-                                <a href="/shop/product" class="product__link">
+                                <a href="/bookstore/product" class="product__link">
                                     <div class="product__img">
                                         <img src="assets/images/doi-thua.jpg" alt="product image">
                                     </div>
@@ -237,7 +237,7 @@
 
                         <div class="col-lg-3 col-md-4 col-6 mb-4">
                             <div class="product">
-                                <a href="/shop/product" class="product__link">
+                                <a href="/bookstore/product" class="product__link">
                                     <div class="product__img">
                                         <img src="assets/images/doi-thua.jpg" alt="product image">
                                     </div>
@@ -266,7 +266,7 @@
 
                         <div class="col-lg-3 col-md-4 col-6 mb-4">
                             <div class="product">
-                                <a href="/shop/product" class="product__link">
+                                <a href="/bookstore/product" class="product__link">
                                     <div class="product__img">
                                         <img src="assets/images/doi-thua.jpg" alt="product image">
                                     </div>
@@ -295,7 +295,7 @@
 
                         <div class="col-lg-3 col-md-4 col-6 mb-4">
                             <div class="product">
-                                <a href="/shop/product" class="product__link">
+                                <a href="/bookstore/product" class="product__link">
                                     <div class="product__img">
                                         <img src="assets/images/doi-thua.jpg" alt="product image">
                                     </div>
@@ -324,7 +324,7 @@
 
                         <div class="col-lg-3 col-md-4 col-6 mb-4">
                             <div class="product">
-                                <a href="/shop/product" class="product__link">
+                                <a href="/bookstore/product" class="product__link">
                                     <div class="product__img">
                                         <img src="assets/images/doi-thua.jpg" alt="product image">
                                     </div>

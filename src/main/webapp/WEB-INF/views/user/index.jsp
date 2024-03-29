@@ -90,7 +90,7 @@
                     <h2 class="fs-2 text-dark">Blog mới</h2>
                 </div>
                 <div class="col-md-6 pt-4 text-start text-md-end">
-                    <a href="/boostore/blog" class="fs-6 text-decoration-none text-dark">Xem tất cả</a>
+                    <a href="/bookstore/blog" class="fs-6 text-decoration-none text-dark">Xem tất cả</a>
                 </div>
             </div>
 
@@ -99,11 +99,14 @@
             	<c:forEach var="blog" items="${ listTopBlogs }">
             		<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
 	                    <div class="post-entry">
-	                        <a href="#" class="post-thumbnail"><img src="${ blog.thumbnail }" alt="Image" class="img-fluid rounded-4"></a>
+	                    	<c:set var="media" value="${mediaService.getMediaById(blog.thumbnail)}"/>
+	                        <a href="#" class="post-thumbnail"><img src="${ media.mediaPath }" alt="Image" class="img-fluid rounded-4"></a>
 	                        <div class="mt-4">
 	                            <h3><a class="text-decoration-none text-dark fs-4" href="#">${ blog.title }</a></h3>
 	                            <div class="meta">
-	                                <span>by <a href="#">${ blog.authorId }</a></span> <span>on <a href="#">${ blog.createdDate }</a></span>
+	                            	<c:set var="user" value="${userService.findUserById(blog.authorId)}"/>
+	                                <span>by <a href="#">${ user.fullname }</a></span> 
+	                                <span>on <a href="#">${ blog.getCreatedDate().toString() }</a></span>
 	                            </div>
 	                        </div>
 	                    </div>

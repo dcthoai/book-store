@@ -14,13 +14,13 @@ public class ShopController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/shop/shopping-cart", method = RequestMethod.GET)
+	@RequestMapping(value = "/shopping-cart", method = RequestMethod.GET)
 	public ModelAndView shoppingCart() {
 		ModelAndView mav = new ModelAndView("user/shopping-cart");
 		return mav;
 	}
 	
-	@RequestMapping(value = "/shop/product", method = RequestMethod.GET)
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public ModelAndView product() {
 		ModelAndView mav = new ModelAndView("user/product");
 		return mav;

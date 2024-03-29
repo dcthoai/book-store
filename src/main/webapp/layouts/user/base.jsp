@@ -42,7 +42,7 @@
 
                 <ul class="navbar-nav mt-2 mt-md-0 fs-5">
                     <li class="mt-4 mt-md-0 mx-md-2 mx-lg-4">
-                        <a class="p-2 position-relative" href="/bookstore/shop/shopping-cart">
+                        <a class="p-2 position-relative" href="/bookstore/shopping-cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="quantity-cart fs-6">0</span>
                         </a>
