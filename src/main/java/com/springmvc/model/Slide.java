@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Slide extends AbstractModel{
 	private int slideMedia;
-	private String caption, content;
+	private String caption, content , slideLink;
 
 	public Slide() {
 		super();
@@ -36,5 +36,13 @@ public class Slide extends AbstractModel{
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public String getSlideLink() {
+		return slideLink;
+	}
+
+	public void setSlideLink(String slideLink) {
+		this.slideLink = slideLink;
 	}
 }

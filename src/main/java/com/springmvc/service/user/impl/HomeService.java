@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springmvc.dao.impl.BlogDAO;
 import com.springmvc.dao.impl.CategoryDAO;
 import com.springmvc.dao.impl.SlideDAO;
+import com.springmvc.model.Blog;
 import com.springmvc.model.Category;
 import com.springmvc.model.Slide;
 import com.springmvc.service.user.IHomeService;
@@ -17,6 +19,8 @@ public class HomeService implements IHomeService{
 	private SlideDAO slideDAO;
 	@Autowired
 	private CategoryDAO categoryDAO;
+	@Autowired
+	private BlogDAO blogDAO;
 	
 	@Override
 	public List<Slide> getAllSlides(){
@@ -26,5 +30,10 @@ public class HomeService implements IHomeService{
 	@Override
 	public List<Category> getAllCategories(){
 		return categoryDAO.getAllCategories();
+	}
+	
+	@Override
+	public List<Blog> getTopBlog(){
+		return blogDAO.getTopBlog();
 	}
 }

@@ -1,103 +1,83 @@
 package com.springmvc.dao.impl;
 
-import java.util.ArrayList; 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired; 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.springmvc.dao.IBookDAO;
-import com.springmvc.mapper.MapperBook;
 import com.springmvc.model.Book;
 
 @Repository 
-public class BookDAO implements IBookDAO{
-	@Autowired 
-	public JdbcTemplate _jdbcTemplate;
-	
-	public List<Book> getAllBooks(){ 
-		List<Book> listBooks = new ArrayList<Book>(); 
-		String sql = "SELECT * FROM Book"; 
-		listBooks = _jdbcTemplate.query(sql, new MapperBook());
-		return listBooks;
-	}
+public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 
 	@Override
-	public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(String sql, Object... parameters) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Long insert(String sql, Object... parameters) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int count(String sql, Object... parameters) {
+	public int insert(Book t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public Book getProductById(long id) {
+	public boolean update(Book t) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public Book getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductNewUpdate() {
+	public List<Book> getNewestBooks() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductByCategory(int categoryId) {
+	public List<Book> getBooksByCategory(int categoryId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductByAuthor(String author) {
+	public List<Book> getBooksByAuthor(String author) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductByPublisher(String publisher) {
+	public List<Book> getBooksByPublisher(String publisher) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductByLanguage(String language) {
+	public List<Book> getBooksByLanguage(String language) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductUnderPrice(long price) {
+	public List<Book> getBooksUnderPrice(long price) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductOverPrice(long price) {
+	public List<Book> getBooksOverPrice(long price) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Book> getProductBetweenPrice(long minPrice, long maxPrice) {
+	public List<Book> getBooksBetweenPrice(long minPrice, long maxPrice) {
 		// TODO Auto-generated method stub
 		return null;
 	}

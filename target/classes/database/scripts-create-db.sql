@@ -245,7 +245,7 @@ CREATE TABLE Slide(
 	slideId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     slideMedia INT NOT NULL,
     caption VARCHAR(255) NULL,
-    content VARCHAR(255) NULL,
+    content VARCHAR(1500) NULL,
     createdDate TIMESTAMP NULL,
     modifiedDate TIMESTAMP NULL,
     createdBy VARCHAR(255) NULL,

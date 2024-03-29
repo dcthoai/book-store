@@ -3,16 +3,16 @@ package com.springmvc.model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class Customer extends AbstractModel {
+public class User extends AbstractModel {
 	private String username, fullname, phoneNumber, email, password;
 	private int avatar;
 	private Date birthday;
 
-	public Customer() {
+	public User() {
 		super();
 	}
 
-	public Customer(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
+	public User(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
 		super(id, createdDate, modifiedDate, createdBy, modifiedBy);
 	}
 

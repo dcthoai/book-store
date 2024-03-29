@@ -14,8 +14,5 @@ public class BookService implements IBookService{
 	@Autowired
 	BookDAO bookDAO;
 
-	@Override
-	public List<Book> getAllBooks() {
-		return bookDAO.getAllBooks();
-	}
+	
 }

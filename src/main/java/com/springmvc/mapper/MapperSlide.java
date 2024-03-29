@@ -17,6 +17,7 @@ public class MapperSlide implements RowMapper<Slide>{
 		slide.setSlideMedia(rs.getInt("slideMedia"));
 		slide.setCaption(rs.getString("caption"));
 		slide.setContent(rs.getString("content"));
+		slide.setSlideLink(rs.getString("slideLink"));;
 		
 		return slide;
 	}
