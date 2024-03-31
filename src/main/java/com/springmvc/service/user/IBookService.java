@@ -5,5 +5,6 @@ import java.util.List;
 import com.springmvc.model.Book;
 
 public interface IBookService {
-	
+	public List<Book> getAllBooks();
+	public Book getBookById(int id);
 }

@@ -20,7 +20,7 @@ public class AbstractDAO<T>{
 		try {
 			List<T> listItems = _jdbcTemplate.query(sql, parameters, rowMapper);
 			
-			return listItems.isEmpty() ? null : listItems;
+			return listItems;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Collections.emptyList(); // Return empty list if has exception
@@ -29,10 +29,15 @@ public class AbstractDAO<T>{
 
 	public int excecuteInsert(String sql, Object... parameters) {
 		try {
-            _jdbcTemplate.update(sql, parameters);
-            int idObject = _jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+			int affectedRows = _jdbcTemplate.update(sql, parameters);
+			
+			// If number of lines changed in the database more than 0
+//			if (affectedRows > 0) {
+//				int idObject = _jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+//				return idObject;	// Return id of item was added
+//			}
             
-            return idObject; // Return id of item was added
+            return affectedRows;
         } catch (DataAccessException e) {
         	e.printStackTrace();
             return 0;

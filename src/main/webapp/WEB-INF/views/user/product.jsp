@@ -16,40 +16,41 @@
                 <div>
                     <a class="text-decoration-none text-dark" href="/">Home</a>
                     <span><i class="fa-solid fa-angle-right px-2"></i>Shop</span>
-                    <span><i class="fa-solid fa-angle-right px-2"></i>Đời thừa</span>
+                    <span><i class="fa-solid fa-angle-right px-2"></i>${ book.title }</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Product -->
+    <c:set var="media" value="${mediaService.getMediaById(book.thumbnail)}"/>
     <div class="container product mt-5">
         <div class="row">
             <div class="col-12 col-lg-6 col-xl-5 ps-lg-4">
                 <div class="row">
                     <div class="col-4 col-sm-3">
                         <div class="product__imgs">
-                            <div class="img-wrapper mb-2 p-1"><img src="assets/images/doi-thua.jpg" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="assets/images/doi-thua.jpg" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="assets/images/doi-thua.jpg" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="assets/images/doi-thua.jpg" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
                             <a href="" class="img-wrapper p-1">+5</a>
                         </div>
                     </div>
 
                     <div class="col-8">
                         <div class="product__img pt-2">
-                            <img src="assets/images/doi-thua.jpg" alt="product image">
+                            <img src="${ media.mediaPath }" alt="product image">
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-12 col-lg-6 col-xl-7 mt-5 mt-lg-0 ps-md-5 ps-lg-0">
-                <h4 class="mb-4 fs-4 fw-medium" style="color: #333;">Đời thừa</h4>
+                <h4 class="mb-4 fs-4 fw-medium" style="color: #333;">${ book.title }</h4>
                 
-                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">Giáo dục</span></p>
-                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">Nam Cao</span></p>
+                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">${ book.publisher }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">${ book.author }</span></p>
                 <p class="mb-1 fs-6 fw-medium">Ngôn ngữ: <span class="fw-semibold">Tiếng Việt</span></p>
                 <p class="mb-1 fs-6 fw-medium">Thể loại: <span class="fw-semibold">Văn học</span></p>
 
@@ -62,9 +63,9 @@
                     (<span>0</span> đánh giá)
                 </div>
 
-                <p class="fs-2 fw-bold price">45.000 đ
-                    <del class="fs-5 fw-semibold opacity-75">54.000 đ</del>
-                    <span class="fs-5">-15%</span>
+                <p class="fs-2 fw-bold price">${ book.getSellPrice() } đ
+                    <del class="fs-5 fw-semibold opacity-75">${ book.price } đ</del>
+                    <span class="fs-5">-${ book.discount }%</span>
                 </p>
 
                 <div class="estimate-arival fw-medium">
@@ -273,7 +274,7 @@
                 <div class="product">
                     <a href="" class="product__link">
                         <div class="product__img">
-                            <img src="assets/images/slide-1.jpg" alt="product image">
+                            <img src="assets/images/post-2.jpg" alt="product image">
                         </div>
 
                         <div class="product__info pt-2">
@@ -373,13 +374,13 @@
                 <p class="m-0 py-1">Số trang</p>
             </div>
             <div class="col-6 col-lg-4 info">
-                <p class="m-0 py-1">Nam Cao</p>
-                <p class="m-0 py-1">Giáo Dục</p>
-                <p class="m-0 py-1">2023</p>
+                <p class="m-0 py-1">${ book.author }</p>
+                <p class="m-0 py-1">${ book.publisher }</p>
+                <p class="m-0 py-1">${ book.releaseDate }</p>
                 <p class="m-0 py-1">Tiếng Việt</p>
-                <p class="m-0 py-1">70</p>
-                <p class="m-0 py-1">20 x 16 x 5</p>
-                <p class="m-0 py-1">32</p>
+                <p class="m-0 py-1">${ book.weight }</p>
+                <p class="m-0 py-1">${ book.size }</p>
+                <p class="m-0 py-1">${ book.pages }</p>
             </div>
         </div>
 
@@ -390,27 +391,7 @@
         </p>
 
         <div class="description-text py-2">
-            <p>
-                "Chuyện kể cho tương lai" là một dự án xã hội quan trọng trong năm 2024 của Volvo Car Vietnam. 
-                Chúng tôi gửi tâm huyết vào từng trang viết câu chuyện về những người Việt Nam nổi bật, 
-                luôn khát khao cống hiến và ghi đậm dấu ấn thành công trong lĩnh vực của mình.
-                Nhà thơ Nguyễn Đình Thi từng viết:
-                "Nước chúng ta
-                Nước những người chưa bao giờ khuất
-                Đêm đêm rì tầm trong tiếng đất
-                Những buổi ngày xưa vọng nói về!"
-                Điều đó làm chúng tôi luôn hiểu rằng sứ mạng của mỗi con người khi sinh ra và 
-                trưởng thành là để lại một thứ gì đó cho cuộc đời này... để cuộc đời kế tiếp 
-                được diễn ra theo một cách xa hơn và đẹp hơn ... Và đó cũng là sứ mạng của chúng 
-                tôi khi mang mỏi "viết tiếp cuộc sống của bạn" theo nhiều cách khác nhau, 
-                bằng cách gửi lời cảm ơn cho những nhân vật của cuốn sách này và những tập kế tiếp.
-                ta khi mong mỏi"
-                Có thể là những em trai, em gái mang muốn sau này trở thành một nhà khoa học, 
-                sẽ được đọc về câu chuyện thành công của một bác sỹ ... mà chúng tôi rất mang 
-                một ngày không xa những sáng kiến của ông có thể nhận được giải nobel và những 
-                nỗ lực của ông dành cho cuộc sống, kéo dài những tháng ngày tươi đẹp của một gia đình, 
-                một cộng đồng nào đó trên thế giới này.
-            </p>
+            <p>${ book.descriptions }</p>
 
             <div class="d-flex justify-content-center my-4">
                 <button type="button">Xem thêm</button>

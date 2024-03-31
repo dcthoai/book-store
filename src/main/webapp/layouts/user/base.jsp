@@ -71,8 +71,12 @@
                     </h3>
 
                     <form action="" class="row">
-                        <div class="col-12 col-sm-8 col-md-5 mb-3 mb-md-0"><input class="w-100 w-sm-75 w-md-auto" type="text" name="name" id="" placeholder="Nhập tên"></div>
-                        <div class="col-12 col-sm-8 col-md-5 mb-3 mb-md-0"><input class="w-100 w-sm-75 w-md-auto" type="email" name="email" id="" placeholder="Nhập email"></div>
+                        <div class="col-12 col-sm-8 col-md-5 mb-3 mb-md-0">
+                            <input class="w-100 w-sm-75 w-md-auto" type="text" name="name" id="name-subscribe" placeholder="Nhập tên">
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-5 mb-3 mb-md-0">
+                            <input class="w-100 w-sm-75 w-md-auto" type="email" name="email" id="email-subscribe" placeholder="Nhập email">
+                        </div>
                         <div class="col-12 col-sm-8 col-md-auto">
                             <button class="w-100 w-md-auto" type="button">
                                 <span class="fa fa-paper-plane"></span>
@@ -148,6 +152,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/validator.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

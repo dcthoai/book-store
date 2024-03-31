@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.springmvc.dao.IBookDAO;
+import com.springmvc.mapper.MapperBook;
 import com.springmvc.model.Book;
 
 @Repository 
@@ -30,8 +31,10 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 	
 	@Override
 	public Book getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM bookstore.book WHERE bookId = ?";
+		
+		List<Book> listBooks = excecuteQuery(sql, new MapperBook(), id);
+		return listBooks.isEmpty() ? null : listBooks.get(0);
 	}
 
 	@Override
@@ -80,5 +83,12 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 	public List<Book> getBooksBetweenPrice(long minPrice, long maxPrice) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public List<Book> getAllBooks(){
+		String sql = "SELECT * FROM Book LIMIT 12";
+		
+		List<Book> listBooks = excecuteQuery(sql, new MapperBook());
+		return listBooks;
 	}
 }

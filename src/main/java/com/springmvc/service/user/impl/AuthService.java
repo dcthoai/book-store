@@ -164,34 +164,56 @@ public class AuthService implements IAuthServive{
 	
 	@Override
 	public boolean isExistUser(String username, String email) {
-		if (userService.findUserByUsername(username) != null) {
+		if (email == null && username == null)
 			return false;
-		}
 		
-		if (userService.findUserByEmail(email) != null) {
-			return false;
+		if (email != null && email.equals("") == false) {
+			if (userService.findUserByEmail(email) != null) {
+				return true;
+			}
 		}
-		
-		return true;
+
+		if (username != null && username.equals("") == false) {
+			if (userService.findUserByUsername(username) != null)
+				return true;
+	    }
+	    
+	    return false;
 	}
 	
 	@Override
 	public int register(User user) {
-		if (isExistUser(user.getUsername(), user.getEmail())) {
-			return 0;
-		} else {
-			String password = user.getPassword();
+		String password = user.getPassword();
 			
-			user.setPassword(password);
-			int userId = userService.insertUser(user);
+		// Encrypt password before save
+		user.setPassword(password);
 			
-			return userId;
-		}
+		int userId = userService.insertUser(user);
+			
+		return userId;
 	}
 
 	@Override
 	public boolean login(User user) {
-		// TODO Auto-generated method stub
-		return true;
+		try {
+			User account = new User();
+			
+			if (user.getEmail() != null) {
+				account = userService.findUserByEmail(user.getEmail());
+			} 
+			else if (user.getUsername() != null){
+				account = userService.findUserByUsername(user.getUsername());
+			}
+			
+			if (account != null) {
+				return account.getPassword().equals(user.getPassword());
+			}
+			
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+//		return true;
 	}
 }

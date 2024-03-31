@@ -137,4 +137,8 @@ public class Book extends AbstractModel{
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
+	
+	public long getSellPrice() {
+		return (long) ((float)price - ((float)price * discount) / 100);
+	}
 }

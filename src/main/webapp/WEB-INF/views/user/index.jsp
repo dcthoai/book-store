@@ -63,17 +63,14 @@
                 <div class="col-lg-5 pt-5 pt-lg-0 ps-lg-5 mt-5 mt-lg-0">
                     <h2 class="mb-4 fs-2 text-dark">Xu hướng sách mùa này</h2>
                     <p>
-	                    Donec facilisis quam ut purus rutrum lobortis. 
-	                    Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. 
-	                    Aliquam vulputate velit imperdiet dolor tempor tristique. 
-	                    Pellentesque habitant morbi tristique senectus et netus et malesuada
+	                    Chưa có nội dung.
                     </p>
 
                     <ul class="list-unstyled my-4">
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
+                        <li>Nội dung mẫu</li>
+                        <li>Nội dung mẫu</li>
+                        <li>Nội dung mẫu</li>
+                        <li>Nội dung mẫu</li>
                     </ul>
 
                     <a herf="" class="btn btn-dark mt-4 px-4 py-2 fs-5 fw-medium rounded-5">Xem ngay</a>
@@ -106,7 +103,7 @@
 	                            <div class="meta">
 	                            	<c:set var="user" value="${userService.findUserById(blog.authorId)}"/>
 	                                <span>by <a href="#">${ user.fullname }</a></span> 
-	                                <span>on <a href="#">${ blog.getCreatedDate().toString() }</a></span>
+	                                <span>on <a href="#">${ blog.getCreatedDate() }</a></span>
 	                            </div>
 	                        </div>
 	                    </div>
