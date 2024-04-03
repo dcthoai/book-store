@@ -19,7 +19,6 @@ public class MapperBook implements RowMapper<Book>{
 		book.setThumbnail(rs.getInt("thumbnail"));
 		book.setCategoryId(rs.getInt("categoryID"));
 		book.setLanguageId(rs.getInt("languageID"));
-		book.setAgeLimit(rs.getInt("ageLimit"));
 		book.setVoucherId(rs.getInt("voucherID"));
 		
 		book.setTitle(rs.getString("title"));

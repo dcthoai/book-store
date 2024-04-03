@@ -1,5 +1,7 @@
 package com.springmvc.dao.impl;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Collections;
 import java.util.List;
 
@@ -7,17 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-
-import com.springmvc.dao.IGenericDAO;
 
 @Repository
 public class AbstractDAO<T>{
 	@Autowired 
 	public JdbcTemplate _jdbcTemplate;
 	
-	public List<T> excecuteQuery(String sql, RowMapper<T> rowMapper, Object... parameters){
+	public List<T> executeQuery(String sql, RowMapper<T> rowMapper, Object... parameters){
 		try {
+			System.out.println(sql);
+			
 			List<T> listItems = _jdbcTemplate.query(sql, parameters, rowMapper);
 			
 			return listItems;
@@ -27,30 +31,47 @@ public class AbstractDAO<T>{
 		}
 	}
 
-	public int excecuteInsert(String sql, Object... parameters) {
+	public int executeInsert(String sql, Object... parameters) {
 		try {
-			int affectedRows = _jdbcTemplate.update(sql, parameters);
+			System.out.println(sql);
 			
-			// If number of lines changed in the database more than 0
-//			if (affectedRows > 0) {
-//				int idObject = _jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-//				return idObject;	// Return id of item was added
-//			}
-            
-            return affectedRows;
+			KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		    // Execute INSERT and pass KeyHolder into for save generated key
+		    int affectedRows = _jdbcTemplate.update(con -> {
+			    PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			            
+			    	for (int i = 0; i < parameters.length; i++) {
+			            ps.setObject(i + 1, parameters[i]);
+			    	}
+			            
+			        return ps;
+			    }, keyHolder);
+		    
+		    if (affectedRows > 0) {
+		    	int newRecordId = keyHolder.getKey().intValue();
+		    	System.out.println("Id bản ghi mới là: " + newRecordId);
+		    	
+		    	return newRecordId;
+		    }
+
+		    return 0;
         } catch (DataAccessException e) {
         	e.printStackTrace();
             return 0;
         }
 	}
 	
-	public boolean executeUpdate(String sql, Object... parameters) {
+	public int executeUpdate(String sql, Object... parameters) {
 		try {
-            _jdbcTemplate.update(sql, parameters);
-            return true;
+			System.out.println(sql);
+			
+			int affectedRows = _jdbcTemplate.update(sql, parameters);
+			
+            return affectedRows;
         } catch (DataAccessException e) {
             e.printStackTrace();
-            return false;
+            return 0;
         }
 	}
 }

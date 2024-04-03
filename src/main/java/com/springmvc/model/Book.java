@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Book extends AbstractModel{
 	private String title, descriptions, author, publisher, size;
-	private int voucherId, languageId, categoryId, ageLimit, thumbnail, pages, weight;
+	private int voucherId, languageId, categoryId, thumbnail, pages, weight;
 	private long price;
 	private float discount;
 	private Date releaseDate;
@@ -75,14 +75,6 @@ public class Book extends AbstractModel{
 
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
-	}
-
-	public int getAgeLimit() {
-		return ageLimit;
-	}
-
-	public void setAgeLimit(int ageLimit) {
-		this.ageLimit = ageLimit;
 	}
 
 	public int getThumbnail() {

@@ -22,14 +22,14 @@ public class UserService implements IUserService{
 
 	@Override
 	public boolean updateUser(User user) {
-		boolean statusUpdate = userDAO.update(user);
-		return statusUpdate;
+		int affectedRows = userDAO.update(user);
+		return affectedRows > 0;
 	}
 
 	@Override
 	public boolean deleteUser(int id) {
-		boolean statusDelete = userDAO.delete(id);
-		return statusDelete;
+		int affectedRows = userDAO.delete(id);
+		return affectedRows > 0;
 	}
 
 	@Override

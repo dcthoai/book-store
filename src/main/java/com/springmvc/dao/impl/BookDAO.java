@@ -18,22 +18,22 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 	}
 
 	@Override
-	public boolean update(Book t) {
+	public int update(Book t) {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
 	}
 
 	@Override
-	public boolean delete(int id) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
 	}
 	
 	@Override
 	public Book getById(int id) {
 		String sql = "SELECT * FROM bookstore.book WHERE bookId = ?";
 		
-		List<Book> listBooks = excecuteQuery(sql, new MapperBook(), id);
+		List<Book> listBooks = executeQuery(sql, new MapperBook(), id);
 		return listBooks.isEmpty() ? null : listBooks.get(0);
 	}
 
@@ -88,7 +88,7 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 	public List<Book> getAllBooks(){
 		String sql = "SELECT * FROM Book LIMIT 12";
 		
-		List<Book> listBooks = excecuteQuery(sql, new MapperBook());
+		List<Book> listBooks = executeQuery(sql, new MapperBook());
 		return listBooks;
 	}
 }
