@@ -18,6 +18,10 @@ public class MapperMedia implements RowMapper<Media>{
 		media.setMediaPath(rs.getString("mediaPath"));
 		media.setMediaType(rs.getString("mediaType"));
 		media.setMediaSize(rs.getInt("mediaSize"));
+		media.setCreatedDate(rs.getTimestamp("createdDate"));
+		media.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		media.setCreatedBy(rs.getString("createdBy"));
+		media.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return media;
 	}

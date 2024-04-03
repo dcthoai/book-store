@@ -1,17 +1,11 @@
 package com.springmvc.model;
 
-import java.sql.Timestamp;
-
 public class Media extends AbstractModel {
 	private String mediaName, mediaPath, mediaType;
 	private int mediaSize;
 	
 	public Media() {
 		super();
-	}
-
-	public Media(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-		super(id, createdDate, modifiedDate, createdBy, modifiedBy);
 	}
 
 	public String getMediaName() {

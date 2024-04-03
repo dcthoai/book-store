@@ -25,6 +25,10 @@ public class MapperShipping implements RowMapper<Shipping>{
 		
 		shipping.setShippingCost(rs.getLong("shippingCost"));
 		shipping.setEstimatedArival(rs.getDate("estimatedArival"));
+		shipping.setCreatedDate(rs.getTimestamp("createdDate"));
+		shipping.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		shipping.setCreatedBy(rs.getString("createdBy"));
+		shipping.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return shipping;
 	}

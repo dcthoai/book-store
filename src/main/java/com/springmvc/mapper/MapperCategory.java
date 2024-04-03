@@ -16,6 +16,10 @@ public class MapperCategory implements RowMapper<Category>{
 		category.setId(rs.getInt("categoryID"));
 		category.setCategoryName(rs.getString("categoryName"));
 		category.setDescriptions(rs.getString("descriptions"));
+		category.setCreatedDate(rs.getTimestamp("createdDate"));
+		category.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		category.setCreatedBy(rs.getString("createdBy"));
+		category.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return category;
 	}

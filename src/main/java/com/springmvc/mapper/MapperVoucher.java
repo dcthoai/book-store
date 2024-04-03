@@ -25,6 +25,10 @@ public class MapperVoucher implements RowMapper<Voucher>{
 		
 		voucher.setDiscount(rs.getFloat("discount"));
 		voucher.setExpirationDate(rs.getTimestamp("expirationDate"));
+		voucher.setCreatedDate(rs.getTimestamp("createdDate"));
+		voucher.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		voucher.setCreatedBy(rs.getString("createdBy"));
+		voucher.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return voucher;
 	}

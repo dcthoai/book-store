@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bookstore` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bookstore`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: bookstore
@@ -31,15 +33,17 @@ CREATE TABLE `user` (
   `pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` int DEFAULT NULL,
   `birthday` date DEFAULT NULL,
-  `createdDate` timestamp NULL DEFAULT NULL,
-  `modifiedDate` timestamp NULL DEFAULT NULL,
+  `createdDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `createdBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `modifiedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `phoneNumber` (`phoneNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `phoneNumber` (`phoneNumber`),
+  KEY `FK_User_Media_idx` (`avatar`),
+  CONSTRAINT `FK_User_Media` FOREIGN KEY (`avatar`) REFERENCES `media` (`mediaID`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +52,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user1',NULL,'Tom','user1@gmail.com','user1abcc',NULL,NULL,NULL,NULL,NULL,NULL),(2,'user2',NULL,'Lisa','lisa@gmail.com','123123123',NULL,NULL,NULL,NULL,NULL,NULL),(3,'user3',NULL,'Nguyễn Văn An','annv@gmail.com','qazx11234',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `user` VALUES (1,'user1',NULL,'Tom','user1@gmail.com','123123123',NULL,NULL,NULL,NULL,NULL,NULL),(2,'user2',NULL,'Lisa','lisa@gmail.com','123123123',NULL,NULL,NULL,NULL,NULL,NULL),(3,'user3',NULL,'Nguyễn Văn An','annv@gmail.com','123123123',NULL,NULL,NULL,NULL,NULL,NULL),(11,'user4',NULL,NULL,'dthoai2k3@gmail.com','123123123',NULL,NULL,NULL,NULL,NULL,NULL),(28,'user6',NULL,NULL,'thanggt35@gmail.com','$2a$10$jdg3uIYTZpT0MUWzNwYJoOiu9g49ew5wjBwq1Et3y9yzUgowUstQW',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-30 17:02:23
+-- Dump completed on 2024-04-03 17:01:47

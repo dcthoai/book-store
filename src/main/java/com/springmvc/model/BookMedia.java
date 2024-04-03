@@ -1,16 +1,10 @@
 package com.springmvc.model;
 
-public class BookMedia {
+public class BookMedia extends AbstractModel{
 	private int bookId, mediaId;
 
 	public BookMedia() {
 		super();
-	}
-
-	public BookMedia(int bookId, int mediaId) {
-		super();
-		this.bookId = bookId;
-		this.mediaId = mediaId;
 	}
 
 	public int getBookId() {

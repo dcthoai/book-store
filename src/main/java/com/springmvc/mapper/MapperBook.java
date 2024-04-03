@@ -31,6 +31,11 @@ public class MapperBook implements RowMapper<Book>{
 		book.setPrice(rs.getLong("price"));
 		book.setDiscount(rs.getFloat("discount"));
 		book.setReleaseDate(rs.getDate("releaseDate"));
+		
+		book.setCreatedDate(rs.getTimestamp("createdDate"));
+		book.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		book.setCreatedBy(rs.getString("createdBy"));
+		book.setModifiedBy(rs.getString("modifiedBy"));
 
 		return book;
 	}

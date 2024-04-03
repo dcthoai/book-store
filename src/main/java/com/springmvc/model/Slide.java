@@ -1,17 +1,11 @@
 package com.springmvc.model;
 
-import java.sql.Timestamp;
-
 public class Slide extends AbstractModel{
 	private int slideMedia;
 	private String caption, content , slideLink;
 
 	public Slide() {
 		super();
-	}
-
-	public Slide(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-		super(id, createdDate, modifiedDate, createdBy, modifiedBy);
 	}
 
 	public int getSlideMedia() {

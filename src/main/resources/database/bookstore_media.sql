@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bookstore` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bookstore`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: bookstore
@@ -28,12 +30,12 @@ CREATE TABLE `media` (
   `mediaPath` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mediaType` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mediaSize` int DEFAULT NULL,
-  `createdDate` timestamp NULL DEFAULT NULL,
-  `modifiedDate` timestamp NULL DEFAULT NULL,
+  `createdDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `createdBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `modifiedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`mediaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +44,7 @@ CREATE TABLE `media` (
 
 LOCK TABLES `media` WRITE;
 /*!40000 ALTER TABLE `media` DISABLE KEYS */;
-INSERT INTO `media` VALUES (1,'comic.png','assets/images/comic.png','image',124,NULL,NULL,NULL,NULL),(2,'science.png','assets/images/science.png','image',235,NULL,NULL,NULL,NULL),(3,'cooking.png','assets/images/cooking.png','image',123,NULL,NULL,NULL,NULL),(4,'post-1.jpg','assets/images/post-1.jpg','image',NULL,NULL,NULL,NULL,NULL),(5,'post-2.jpg','assets/images/post-2.jpg','image',NULL,NULL,NULL,NULL,NULL),(6,'post-3.jpg','assets/images/post-3.jpg','image',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `media` VALUES (1,'comic.png','assets/images/comic.png','image',124,NULL,NULL,NULL,NULL),(2,'science.png','assets/images/science.png','image',235,NULL,NULL,NULL,NULL),(3,'cooking.png','assets/images/cooking.png','image',123,NULL,NULL,NULL,NULL),(4,'post-1.jpg','assets/images/post-1.jpg','image',NULL,NULL,NULL,NULL,NULL),(5,'post-2.jpg','assets/images/post-2.jpg','image',NULL,NULL,NULL,NULL,NULL),(6,'post-3.jpg','assets/images/post-3.jpg','image',NULL,NULL,NULL,NULL,NULL),(7,'kil-bird.jpg','assets/images/kil-bird.jpg','image',NULL,NULL,NULL,NULL,NULL),(8,'hail-mary.jpg','assets/images/hail-mary.jpg','image',NULL,NULL,NULL,NULL,NULL),(9,'caterpillar.jpg','assets/images/caterpillar.jpg','image',NULL,NULL,NULL,NULL,NULL),(10,'doi-thua.jpg','assets/images/doi-thua.jpg','image',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `media` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-30 17:02:23
+-- Dump completed on 2024-04-03 17:01:47

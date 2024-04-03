@@ -24,6 +24,12 @@ public class MapperUser implements RowMapper<User>{
 		user.setCreatedBy(rs.getString("createdBy"));
 		user.setModifiedDate(rs.getTimestamp("modifiedDate"));
 		user.setModifiedBy(rs.getString("modifiedBy"));
+		
+		user.setCreatedDate(rs.getTimestamp("createdDate"));
+		user.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		user.setCreatedBy(rs.getString("createdBy"));
+		user.setModifiedBy(rs.getString("modifiedBy"));
+		
 		return user;
 	}
 }

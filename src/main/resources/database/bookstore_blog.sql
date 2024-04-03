@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bookstore` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bookstore`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: bookstore
@@ -28,13 +30,15 @@ CREATE TABLE `blog` (
   `thumbnail` int NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `createdDate` timestamp NULL DEFAULT NULL,
-  `modifiedDate` timestamp NULL DEFAULT NULL,
+  `createdDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `createdBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `modifiedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`blogID`),
   KEY `FK_Blog_User` (`author`),
-  CONSTRAINT `FK_Blog_User` FOREIGN KEY (`author`) REFERENCES `user` (`userID`)
+  KEY `FK_Blog_Media_idx` (`thumbnail`),
+  CONSTRAINT `FK_Blog_Media` FOREIGN KEY (`thumbnail`) REFERENCES `media` (`mediaID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_Blog_User` FOREIGN KEY (`author`) REFERENCES `user` (`userID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -57,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-30 17:02:22
+-- Dump completed on 2024-04-03 17:01:47

@@ -1,7 +1,6 @@
 package com.springmvc.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class Book extends AbstractModel{
 	private String title, descriptions, author, publisher, size;
@@ -12,10 +11,6 @@ public class Book extends AbstractModel{
 	
 	public Book() {
 		super();
-	}
-	
-	public Book(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-        super(id, createdDate, modifiedDate, createdBy, modifiedBy);
 	}
 
 	public String getTitle() {

@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bookstore` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bookstore`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: bookstore
@@ -16,38 +18,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `payment`
+-- Table structure for table `reviewmedia`
 --
 
-DROP TABLE IF EXISTS `payment`;
+DROP TABLE IF EXISTS `reviewmedia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `payment` (
-  `paymentID` int NOT NULL AUTO_INCREMENT,
-  `orderID` int NOT NULL,
-  `customerID` int NOT NULL,
-  `total` bigint NOT NULL,
-  `paymentMethod` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `createdDate` timestamp NULL DEFAULT NULL,
-  `modifiedDate` timestamp NULL DEFAULT NULL,
+CREATE TABLE `reviewmedia` (
+  `reviewID` int NOT NULL,
+  `mediaID` int NOT NULL,
+  `createdDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `createdBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `modifiedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`paymentID`),
-  KEY `FK_Payment_Orders` (`orderID`),
-  KEY `FK_Payment_Customer` (`customerID`),
-  CONSTRAINT `FK_Payment_Customer` FOREIGN KEY (`customerID`) REFERENCES `user` (`userID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Payment_Orders` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE,
-  CONSTRAINT `payment_chk_1` CHECK ((`total` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `reviewmediaid` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`reviewmediaid`),
+  KEY `FK_ReviewMedia_Media_idx` (`mediaID`),
+  KEY `FK_ReviewMedia_Review_idx` (`reviewID`),
+  CONSTRAINT `FK_ReviewMedia_Media` FOREIGN KEY (`mediaID`) REFERENCES `media` (`mediaID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ReviewMedia_Review` FOREIGN KEY (`reviewID`) REFERENCES `review` (`reviewID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `payment`
+-- Dumping data for table `reviewmedia`
 --
 
-LOCK TABLES `payment` WRITE;
-/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+LOCK TABLES `reviewmedia` WRITE;
+/*!40000 ALTER TABLE `reviewmedia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reviewmedia` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-30 17:02:23
+-- Dump completed on 2024-04-03 17:01:48

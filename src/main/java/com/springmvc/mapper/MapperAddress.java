@@ -22,6 +22,10 @@ public class MapperAddress implements RowMapper<Address>{
 		address.setDistrict(rs.getString("district"));
 		address.setCity(rs.getString("city"));
 		address.setCountry(rs.getString("country"));
+		address.setCreatedDate(rs.getTimestamp("createdDate"));
+		address.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		address.setCreatedBy(rs.getString("createdBy"));
+		address.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return address;
 	}

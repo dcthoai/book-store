@@ -18,6 +18,10 @@ public class MapperReview implements RowMapper<Review>{
 		review.setCustomerId(rs.getInt("userID"));
 		review.setStars(rs.getInt("stars"));
 		review.setComment(rs.getString("comments"));
+		review.setCreatedDate(rs.getTimestamp("createdDate"));
+		review.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		review.setCreatedBy(rs.getString("createdBy"));
+		review.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return review;
 	}

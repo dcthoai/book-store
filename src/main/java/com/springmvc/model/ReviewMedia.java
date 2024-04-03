@@ -1,16 +1,10 @@
 package com.springmvc.model;
 
-public class ReviewMedia {
+public class ReviewMedia extends AbstractModel{
 	private int reviewId, mediaId;
 
 	public ReviewMedia() {
 		super();
-	}
-
-	public ReviewMedia(int reviewId, int mediaId) {
-		super();
-		this.reviewId = reviewId;
-		this.mediaId = mediaId;
 	}
 
 	public long getReviewId() {

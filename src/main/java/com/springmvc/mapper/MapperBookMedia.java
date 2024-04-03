@@ -11,11 +11,16 @@ public class MapperBookMedia implements RowMapper<BookMedia>{
 
 	@Override
 	public BookMedia mapRow(ResultSet rs, int rowNum) throws SQLException {
-		BookMedia productMedia = new BookMedia();
+		BookMedia bookMedia = new BookMedia();
 		
-		productMedia.setMediaId(rs.getInt("mediaID"));
-		productMedia.setBookId(rs.getInt("bookID"));
+		bookMedia.setId(rs.getInt("bookMediaID"));
+		bookMedia.setMediaId(rs.getInt("mediaID"));
+		bookMedia.setBookId(rs.getInt("bookID"));
+		bookMedia.setCreatedDate(rs.getTimestamp("createdDate"));
+		bookMedia.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		bookMedia.setCreatedBy(rs.getString("createdBy"));
+		bookMedia.setModifiedBy(rs.getString("modifiedBy"));
 		
-		return productMedia;
+		return bookMedia;
 	}
 }

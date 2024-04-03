@@ -1,17 +1,10 @@
 package com.springmvc.model;
 
-public class CartProduct{
+public class CartProduct extends AbstractModel{
 	private int cartId, bookId, quantity;
 	
 	public CartProduct() {
 		super();
-	}
-	
-	public CartProduct(int cartId, int bookId, int quantity) {
-		super();
-		this.cartId = cartId;
-		this.bookId = bookId;
-		this.quantity = quantity;
 	}
 
 	public int getCartId() {

@@ -1,7 +1,6 @@
 package com.springmvc.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class Order extends AbstractModel {
 	private int customerId;
@@ -11,11 +10,7 @@ public class Order extends AbstractModel {
 	public Order() {
 		super();
 	}
-
-	public Order(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-		super(id, createdDate, modifiedDate, createdBy, modifiedBy);
-	}
-
+	
 	public int getCustomerId() {
 		return customerId;
 	}

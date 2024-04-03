@@ -1,7 +1,6 @@
 package com.springmvc.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class User extends AbstractModel {
 	private String username, fullname, phoneNumber, email, password;
@@ -10,10 +9,6 @@ public class User extends AbstractModel {
 
 	public User() {
 		super();
-	}
-
-	public User(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-		super(id, createdDate, modifiedDate, createdBy, modifiedBy);
 	}
 
 	public String getUsername() {

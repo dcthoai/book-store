@@ -17,6 +17,10 @@ public class MapperOrder implements RowMapper<Order>{
 		order.setCustomerId(rs.getInt("customerID"));
 		order.setOrderDate(rs.getDate("orderDate"));
 		order.setOrderStatus(rs.getString("orderStatus"));
+		order.setCreatedDate(rs.getTimestamp("createdDate"));
+		order.setModifiedDate(rs.getTimestamp("modifiedDate"));
+		order.setCreatedBy(rs.getString("createdBy"));
+		order.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return order;
 	}

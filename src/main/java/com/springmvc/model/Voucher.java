@@ -13,10 +13,6 @@ public class Voucher extends AbstractModel {
 		super();
 	}
 
-	public Voucher(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-		super(id, createdDate, modifiedDate, createdBy, modifiedBy);
-	}
-
 	public String getVoucherName() {
 		return voucherName;
 	}

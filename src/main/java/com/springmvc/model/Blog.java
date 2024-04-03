@@ -1,17 +1,11 @@
 package com.springmvc.model;
 
-import java.sql.Timestamp;
-
 public class Blog extends AbstractModel {
 	private int authorId, thumbnail;
 	private String title, content;
 
 	public Blog() {
 		super();
-	}
-
-	public Blog(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-		super(id, createdDate, modifiedDate, createdBy, modifiedBy);
 	}
 
 	public int getAuthorId() {
