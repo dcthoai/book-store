@@ -13,23 +13,23 @@ public class CategoryDAO extends AbstractDAO<Category> implements ICategoryDAO{
 
 	@Override
 	public int insert(Category category) {
-		String sql = "INSERT INTO `bookstore`.`category` (`categoryName`, `descriptions`, `createdBy`) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO `bookstore`.`category` (`name`, `description`, `createdBy`) VALUES (?, ?, ?)";
 		
-		int categoryId = executeInsert(sql, category.getCategoryName(), category.getDescriptions(), category.getCreatedBy());
+		int categoryId = executeInsert(sql, category.getName(), category.getDescription(), category.getCreatedBy());
 		return categoryId;
 	}
 
 	@Override
 	public int update(Category category) {
-		String sql = "UPDATE `bookstore`.`category` SET `categoryName` = ?, `descriptions` = ?, `modifiedBy` = ? WHERE (`categoryId` = ?)";
+		String sql = "UPDATE `bookstore`.`category` SET `name` = ?, `description` = ?, `modifiedBy` = ? WHERE (`id` = ?)";
 		
-		int affectedRows = executeUpdate(sql, category.getCategoryName(), category.getDescriptions(), category.getModifiedBy());
+		int affectedRows = executeUpdate(sql, category.getName(), category.getDescription(), category.getModifiedBy(), category.getId());
 		return affectedRows;
 	}
 
 	@Override
 	public int delete(int id) {
-		String sql = "DELETE FROM `bookstore`.`category` WHERE (`categoryId` = ?)";
+		String sql = "DELETE FROM `bookstore`.`category` WHERE (`id` = ?)";
 		
 		int affectedRows = executeUpdate(sql, id);
 		return affectedRows;
@@ -37,7 +37,7 @@ public class CategoryDAO extends AbstractDAO<Category> implements ICategoryDAO{
 	
 	@Override
 	public Category getById(int id) {
-		String sql = "SELECT * FROM `bookstore`.`category` WHERE (`categoryId` = ?)";
+		String sql = "SELECT * FROM `bookstore`.`category` WHERE (`id` = ?)";
 		List<Category> listCategories = executeQuery(sql, new MapperCategory(), id);
 		
 		return listCategories.isEmpty() ? null : listCategories.get(0);

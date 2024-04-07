@@ -13,13 +13,15 @@ public class MapperCategory implements RowMapper<Category>{
 	public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Category category = new Category();
 		
-		category.setId(rs.getInt("categoryID"));
-		category.setCategoryName(rs.getString("categoryName"));
-		category.setDescriptions(rs.getString("descriptions"));
-		category.setCreatedDate(rs.getTimestamp("createdDate"));
-		category.setModifiedDate(rs.getTimestamp("modifiedDate"));
-		category.setCreatedBy(rs.getString("createdBy"));
-		category.setModifiedBy(rs.getString("modifiedBy"));
+		category.setId(rs.getInt("id"));
+		
+        category.setName(rs.getString("name"));
+        category.setDescription(rs.getString("description"));
+        
+        category.setCreatedDate(rs.getTimestamp("createdDate"));
+        category.setModifiedDate(rs.getTimestamp("modifiedDate"));
+        category.setCreatedBy(rs.getString("createdBy"));
+        category.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return category;
 	}

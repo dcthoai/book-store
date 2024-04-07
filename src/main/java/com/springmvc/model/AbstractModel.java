@@ -11,22 +11,14 @@ public class AbstractModel {
 		super();
 	}
 	
-	public AbstractModel(int id, Timestamp createdDate, Timestamp modifiedDate, String createdBy, String modifiedBy) {
-		this.id = id;
-		this.createdDate = createdDate;
-		this.modifiedDate = modifiedDate;
-		this.createdBy = createdBy;
-		this.modifiedBy = modifiedBy;
-	}
-
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public Timestamp getCreatedDate() {
 		return createdDate;
 	}

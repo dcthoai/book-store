@@ -22,12 +22,12 @@
 	                                <p class="mb-4 slide-caption opacity-50 fs-6 text-light">
 	                                    ${ slide.content }
 	                                </p>
-	                                <a href="${ slide.slideLink }" class="btn rounded-5 px-4 py-2 fs-5 fw-medium text-light explore">Xem ngay</a>
+	                                <a href="${ slide.link }" class="btn rounded-5 px-4 py-2 fs-5 fw-medium text-light explore">Xem ngay</a>
 	                            </div>
 	
 	                            <div class="col-sm-12 col-lg-7 pt-5 pt-lg-0 slide-img">
-	                            	<c:set var="media" value="${mediaService.getMediaById(slide.slideMedia)}"/>
-	                                <img src="${ media.mediaPath }" alt="slide image">
+	                            	<c:set var="media" value="${mediaService.getMediaById(slide.thumbnailId)}"/>
+	                                <img src="${ media.path }" alt="slide image">
 	                            </div>
 	                        </div>
 	                    </div>
@@ -93,16 +93,16 @@
 
             <div class="row">
             	<!-- Loop listTopBlogs -->
-            	<c:forEach var="blog" items="${ listTopBlogs }">
+            	<c:forEach var="blog" items="${ newBlogs }">
             		<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
 	                    <div class="post-entry">
-	                    	<c:set var="media" value="${mediaService.getMediaById(blog.thumbnail)}"/>
-	                        <a href="#" class="post-thumbnail"><img src="${ media.mediaPath }" alt="Image" class="img-fluid rounded-4"></a>
+	                    	<c:set var="media" value="${mediaService.getMediaById(blog.thumbnailId)}"/>
+	                        <a href="#" class="post-thumbnail"><img src="${ media.path }" alt="Image" class="img-fluid rounded-4"></a>
 	                        <div class="mt-4">
 	                            <h3><a class="text-decoration-none text-dark fs-4" href="#">${ blog.title }</a></h3>
 	                            <div class="meta">
-	                            	<c:set var="user" value="${userService.findUserById(blog.authorId)}"/>
-	                                <span>by <a href="#">${ user.fullname }</a></span> 
+	                            	<!-- <c:set var="user" value=""/> -->
+	                                <span>by <a href="#">NULL</a></span>
 	                                <span>on <a href="#">${ blog.getCreatedDate() }</a></span>
 	                            </div>
 	                        </div>

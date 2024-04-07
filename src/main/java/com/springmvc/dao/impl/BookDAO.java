@@ -12,26 +12,74 @@ import com.springmvc.model.Book;
 public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 
 	@Override
-	public int insert(Book t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insert(Book book) {
+		String sql = "INSERT INTO `bookstore`.`book` "
+						+ "(`title`, `description`, `size`, "
+						+ "`authorId`, `publisherId`, `languageId`, `categoryId`, `voucherId`, `thumbnailId`, "
+						+ "`pages`, `weight`, `price`, `discount`, `purchases`, `rate`, `releaseDate`, `createdBy`) "
+						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		int bookId = executeInsert(sql, book.getTitle(),
+										book.getDescription(),
+										book.getSize(),
+										book.getAuthorId(),
+										book.getPublisherId(),
+										book.getLanguageId(),
+										book.getCategoryId(),
+										book.getVoucherId(),
+										book.getThumbnailId(),
+										book.getPages(),
+										book.getWeight(),
+										book.getPrice(),
+										book.getDiscount(),
+										book.getPurchases(),
+										book.getRate(),
+										book.getReleaseDate(),
+										book.getCreatedBy());
+		return bookId;
 	}
 
 	@Override
-	public int update(Book t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(Book book) {
+		String sql = "UPDATE `bookstore`.`book` SET "
+						+ "`title` = ?, `description` = ?, `size` = ?, "
+						+ "`authorId` = ?, `publisherId` = ?, `languageId` ?, `categoryId` = ?, `voucherId` = ?, `thumbnailId` = ?, "
+						+ "`pages` = ?, `weight` = ?, `price` = ?, `discount` = ?, `purchases` = ?, `rate` = ?, "
+						+ "`releaseDate` = ?, `modifiedBy` = ? "
+						+ "WHERE (`id` = ?)";
+		
+		int affectedRows = executeInsert(sql, book.getTitle(),
+											  book.getDescription(),
+											  book.getSize(),
+											  book.getAuthorId(),
+											  book.getPublisherId(),
+											  book.getLanguageId(),
+											  book.getCategoryId(),
+											  book.getVoucherId(),
+											  book.getThumbnailId(),
+											  book.getPages(),
+											  book.getWeight(),
+											  book.getPrice(),
+											  book.getDiscount(),
+											  book.getPurchases(),
+											  book.getRate(),
+											  book.getReleaseDate(),
+											  book.getModifiedBy(),
+											  book.getId());
+		return affectedRows;
 	}
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "DELETE FROM `bookstore`.`book` WHERE (`id` = ?)";
+		
+		int affectedRows = executeUpdate(sql, id);
+		return affectedRows;
 	}
 	
 	@Override
 	public Book getById(int id) {
-		String sql = "SELECT * FROM bookstore.book WHERE bookId = ?";
+		String sql = "SELECT * FROM `bookstore`.`book` WHERE (`id` = ?)";
 		
 		List<Book> listBooks = executeQuery(sql, new MapperBook(), id);
 		return listBooks.isEmpty() ? null : listBooks.get(0);
@@ -39,56 +87,32 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 
 	@Override
 	public List<Book> getNewestBooks() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Book> getBooksByCategory(int categoryId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Book> getBooksByAuthor(String author) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Book> getBooksByPublisher(String publisher) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Book> getBooksByLanguage(String language) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Book> getBooksUnderPrice(long price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Book> getBooksOverPrice(long price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Book> getBooksBetweenPrice(long minPrice, long maxPrice) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public List<Book> getAllBooks(){
-		String sql = "SELECT * FROM Book LIMIT 12";
+		String sql = "SELECT * FROM `bookstore`.`book` ORDER BY `createdDate` DESC LIMIT 36";
 		
 		List<Book> listBooks = executeQuery(sql, new MapperBook());
+		return listBooks;
+	}
+	
+	public List<Book> getLatestReleaseBooks(){
+		String sql = "SELECT * FROM `bookstore`.`book` ORDER BY `releaseDate` DESC LIMIT 36";
+		
+		List<Book> listBooks = executeQuery(sql, new MapperBook());
+		return listBooks;
+	}
+
+	@Override
+	public List<Book> getBooksByAuthor(String authorId) {
+		String sql = "SELECT * FROM `bookstore`.`book` WHERE (`authorId` = ?)";
+		
+		List<Book> listBooks = executeQuery(sql, new MapperBook(), authorId);
+		return listBooks;
+	}
+
+	@Override
+	public List<Book> getBooksByPublisher(String publisherId) {
+		String sql = "SELECT * FROM `bookstore`.`book` WHERE (`publisherId` = ?)";
+		
+		List<Book> listBooks = executeQuery(sql, new MapperBook(), publisherId);
 		return listBooks;
 	}
 }

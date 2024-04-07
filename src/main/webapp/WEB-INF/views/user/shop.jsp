@@ -148,13 +148,13 @@
                     </div>
 
                     <div class="row mt-5">
-                        <c:forEach var="book" items="${ listBooks }">
+                        <c:forEach var="book" items="${ newestBooks }">
                         
                         	<div class="col-lg-3 col-md-4 col-6 mb-4">
 	                            <div class="product">
 	                                <a href="/bookstore/product?id=${ book.id }" class="product__link">
-	                                	<c:set var="media" value="${mediaService.getMediaById(book.thumbnail)}"/>
-	                                    <div class="product__img"><img src="${ media.mediaPath }" alt="product image"></div>
+	                                	<c:set var="media" value="${mediaService.getMediaById(book.thumbnailId)}"/>
+	                                    <div class="product__img"><img src="${ media.path }" alt="product image"></div>
 	
 	                                    <div class="product__info p-3 pt-2">
 	                                        <h6 class="name mb-2">${ book.title }</h6>
@@ -166,6 +166,8 @@
 	                                            <i class="fa-regular fa-star"></i>
 	                                            <i class="fa-regular fa-star"></i>
 	                                        </div>
+	                                        
+	                                        <div>Đã bán: <span>${ book.purchases }</span></div>
 	
 	                                        <div class="price">
 	                                            ${ book.getSellPrice() } đ

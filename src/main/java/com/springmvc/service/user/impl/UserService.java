@@ -1,64 +1,58 @@
 package com.springmvc.service.user.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.springmvc.dao.impl.UserDAO;
-import com.springmvc.model.User;
-import com.springmvc.service.user.IUserService;
+import com.springmvc.dao.impl.CustomerDAO;
+import com.springmvc.dao.impl.UserCustomDAO;
+import com.springmvc.model.Customer;
+import com.springmvc.model.UserCustom;
 
 @Service
-public class UserService implements IUserService{
+public class UserService implements UserDetailsService{
+	
 	@Autowired
-	private UserDAO userDAO;
+	private UserCustomDAO userCustomDAO;
+	
+	@Autowired
+	private CustomerDAO customerDAO;
 
 	@Override
-	public int insertUser(User user) {
-		int userId = userDAO.insert(user);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserCustom user = userCustomDAO.getUserByUsername(username);
+		
+		System.out.println("userDetailsService is active, userid:  ");
+		
+		if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+		
+		System.out.println(user.getUserId());
+		
+		return user;
+	}
+		
+	public boolean isExistCustomerOrUser(String username, String email) {
+		try {
+			UserCustom user = userCustomDAO.getUserByUsername(username);
+			Customer customer = customerDAO.getCustomerByEmail(email);
+			
+			if (customer != null || user != null)
+				return true;
+			
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public int insertUserCustom(UserCustom user) {
+		int userId = userCustomDAO.insert(user);
+		
 		return userId;
-	}
-
-	@Override
-	public boolean updateUser(User user) {
-		int affectedRows = userDAO.update(user);
-		return affectedRows > 0;
-	}
-
-	@Override
-	public boolean deleteUser(int id) {
-		int affectedRows = userDAO.delete(id);
-		return affectedRows > 0;
-	}
-
-	@Override
-	public User findUserById(int id) {
-		User user = userDAO.getById(id);
-		return user;
-	}
-
-	@Override
-	public User findUserByUsername(String username) {
-		User user = userDAO.getUserByUsername(username);
-		return user;
-	}
-
-	@Override
-	public User findUserByEmail(String email) {
-		User user = userDAO.getUserByEmail(email);
-		return user;
-	}
-
-	@Override
-	public User findUserByPhone(String phone) {
-		User user = userDAO.getUserByPhone(phone);
-		return user;
-	}
-
-	@Override
-	public List<User> getAllUsers() {
-		List<User> listUsers = userDAO.getAllUsers();
-		return listUsers;
 	}
 }

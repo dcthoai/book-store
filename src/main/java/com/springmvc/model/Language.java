@@ -1,17 +1,25 @@
 package com.springmvc.model;
 
 public class Language extends AbstractModel{
-	private String languageName;
+	private String name, code;
 
 	public Language() {
 		super();
 	}
 
-	public String getLanguageName() {
-		return languageName;
+	public String getName() {
+		return name;
 	}
 
-	public void setLanguageName(String languageName) {
-		this.languageName = languageName;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

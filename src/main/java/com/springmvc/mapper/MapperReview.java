@@ -13,15 +13,17 @@ public class MapperReview implements RowMapper<Review>{
 	public Review mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Review review = new Review();
 		
-		review.setId(rs.getInt("reviewID"));
-		review.setBookId(rs.getInt("bookID"));
-		review.setCustomerId(rs.getInt("userID"));
-		review.setStars(rs.getInt("stars"));
-		review.setComment(rs.getString("comments"));
-		review.setCreatedDate(rs.getTimestamp("createdDate"));
-		review.setModifiedDate(rs.getTimestamp("modifiedDate"));
-		review.setCreatedBy(rs.getString("createdBy"));
-		review.setModifiedBy(rs.getString("modifiedBy"));
+		review.setId(rs.getInt("id"));
+		
+        review.setBookId(rs.getInt("bookId"));
+        review.setCustomerId(rs.getInt("customerId"));
+        review.setStars(rs.getInt("stars"));
+        review.setComment(rs.getString("comment"));
+        
+        review.setCreatedDate(rs.getTimestamp("createdDate"));
+        review.setModifiedDate(rs.getTimestamp("modifiedDate"));
+        review.setCreatedBy(rs.getString("createdBy"));
+        review.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return review;
 	}

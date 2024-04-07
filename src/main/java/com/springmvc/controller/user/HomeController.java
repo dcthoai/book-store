@@ -8,8 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.service.user.impl.HomeService;
 import com.springmvc.service.user.impl.MediaService;
-import com.springmvc.service.user.impl.UserService;
-import com.springmvc.service.user.impl.BookService;
 
 @Controller("userHomeController")
 public class HomeController {
@@ -18,17 +16,14 @@ public class HomeController {
 	private HomeService homeService;
 	@Autowired 
 	private MediaService mediaService;
-	@Autowired
-	private UserService userService;
 	
 	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
 	public ModelAndView homepage() {
 		
 		ModelAndView mav = new ModelAndView("user/index");
 		mav.addObject("slides", homeService.getAllSlides());
-		mav.addObject("listTopBlogs", homeService.getTopBlog());
+		mav.addObject("newBlogs", homeService.getNewBlogs());
 		mav.addObject("mediaService", mediaService);
-		mav.addObject("userService", userService);
 		
 		return mav;
 	}

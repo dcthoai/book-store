@@ -3,7 +3,7 @@ package com.springmvc.model;
 import java.sql.Timestamp;
 
 public class Voucher extends AbstractModel {
-	private String voucherName, voucherCode, descriptions;
+	private String title, code, description;
 	private float discount;
 	private int quantity;
 	private long priceMinimumApplied, priceMaximumApplied;
@@ -13,28 +13,28 @@ public class Voucher extends AbstractModel {
 		super();
 	}
 
-	public String getVoucherName() {
-		return voucherName;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setVoucherName(String voucherName) {
-		this.voucherName = voucherName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getVoucherCode() {
-		return voucherCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setVoucherCode(String voucherCode) {
-		this.voucherCode = voucherCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getDescriptions() {
-		return descriptions;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptions(String descriptions) {
-		this.descriptions = descriptions;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public float getDiscount() {

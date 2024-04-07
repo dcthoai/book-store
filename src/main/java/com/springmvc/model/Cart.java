@@ -2,7 +2,6 @@ package com.springmvc.model;
 
 public class Cart extends AbstractModel {
 	private int customerId, quantity;
-	private long totalPayment;
 	
 	public Cart() {
 		super();
@@ -22,13 +21,5 @@ public class Cart extends AbstractModel {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-	public long getTotalPayment() {
-		return totalPayment;
-	}
-
-	public void setTotalPayment(long totalPayment) {
-		this.totalPayment = totalPayment;
 	}
 }

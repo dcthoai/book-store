@@ -13,25 +13,28 @@ public class MediaService implements IMediaService{
 	private MediaDAO mediaDAO;
 
 	@Override
-	public Media getMediaById(int id) {
-		return mediaDAO.getById(id);
-	}
-
-	@Override
 	public int insertMedia(Media media) {
-		// TODO Auto-generated method stub
-		return 0;
+		int mediaId = mediaDAO.insert(media);
+		
+		return mediaId;
 	}
 
 	@Override
 	public boolean updateMedia(Media media) {
-		// TODO Auto-generated method stub
-		return false;
+		int affectedRows = mediaDAO.update(media);
+		
+		return affectedRows > 0;
 	}
 
 	@Override
 	public boolean deleteMedia(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		int affectedRows = mediaDAO.delete(id);
+		
+		return affectedRows > 0;
+	}
+	
+	@Override
+	public Media getMediaById(int id) {
+		return mediaDAO.getById(id);
 	}
 }

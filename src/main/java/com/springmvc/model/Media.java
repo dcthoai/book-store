@@ -1,42 +1,42 @@
 package com.springmvc.model;
 
 public class Media extends AbstractModel {
-	private String mediaName, mediaPath, mediaType;
-	private int mediaSize;
+	private String name, path, type;
+	private int size;
 	
 	public Media() {
 		super();
 	}
 
-	public String getMediaName() {
-		return mediaName;
+	public String getName() {
+		return name;
 	}
 
-	public void setMediaName(String mediaName) {
-		this.mediaName = mediaName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getMediaPath() {
-		return mediaPath;
+	public String getPath() {
+		return path;
 	}
 
-	public void setMediaPath(String mediaPath) {
-		this.mediaPath = mediaPath;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
-	public String getMediaType() {
-		return mediaType;
+	public String getType() {
+		return type;
 	}
 
-	public void setMediaType(String mediaType) {
-		this.mediaType = mediaType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public int getMediaSize() {
-		return mediaSize;
+	public int getSize() {
+		return size;
 	}
 
-	public void setMediaSize(int mediaSize) {
-		this.mediaSize = mediaSize;
+	public void setSize(int size) {
+		this.size = size;
 	}
 }

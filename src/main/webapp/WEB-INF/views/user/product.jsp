@@ -23,24 +23,24 @@
     </div>
 
     <!-- Product -->
-    <c:set var="media" value="${mediaService.getMediaById(book.thumbnail)}"/>
+    <c:set var="media" value="${mediaService.getMediaById(book.thumbnailId)}"/>
     <div class="container product mt-5">
         <div class="row">
             <div class="col-12 col-lg-6 col-xl-5 ps-lg-4">
                 <div class="row">
                     <div class="col-4 col-sm-3">
                         <div class="product__imgs">
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.mediaPath }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
                             <a href="" class="img-wrapper p-1">+5</a>
                         </div>
                     </div>
 
                     <div class="col-8">
                         <div class="product__img pt-2">
-                            <img src="${ media.mediaPath }" alt="product image">
+                            <img src="${ media.path }" alt="product image">
                         </div>
                     </div>
                 </div>
@@ -49,10 +49,10 @@
             <div class="col-12 col-lg-6 col-xl-7 mt-5 mt-lg-0 ps-md-5 ps-lg-0">
                 <h4 class="mb-4 fs-4 fw-medium" style="color: #333;">${ book.title }</h4>
                 
-                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">${ book.publisher }</span></p>
-                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">${ book.author }</span></p>
-                <p class="mb-1 fs-6 fw-medium">Ngôn ngữ: <span class="fw-semibold">Tiếng Việt</span></p>
-                <p class="mb-1 fs-6 fw-medium">Thể loại: <span class="fw-semibold">Văn học</span></p>
+                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">${ book.publisherId }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">${ book.authorId }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Ngôn ngữ: <span class="fw-semibold">${ book.languageId }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Thể loại: <span class="fw-semibold">${ book.categoryId }</span></p>
 
                 <div class="my-4 opacity-75">
                     <i class="fa-regular fa-star"></i>
@@ -60,8 +60,10 @@
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
-                    (<span>0</span> đánh giá)
+                    (<span>${ book.rate }</span> đánh giá)
                 </div>
+                
+                <div>Đã bán: <span>${ book.purchases }</span></div>
 
                 <p class="fs-2 fw-bold price">${ book.getSellPrice() } đ
                     <del class="fs-5 fw-semibold opacity-75">${ book.price } đ</del>
@@ -85,7 +87,7 @@
 
                     <div class="quantity d-inline-block">
                         <button type="button" class="quantity__sub"><i class="fa-solid fa-minus"></i></button>
-                        <input disabled class="quantity__input" type="text" id="quantity" name="quantity" min="1" value="1">
+                        <input disabled class="quantity__input" type="number" id="quantity" name="quantity" min="1" value="1">
                         <button type="button" class="quantity__add"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
@@ -374,10 +376,10 @@
                 <p class="m-0 py-1">Số trang</p>
             </div>
             <div class="col-6 col-lg-4 info">
-                <p class="m-0 py-1">${ book.author }</p>
-                <p class="m-0 py-1">${ book.publisher }</p>
+                <p class="m-0 py-1">${ book.authorId }</p>
+                <p class="m-0 py-1">${ book.publisherId }</p>
                 <p class="m-0 py-1">${ book.releaseDate }</p>
-                <p class="m-0 py-1">Tiếng Việt</p>
+                <p class="m-0 py-1">${ book.languageId }</p>
                 <p class="m-0 py-1">${ book.weight }</p>
                 <p class="m-0 py-1">${ book.size }</p>
                 <p class="m-0 py-1">${ book.pages }</p>
@@ -391,7 +393,7 @@
         </p>
 
         <div class="description-text py-2">
-            <p>${ book.descriptions }</p>
+            <p>${ book.description }</p>
 
             <div class="d-flex justify-content-center my-4">
                 <button type="button">Xem thêm</button>
@@ -406,7 +408,7 @@
         <div class="d-flex">
             <div class="d-flex align-items-center">
                 <div class="review__quantity">
-                    <p class="fs-3 fw-bold"><span class="fs-1">0</span>/5</p>
+                    <p class="fs-3 fw-bold"><span class="fs-1">${ book.purchases }</span>/5</p>
                     <div class="rate">
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
@@ -414,7 +416,7 @@
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <span>(0 đánh giá)</span>
+                    <span>( đánh giá)</span>
                 </div>
 
                 <div class="review__chart">
@@ -455,32 +457,3 @@
         </div>
     </div>
 </body>
-	
-	<!-- <script type="text/javascript">
-	
-		document.getElementById('add-account').onclick = function(){
-			const user = {
-				    username: "johndoe",
-				    email: "johndoe@example.com",
-				    password: "123456",
-				};
-
-			
-			const xhr = new XMLHttpRequest();
-
-            xhr.open("POST", "/bookstore/signup");
-            xhr.setRequestHeader("Content-Type", "application/json");
-
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Xử lý thành công
-                    console.log(xhr.responseText);
-                } else {
-                    // Xử lý lỗi
-                    console.error(xhr.status, xhr.statusText);
-                }
-            };
-
-            xhr.send(JSON.stringify(user));
-		}
-	</script> -->

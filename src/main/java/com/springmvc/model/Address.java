@@ -2,7 +2,7 @@ package com.springmvc.model;
 
 public class Address extends AbstractModel {
 	private int customerId;
-	private String phoneNumber, address, street, ward, district, city, country;
+	private String phone, address, street, ward, district, city, country;
 	
 	public Address() {
 		super();
@@ -16,12 +16,12 @@ public class Address extends AbstractModel {
 		this.customerId = customerId;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getAddress() {

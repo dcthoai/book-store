@@ -1,19 +1,19 @@
 package com.springmvc.model;
 
 public class Slide extends AbstractModel{
-	private int slideMedia;
-	private String caption, content , slideLink;
+	private int thumbnailId;
+	private String caption, content , link;
 
 	public Slide() {
 		super();
 	}
 
-	public int getSlideMedia() {
-		return slideMedia;
+	public int getThumbnailId() {
+		return thumbnailId;
 	}
 
-	public void setSlideMedia(int slideMedia) {
-		this.slideMedia = slideMedia;
+	public void setThumbnailId(int thumbnailId) {
+		this.thumbnailId = thumbnailId;
 	}
 
 	public String getCaption() {
@@ -31,12 +31,12 @@ public class Slide extends AbstractModel{
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	public String getSlideLink() {
-		return slideLink;
+
+	public String getLink() {
+		return link;
 	}
 
-	public void setSlideLink(String slideLink) {
-		this.slideLink = slideLink;
+	public void setLink(String link) {
+		this.link = link;
 	}
 }

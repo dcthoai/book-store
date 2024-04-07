@@ -13,15 +13,17 @@ public class MapperSlide implements RowMapper<Slide>{
 	public Slide mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Slide slide = new Slide();
 		
-		slide.setId(rs.getInt("slideID"));
-		slide.setSlideMedia(rs.getInt("slideMedia"));
-		slide.setCaption(rs.getString("caption"));
-		slide.setContent(rs.getString("content"));
-		slide.setSlideLink(rs.getString("slideLink"));
-		slide.setCreatedDate(rs.getTimestamp("createdDate"));
-		slide.setModifiedDate(rs.getTimestamp("modifiedDate"));
-		slide.setCreatedBy(rs.getString("createdBy"));
-		slide.setModifiedBy(rs.getString("modifiedBy"));
+		slide.setId(rs.getInt("id"));
+		
+        slide.setThumbnailId(rs.getInt("thumbnailId"));
+        slide.setCaption(rs.getString("caption"));
+        slide.setContent(rs.getString("content"));
+        slide.setLink(rs.getString("link"));
+        
+        slide.setCreatedDate(rs.getTimestamp("createdDate"));
+        slide.setModifiedDate(rs.getTimestamp("modifiedDate"));
+        slide.setCreatedBy(rs.getString("createdBy"));
+        slide.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return slide;
 	}

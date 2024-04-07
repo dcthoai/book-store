@@ -13,15 +13,17 @@ public class MapperMedia implements RowMapper<Media>{
 	public Media mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Media media = new Media();
 		
-		media.setId(rs.getInt("mediaID"));
-		media.setMediaName(rs.getString("mediaName"));
-		media.setMediaPath(rs.getString("mediaPath"));
-		media.setMediaType(rs.getString("mediaType"));
-		media.setMediaSize(rs.getInt("mediaSize"));
-		media.setCreatedDate(rs.getTimestamp("createdDate"));
-		media.setModifiedDate(rs.getTimestamp("modifiedDate"));
-		media.setCreatedBy(rs.getString("createdBy"));
-		media.setModifiedBy(rs.getString("modifiedBy"));
+		media.setId(rs.getInt("id"));
+		
+        media.setName(rs.getString("name"));
+        media.setPath(rs.getString("path"));
+        media.setType(rs.getString("type"));
+        media.setSize(rs.getInt("size"));
+        
+        media.setCreatedDate(rs.getTimestamp("createdDate"));
+        media.setModifiedDate(rs.getTimestamp("modifiedDate"));
+        media.setCreatedBy(rs.getString("createdBy"));
+        media.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return media;
 	}

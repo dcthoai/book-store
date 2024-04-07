@@ -1,25 +1,25 @@
 package com.springmvc.model;
 
-public class Category extends AbstractModel{
-	private String categoryName, descriptions;
+public class Category extends AbstractModel {
+	private String name, description;
 
 	public Category() {
 		super();
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDescriptions() {
-		return descriptions;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptions(String descriptions) {
-		this.descriptions = descriptions;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

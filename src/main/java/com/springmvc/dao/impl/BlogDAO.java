@@ -13,11 +13,11 @@ public class BlogDAO extends AbstractDAO<Blog> implements IBlogDAO{
 	
 	@Override
 	public int insert(Blog blog) {
-		String sql = "INSERT INTO `bookstore`.`blog` (`author`, `thumbnail`, `title`, `content`, `createdBy`) "
+		String sql = "INSERT INTO `bookstore`.`blog` (`authorId`, `thumbnailId`, `title`, `content`, `createdBy`) "
 					+ "VALUES (?, ?, ?, ?, ?)";
 		
 		int blogId = executeInsert(sql, blog.getAuthorId(),
-										blog.getThumbnail(),
+										blog.getThumbnailId(),
 										blog.getTitle(),
 										blog.getContent(),
 										blog.getCreatedBy());
@@ -27,23 +27,24 @@ public class BlogDAO extends AbstractDAO<Blog> implements IBlogDAO{
 	@Override
 	public int update(Blog blog) {
 		String sql = "UPDATE `bookstore`.`blog` SET "
-						+ "`author` = ?, "
-						+ "`thumbnail` = ?, "
+						+ "`authorId` = ?, "
+						+ "`thumbnailId` = ?, "
 						+ "`title` = ?, "
 						+ "`content` = ?, "
-						+ "`modifiedBy` = ? WHERE (`blogID` = ?)";
+						+ "`modifiedBy` = ? WHERE (`id` = ?)";
 		
 		int affectedRows = executeUpdate(sql, blog.getAuthorId(),
-										blog.getThumbnail(),
-										blog.getTitle(),
-										blog.getContent(),
-										blog.getModifiedBy());
+											  blog.getThumbnailId(),
+											  blog.getTitle(),
+											  blog.getContent(),
+											  blog.getModifiedBy(),
+											  blog.getId());
 		return affectedRows;
 	}
 
 	@Override
 	public int delete(int id) {
-		String sql = "DELETE FROM `bookstore`.`blog` WHERE (`blogID` = ?)";
+		String sql = "DELETE FROM `bookstore`.`blog` WHERE (`id` = ?)";
 		
 		int affectedRows = executeUpdate(sql, id);
 		return affectedRows;
@@ -51,14 +52,14 @@ public class BlogDAO extends AbstractDAO<Blog> implements IBlogDAO{
 	
 	@Override
 	public Blog getById(int id) {
-		String sql = "SELECT * FROM `bookstore`.`blog` WHERE (`blogID` = ?)";
+		String sql = "SELECT * FROM `bookstore`.`blog` WHERE (`id` = ?)";
 		
 		List<Blog> listBlogs = executeQuery(sql, new MapperBlog(), id);
 		return listBlogs.isEmpty() ? null : listBlogs.get(0);
 	}
 	
 	@Override
-	public List<Blog> getTopBlog() {
+	public List<Blog> getNewBlogs() {
 		// Returns the 3 newest blogs
 		String sql = "SELECT * FROM `bookstore`.`blog` ORDER BY `createdDate` DESC LIMIT 3";
 		

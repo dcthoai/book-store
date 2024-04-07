@@ -13,28 +13,31 @@ public class MapperBook implements RowMapper<Book>{
 	public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Book book = new Book();
 		
-		book.setId(rs.getInt("bookID"));
-		book.setPages(rs.getInt("pages"));
-		book.setWeight(rs.getInt("weight"));
-		book.setThumbnail(rs.getInt("thumbnail"));
-		book.setCategoryId(rs.getInt("categoryID"));
-		book.setLanguageId(rs.getInt("languageID"));
-		book.setVoucherId(rs.getInt("voucherID"));
+		book.setId(rs.getInt("id"));
 		
-		book.setTitle(rs.getString("title"));
-		book.setSize(rs.getString("size"));
-		book.setAuthor(rs.getString("author"));
-		book.setPublisher(rs.getString("publisher"));
-		book.setDescriptions(rs.getString("descriptions"));
-		
-		book.setPrice(rs.getLong("price"));
-		book.setDiscount(rs.getFloat("discount"));
-		book.setReleaseDate(rs.getDate("releaseDate"));
-		
-		book.setCreatedDate(rs.getTimestamp("createdDate"));
-		book.setModifiedDate(rs.getTimestamp("modifiedDate"));
-		book.setCreatedBy(rs.getString("createdBy"));
-		book.setModifiedBy(rs.getString("modifiedBy"));
+        book.setTitle(rs.getString("title"));
+        book.setDescription(rs.getString("description"));
+        book.setSize(rs.getString("size"));
+        
+        book.setAuthorId(rs.getInt("authorId"));
+        book.setPublisherId(rs.getInt("publisherId"));
+        book.setLanguageId(rs.getInt("languageId"));
+        book.setCategoryId(rs.getInt("categoryId"));
+        book.setVoucherId(rs.getInt("voucherId"));
+        book.setThumbnailId(rs.getInt("thumbnailId"));
+        book.setPages(rs.getInt("pages"));
+        book.setWeight(rs.getInt("weight"));
+        book.setPurchases(rs.getInt("purchases"));
+        book.setRate(rs.getInt("rate"));;
+        
+        book.setPrice(rs.getLong("price"));
+        book.setDiscount(rs.getFloat("discount"));
+        book.setReleaseDate(rs.getDate("releaseDate"));
+        
+        book.setCreatedDate(rs.getTimestamp("createdDate"));
+        book.setModifiedDate(rs.getTimestamp("modifiedDate"));
+        book.setCreatedBy(rs.getString("createdBy"));
+        book.setModifiedBy(rs.getString("modifiedBy"));
 
 		return book;
 	}

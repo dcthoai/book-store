@@ -19,14 +19,8 @@ public class ShopController {
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public ModelAndView shop() {
 		ModelAndView mav = new ModelAndView("user/shop");
-		mav.addObject("listBooks", bookService.getAllBooks());
+		mav.addObject("newestBooks", bookService.getNewestBooks());
 		mav.addObject("mediaService", mediaService);
-		return mav;
-	}
-	
-	@RequestMapping(value = "/shopping-cart", method = RequestMethod.GET)
-	public ModelAndView shoppingCart() {
-		ModelAndView mav = new ModelAndView("user/shopping-cart");
 		return mav;
 	}
 }

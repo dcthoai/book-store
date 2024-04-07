@@ -2,13 +2,13 @@ package com.springmvc.model;
 
 import java.sql.Date;
 
-public class Book extends AbstractModel{
-	private String title, descriptions, author, publisher, size;
-	private int voucherId, languageId, categoryId, thumbnail, pages, weight;
+public class Book extends AbstractModel {
+	private String title, description, size;
+	private int authorId, publisherId, languageId, categoryId, voucherId, thumbnailId, pages, weight, purchases, rate;
 	private long price;
 	private float discount;
 	private Date releaseDate;
-	
+
 	public Book() {
 		super();
 	}
@@ -21,28 +21,12 @@ public class Book extends AbstractModel{
 		this.title = title;
 	}
 
-	public String getDescriptions() {
-		return descriptions;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptions(String descriptions) {
-		this.descriptions = descriptions;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getSize() {
@@ -53,12 +37,20 @@ public class Book extends AbstractModel{
 		this.size = size;
 	}
 
-	public int getVoucherId() {
-		return voucherId;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setVoucherId(int voucherId) {
-		this.voucherId = voucherId;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+
+	public int getPublisherId() {
+		return publisherId;
+	}
+
+	public void setPublisherId(int publisherId) {
+		this.publisherId = publisherId;
 	}
 
 	public int getLanguageId() {
@@ -77,12 +69,20 @@ public class Book extends AbstractModel{
 		this.categoryId = categoryId;
 	}
 
-	public int getThumbnail() {
-		return thumbnail;
+	public int getVoucherId() {
+		return voucherId;
 	}
 
-	public void setThumbnail(int thumbnail) {
-		this.thumbnail = thumbnail;
+	public void setVoucherId(int voucherId) {
+		this.voucherId = voucherId;
+	}
+
+	public int getThumbnailId() {
+		return thumbnailId;
+	}
+
+	public void setThumbnailId(int thumbnail) {
+		this.thumbnailId = thumbnail;
 	}
 
 	public int getPages() {
@@ -99,6 +99,22 @@ public class Book extends AbstractModel{
 
 	public void setWeight(int weight) {
 		this.weight = weight;
+	}
+	
+	public int getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(int purchases) {
+		this.purchases = purchases;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 	public long getPrice() {
@@ -124,8 +140,8 @@ public class Book extends AbstractModel{
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	
+
 	public long getSellPrice() {
-		return (long) ((float)price - ((float)price * discount) / 100);
+		return (long) ((float) price - ((float) price * discount) / 100);
 	}
 }

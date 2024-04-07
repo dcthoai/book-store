@@ -13,14 +13,15 @@ public class MapperCart implements RowMapper<Cart>{
 	public Cart mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Cart cart = new Cart();
 		
-		cart.setId(rs.getInt("cartID"));
-		cart.setCustomerId(rs.getInt("customerID"));
-		cart.setQuantity(rs.getInt("quantity"));
-		cart.setTotalPayment(rs.getLong("totalPayment"));
-		cart.setCreatedDate(rs.getTimestamp("createdDate"));
-		cart.setModifiedDate(rs.getTimestamp("modifiedDate"));
-		cart.setCreatedBy(rs.getString("createdBy"));
-		cart.setModifiedBy(rs.getString("modifiedBy"));
+		cart.setId(rs.getInt("id"));
+		
+        cart.setCustomerId(rs.getInt("customerId"));
+        cart.setQuantity(rs.getInt("quantity"));
+        
+        cart.setCreatedDate(rs.getTimestamp("createdDate"));
+        cart.setModifiedDate(rs.getTimestamp("modifiedDate"));
+        cart.setCreatedBy(rs.getString("createdBy"));
+        cart.setModifiedBy(rs.getString("modifiedBy"));
 		
 		return cart;
 	}

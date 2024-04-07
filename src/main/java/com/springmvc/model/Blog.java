@@ -1,7 +1,7 @@
 package com.springmvc.model;
 
 public class Blog extends AbstractModel {
-	private int authorId, thumbnail;
+	private int authorId, thumbnailId;
 	private String title, content;
 
 	public Blog() {
@@ -16,12 +16,12 @@ public class Blog extends AbstractModel {
 		this.authorId = authorId;
 	}
 
-	public int getThumbnail() {
-		return thumbnail;
+	public int getThumbnailId() {
+		return thumbnailId;
 	}
 
-	public void setThumbnail(int thumbnail) {
-		this.thumbnail = thumbnail;
+	public void setThumbnailId(int thumbnailId) {
+		this.thumbnailId = thumbnailId;
 	}
 
 	public String getTitle() {

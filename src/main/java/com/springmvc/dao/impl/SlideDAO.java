@@ -13,38 +13,38 @@ public class SlideDAO extends AbstractDAO<Slide> implements ISlideDAO{
 	
 	@Override
 	public int insert(Slide slide) {
-		String sql = "INSERT INTO `bookstore`.`slide`" 
-						+ "(`slideMedia`, `caption`, `content`, `createdBy`, `slideLink`)"
+		String sql = "INSERT INTO `bookstore`.`slide` (`thumbnailId`, `caption`, `content`, `link`, `createdBy`) "
 						+ "VALUES (?, ?, ?, ?, ?)";
 		
-		int slideId = executeInsert(sql, slide.getSlideMedia(), 
-												slide.getCaption(), 
-												slide.getContent(), 
-												slide.getCreatedBy(), 
-												slide.getSlideLink());
+		int slideId = executeInsert(sql, slide.getThumbnailId(),
+										 slide.getCaption(),
+										 slide.getContent(),
+										 slide.getLink(),
+										 slide.getCreatedBy());
 		return slideId;
 	}
 
 	@Override
 	public int update(Slide slide) {
-		String sql = "UPDATE `bookstore`.`slide` SET"
-						+ "`slideMedia` = '2', "
+		String sql = "UPDATE `bookstore`.`slide` SET "
+						+ "`thumbnailId` = '2', "
 						+ "`caption` = ?, "
 						+ "`content` = ?, "
-						+ "`modifiedBy` = ?, "
-						+ "`slideLink` = ? WHERE (`slideId` = '4')";
+						+ "`link` = ?, "
+						+ "`modifiedBy` = ? WHERE (`id` = ?)";
 		
-		int affectedRows = executeInsert(sql, slide.getSlideMedia(), 
-												slide.getCaption(), 
-												slide.getContent(), 
-												slide.getModifiedBy(), 
-												slide.getSlideLink());
+		int affectedRows = executeInsert(sql, slide.getThumbnailId(),
+											  slide.getCaption(),
+											  slide.getContent(),
+											  slide.getLink(),
+											  slide.getModifiedBy(),
+											  slide.getId());
 		return affectedRows;
 	}
 
 	@Override
 	public int delete(int id) {
-		String sql = "DELETE FROM `bookstore`.`slide` WHERE (`slideId` = ?)";
+		String sql = "DELETE FROM `bookstore`.`slide` WHERE (`id` = ?)";
 		
 		int affectedRows = executeUpdate(sql, id);
 		return affectedRows;
@@ -52,16 +52,8 @@ public class SlideDAO extends AbstractDAO<Slide> implements ISlideDAO{
 	
 	@Override
 	public Slide getById(int id) {
-		String sql = "SELECT * FROM `bookstore`.`slide` WHERE (`slideId` = ?)";
+		String sql = "SELECT * FROM `bookstore`.`slide` WHERE (`id` = ?)";
 		List<Slide> listSlides = executeQuery(sql, new MapperSlide(), id);
-		
-		return listSlides.isEmpty() ? null : listSlides.get(0);
-	}
-	
-	@Override
-	public Slide getFirstSlide() {
-		String sql = "SELECT * FROM `bookstore`.`slide` LIMIT 1";
-		List<Slide> listSlides = executeQuery(sql, new MapperSlide());
 		
 		return listSlides.isEmpty() ? null : listSlides.get(0);
 	}

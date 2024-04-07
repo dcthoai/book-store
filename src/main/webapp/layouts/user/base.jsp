@@ -39,16 +39,30 @@
                     <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/about">About us</a></li>
                     <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="#">Contact us</a></li>
                 </ul>
-
+                
                 <ul class="navbar-nav mt-2 mt-md-0 fs-5">
                     <li class="mt-4 mt-md-0 mx-md-2 mx-lg-4">
-                        <a class="p-2 position-relative" href="/bookstore/shopping-cart">
+                        <a class="p-2 d-block h-100 position-relative" href="/bookstore/user/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="quantity-cart fs-6">0</span>
                         </a>
                     </li>
                     <li class="mt-3 mt-md-0 ms-1">
-                        <div id="user-button" class="p-2 text-light d-inline"><i class="fa-solid fa-user"></i></div>
+                        <div class="user">
+                            <div class="user__button" class="text-light">
+                                <div id="user-button" class="w-100 h-100"><img src="assets/images/post-1.jpg" alt="avatar"></div>
+                                <div id="sign-button" class="w-100 h-100 d-flex justify-content-center align-items-center text-light"><i class="fa-solid fa-user"></i></div>
+                            </div>
+                                
+                            <div class="user-nav">
+                                <a href="">Đơn hàng</a>
+                                <a href="">Giỏ hàng</a>
+                                <a href="">Trợ giúp</a>
+                                <a href="">Tài khoản</a>
+                                
+                                <button id="logout" class="logout">Đăng xuất</button>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
