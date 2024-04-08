@@ -1,10 +1,13 @@
 HELP.md
+
 target/
+
+### Do not apply .gitignore to these folders ###
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+### Spring Tool Suite (STS) ###
 .apt_generated
 .classpath
 .factorypath
