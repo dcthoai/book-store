@@ -18,11 +18,11 @@ import com.springmvc.service.user.impl.UserService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserService userDetailsService;
+    private UserService userService;	// A class implements UserDetailsService in Spring Security
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
     
     @Override

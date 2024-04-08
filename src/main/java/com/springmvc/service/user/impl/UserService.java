@@ -24,14 +24,10 @@ public class UserService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserCustom user = userCustomDAO.getUserByUsername(username);
 		
-		System.out.println("userDetailsService is active, userid:  ");
-		
 		if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
-		
-		System.out.println(user.getUserId());
-		
+
 		return user;
 	}
 		

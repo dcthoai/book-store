@@ -105,8 +105,6 @@ public class AuthController {
 					customer.setEmail(email);
 					customer.setCreatedBy(username);
 					
-					System.out.println("userId vừa thêm là: " + customer.getUserId());
-					
 					int customerId = customerService.insertCustomer(customer);
 					
 					if(customerId > 0)
