@@ -61,6 +61,15 @@ public class CustomerDAO extends AbstractDAO<Customer> implements ICustomerDAO{
 		
 		return listCustomers.isEmpty() ? null : listCustomers.get(0);
 	}
+	
+	@Override
+	public Customer getCustomerByUserId(int userId) {
+		String sql = "SELECT * FROM `bookstore`.`customer` WHERE (`userid` = ?)";
+		
+		List<Customer> listCustomers = executeQuery(sql, new MapperCustomer(), userId);
+		
+		return listCustomers.isEmpty() ? null : listCustomers.get(0);
+	}
 
 	@Override
 	public Customer getCustomerByEmail(String email) {

@@ -1,28 +1,21 @@
 package com.springmvc.controller.user;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springmvc.model.CartProduct;
 
 @Controller("userCartController")
 public class CartController {
-	
-	@RequestMapping(value = "/user/cart", method = RequestMethod.GET)
+
+	@GetMapping(value = "/cart")
 	public ModelAndView shoppingCart() {
 		ModelAndView mav = new ModelAndView("user/cart");
 		
 		return mav;
 	}
+
+	
 //	
 //	@PostMapping(value = "/cart/add")
 //	public ResponseEntity<?> addToCart(@RequestBody String jsonString) {

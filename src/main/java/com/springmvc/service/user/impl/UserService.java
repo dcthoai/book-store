@@ -46,6 +46,12 @@ public class UserService implements UserDetailsService{
 		}
 	}
 	
+	public UserCustom getUserByUsername(String username) {
+		UserCustom user = userCustomDAO.getUserByUsername(username);
+		
+		return user;
+	}
+	
 	public int insertUserCustom(UserCustom user) {
 		int userId = userCustomDAO.insert(user);
 		

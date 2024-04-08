@@ -201,7 +201,18 @@ function login(user){
         },
         body: JSON.stringify(user),
     })
-    .then(response => response.json())
+    .then(response => {
+	    const authorizationHeader = response.headers.get('Authorization');
+	    
+	    if(authorizationHeader){
+			const token = authorizationHeader.split(' ')[1];
+			localStorage.setItem('jwtToken', token);
+		} else {
+			console.error("Missing Authorization header in response");
+		}
+	    
+	    return response.json();
+	})
     .then(status => {
         if (status.success){
             alert('Đăng nhập thành công!');

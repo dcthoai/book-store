@@ -7,6 +7,7 @@ public interface ICustomerService {
 	public boolean updateCustomer(Customer customer);
 	public boolean deleteCustomer(int id);
 	public Customer getCustomerById(int id);
+	public Customer getCustomerByUserId(int userId);
 	public Customer getCustomerByEmail(String email);
 	public Customer getCustomerByPhone(String phone);
 }

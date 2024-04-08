@@ -42,7 +42,7 @@
                 
                 <ul class="navbar-nav mt-2 mt-md-0 fs-5">
                     <li class="mt-4 mt-md-0 mx-md-2 mx-lg-4">
-                        <a class="p-2 d-block h-100 position-relative" href="/bookstore/user/cart">
+                        <a class="p-2 d-block h-100 position-relative" onclick="getCart()">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="quantity-cart fs-6">0</span>
                         </a>
@@ -55,10 +55,10 @@
                             </div>
                                 
                             <div class="user-nav">
-                                <a href="">Đơn hàng</a>
-                                <a href="">Giỏ hàng</a>
+                                <a href="/bookstore/user/order">Đơn hàng</a>
+                                <a href="/bookstore/cart">Giỏ hàng</a>
                                 <a href="">Trợ giúp</a>
-                                <a href="">Tài khoản</a>
+                                <a href="/bookstore/account">Tài khoản</a>
                                 
                                 <button id="logout" class="logout">Đăng xuất</button>
                             </div>
@@ -168,6 +168,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
+    <script src="assets/js/authentication.js"></script>
     <script src="assets/js/validator.js"></script>
     <script src="assets/js/main.js"></script>
 </body>

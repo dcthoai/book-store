@@ -40,6 +40,13 @@ public class CustomerService implements ICustomerService{
 		
 		return customer;
 	}
+	
+	@Override
+	public Customer getCustomerByUserId(int userId) {
+		Customer customer = customerDAO.getCustomerByUserId(userId);
+		
+		return customer;
+	}
 
 	@Override
 	public Customer getCustomerByEmail(String email) {
