@@ -24,3 +24,26 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Not found token! User is not logged in.');
     }
 });
+
+const logoutButton = document.getElementById('logout');
+
+logoutButton.addEventListener('click', function(){
+    fetch(`/bookstore/logout`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(status => {
+        if(status.success){
+			localStorage.removeItem('jwtToken');
+            alert('Đăng xuất thành công!');
+        } else {
+            alert(`Đăng xuất thất bại! ${ status.message }.`);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    })
+})

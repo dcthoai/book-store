@@ -13,7 +13,7 @@ public class JwtTokenProvider {
 
     private int jwtExpiration = Integer.MAX_VALUE;
 
-    public String generateToken(String username) {
+    public String generateToken(String username, String userKeySecret) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpiration);
 

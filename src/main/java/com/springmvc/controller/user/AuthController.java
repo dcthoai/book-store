@@ -20,7 +20,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +62,7 @@ public class AuthController {
             
             UserCustom userAuthenticated = (UserCustom) authenticated.getPrincipal();
 
-            String jwtToken = jwtTokenProvider.generateToken(userAuthenticated.getUsername());
+            String jwtToken = jwtTokenProvider.generateToken(userAuthenticated.getUsername(), " ");
 
             response.setHeader("Authorization", "Bearer " + jwtToken);
    
@@ -157,9 +156,31 @@ public class AuthController {
         
         if (authentication != null) {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
+            
+            boolean isLoggedOut = authentication.isAuthenticated();
+            
+            if(!isLoggedOut)
+            	return ResponseEntity.badRequest().body(new JSONObject()
+                		.put("success", false)
+                		.put("message", "Can not logged out your account!")
+                		.toString());
         }
-        return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
+            
+        HttpSession session = request.getSession(false);
+        	
+        if (session != null) {
+            session.invalidate();
+            response.setHeader("Authorization", "");
+            
+            return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());            	
+        } else {
+        	return ResponseEntity.badRequest().body(new JSONObject()
+            		.put("success", false)
+            		.put("message", "Can not logged out your account!")
+            		.toString());
+        }
     }
+
     
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestHeader(name = "Authorization") String token, HttpServletRequest request){
@@ -185,7 +206,10 @@ public class AuthController {
 					
 					return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
 				} else {
-					return ResponseEntity.ok().body(new JSONObject().put("success", false).toString());
+					return ResponseEntity.ok().body(new JSONObject()
+							.put("success", false)
+							.put("message", "Token is expired!")
+							.toString());
 				}
 			} catch (JwtException e) {
 				e.printStackTrace();

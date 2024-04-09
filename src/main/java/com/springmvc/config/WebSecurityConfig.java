@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	            .and()
 	            .logout()
 	                .logoutUrl("/logout")
-	                .logoutSuccessHandler(logoutSuccessHandler()) // Set custom logout success handler
+	                .logoutSuccessHandler(logoutSuccessHandler())
 	                .permitAll()
 	            .and()
 	            	.sessionManagement()
@@ -71,6 +71,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
-        return new SimpleUrlLogoutSuccessHandler(); // You can customize this handler as needed
+        return new SimpleUrlLogoutSuccessHandler();
     }
 }
