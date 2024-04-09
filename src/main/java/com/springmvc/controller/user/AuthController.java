@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springmvc.firebase.FirebaseService;
 import com.springmvc.model.Customer;
 import com.springmvc.model.UserCustom;
 import com.springmvc.security.JwtTokenProvider;
@@ -53,6 +54,9 @@ public class AuthController {
 	
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
+	
+	@Autowired
+	private FirebaseService firebaseService;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody UserAuthenticationRequest user, HttpServletResponse response) {
@@ -60,10 +64,16 @@ public class AuthController {
             Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
             Authentication authenticated = authenticationManager.authenticate(authentication);
             
+            // Get user information after successful authentication
             UserCustom userAuthenticated = (UserCustom) authenticated.getPrincipal();
 
+            // Generate a token to save authentication state
             String jwtToken = jwtTokenProvider.generateToken(userAuthenticated.getUsername(), " ");
+            
+            // Save user token to Firebase for authenticate on future visits
+            firebaseService.saveUserToken(userAuthenticated.getUsername(), jwtToken);
 
+            // Sent token to client
             response.setHeader("Authorization", "Bearer " + jwtToken);
    
             return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
@@ -180,7 +190,6 @@ public class AuthController {
             		.toString());
         }
     }
-
     
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestHeader(name = "Authorization") String token, HttpServletRequest request){

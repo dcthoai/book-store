@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BlogController {
 	
 	@RequestMapping(value = "/blog", method = RequestMethod.GET)
-	public String blog() {
-
+	public String blog(){
+		
 		return "user/blog";
 	}
 }

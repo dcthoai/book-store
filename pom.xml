@@ -13,32 +13,32 @@
 	</properties>
 
 	<dependencies>
-		<!-- Spring MVC
-		https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<!-- Spring MVC -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- JDBC
-		https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<!-- JDBC -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- MySQL Connector
-		https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- MySQL Connector -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 		</dependency>
 
-		<!-- Servlet API
-		https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<!-- Servlet API -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -46,7 +46,8 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- JSP API https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
+		<!-- JSP API -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -54,20 +55,23 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- SiteMesh https://mvnrepository.com/artifact/opensymphony/sitemesh -->
+		<!-- SiteMesh decorator-->
+		<!-- https://mvnrepository.com/artifact/opensymphony/sitemesh -->
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>sitemesh</artifactId>
 			<version>2.4.1</version>
 		</dependency>
 
-		<!-- JSTL https://mvnrepository.com/artifact/jstl/jstl -->
+		<!-- JSTL Taglib-->
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
 
+		<!-- Spring Security -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -82,6 +86,7 @@
 			<version>${spring-security.version}</version>
 		</dependency>
 
+		<!-- Spring Security config -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -89,6 +94,7 @@
 			<version>${spring-security.version}</version>
 		</dependency>
 
+		<!-- For use BcryptPasswordEncoder -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -96,6 +102,7 @@
 			<version>${spring-security.version}</version>
 		</dependency>
 
+		<!-- JWT Token -->
 		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -103,19 +110,22 @@
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<!-- Firebase Admin -->
+		<!-- https://mvnrepository.com/artifact/com.google.firebase/firebase-admin -->
 		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>4.3.1</version>
+		    <groupId>com.google.firebase</groupId>
+		    <artifactId>firebase-admin</artifactId>
+		    <version>8.1.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<!-- For use JSONObject -->
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20231013</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
