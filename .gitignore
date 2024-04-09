@@ -37,3 +37,4 @@ build/
 
 ### secret key ###
 /src/main/resources/firebase/serviceAccountKey.json
+/src/main/resources/database
