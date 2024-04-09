@@ -35,6 +35,7 @@ build/
 ### VS Code ###
 .vscode/
 
-### secret key ###
-/src/main/resources/firebase/serviceAccountKey.json
-/src/main/resources/database
+### File config database and secret ###
+**/serviceAccountKey.json
+**/resources/database/
+**/resources/firebase/
