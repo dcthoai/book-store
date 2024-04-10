@@ -15,7 +15,8 @@
     <!-- CSS icon from Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- CSS Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS custom -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <decorator:head></decorator:head>
@@ -27,7 +28,11 @@
         <div class="container">
             <a href="/bookstore/home" class="fs-3 fw-bold">BookStore.</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-navbar" aria-controls="header-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+			            								 data-bs-target="#header-navbar" 
+			            								 aria-controls="header-navbar" 
+			            								 aria-expanded="false" 
+			            								 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -42,23 +47,23 @@
                 
                 <ul class="navbar-nav mt-2 mt-md-0 fs-5">
                     <li class="mt-4 mt-md-0 mx-md-2 mx-lg-4">
-                        <a class="p-2 d-block h-100 position-relative" onclick="getCart()">
+                        <a class="p-2 d-block h-100 position-relative" >
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="quantity-cart fs-6">0</span>
                         </a>
                     </li>
                     <li class="mt-3 mt-md-0 ms-1">
-                        <div class="user">
-                            <div class="user__button" class="text-light">
-                                <div id="user-button" class="w-100 h-100"><img src="assets/images/post-1.jpg" alt="avatar"></div>
-                                <div id="sign-button" class="w-100 h-100 d-flex justify-content-center align-items-center text-light"><i class="fa-solid fa-user"></i></div>
+                        <div class="user" id="user-controls">
+                            <div id="user-button" class="user__button w-100 h-100">
+                            	<img class="user__button-avatar" src="assets/images/post-1.jpg" alt="avatar">
+                            	<i class="user__button-icon fa-solid fa-user text-light"></i>
                             </div>
                                 
-                            <div class="user-nav">
-                                <a href="/bookstore/user/order">Đơn hàng</a>
+                            <div class="user__nav" id="user-nav">
+                                <a href="">Tài khoản</a>
                                 <a href="/bookstore/cart">Giỏ hàng</a>
+                                <a href="">Đơn hàng</a>
                                 <a href="">Trợ giúp</a>
-                                <a href="/bookstore/account">Tài khoản</a>
                                 
                                 <button id="logout" class="logout">Đăng xuất</button>
                             </div>
@@ -70,7 +75,12 @@
     </header>
 
     <div class="header-margin"></div>
-    <div class="popup" id="popup"></div>
+    <div class="popup" id="popup">
+    	<div class="popup-wrapper">
+    		<button id="popup-close-button" ><span class="fa-solid fa-xmark"></span></button>
+    		<div id="popup-content" class="popup-content"></div>    	
+    	</div>
+    </div>
 	
 	<decorator:body></decorator:body>
 	
@@ -86,10 +96,12 @@
 
                     <form action="" class="row">
                         <div class="col-12 col-sm-8 col-md-5 mb-3 mb-md-0">
-                            <input class="w-100 w-sm-75 w-md-auto" type="text" name="name" id="name-subscribe" placeholder="Nhập tên">
+                            <input class="w-100 w-sm-75 w-md-auto" 
+                            		type="text" name="name" id="name-subscribe" placeholder="Nhập tên">
                         </div>
                         <div class="col-12 col-sm-8 col-md-5 mb-3 mb-md-0">
-                            <input class="w-100 w-sm-75 w-md-auto" type="email" name="email" id="email-subscribe" placeholder="Nhập email">
+                            <input class="w-100 w-sm-75 w-md-auto" 
+                            		type="email" name="email" id="email-subscribe" placeholder="Nhập email">
                         </div>
                         <div class="col-12 col-sm-8 col-md-auto">
                             <button class="w-100 w-md-auto" type="button">
@@ -165,11 +177,13 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    		crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
-    <script src="assets/js/authentication.js"></script>
     <script src="assets/js/validator.js"></script>
+   	<script src="assets/js/authenticate.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

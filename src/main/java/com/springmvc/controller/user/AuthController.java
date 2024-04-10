@@ -29,7 +29,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.springmvc.firebase.FirebaseService;
 import com.springmvc.model.Customer;
 import com.springmvc.model.UserCustom;
@@ -60,45 +64,22 @@ public class AuthController {
 	
 	@Autowired
 	private FirebaseService firebaseService;
+	
+	public void createSession(String username, HttpServletRequest request) {
+		UserCustom user = userService.getUserByUsername(username);
+        Customer customer = customerService.getCustomerByUserId(user.getUserId());
 
-    @PostMapping("/login")
-    public ResponseEntity<?> authenticate(@RequestBody UserAuthenticationRequest user, HttpServletResponse response) {
-    	try {
-            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-            Authentication authenticated = authenticationManager.authenticate(authentication);
-            
-            // Get user information after successful authentication
-            UserCustom userAuthenticated = (UserCustom) authenticated.getPrincipal();
-
-            // Generate a token to save authentication state
-            String jwtToken = jwtTokenProvider.generateToken(userAuthenticated.getUsername(), " ");
-            
-            // Save user token to Firebase for authenticate on future visits
-            firebaseService.saveUserToken(userAuthenticated.getUsername(), jwtToken);
-
-            // Sent token to client
-            response.setHeader("Authorization", "Bearer " + jwtToken);
-   
-            return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
-        } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new JSONObject()
-                    .put("success", false)
-                    .put("message", "Invalid username or password")
-                    .toString());
-        } catch (LockedException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JSONObject()
-                    .put("success", false)
-                    .put("message", "Account locked")
-                    .toString());
-        } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JSONObject()
-                    .put("success", false)
-                    .put("message", "Server error")
-                    .toString());
-        }
-    }
-    
-    @PostMapping("/register")
+        // Return the current session or create a new one if it doesn't exist
+        HttpSession session = request.getSession(true);
+        session.setAttribute("username", username);
+        session.setAttribute("isUserAuthenticated", true);
+        session.setAttribute("userId", user.getUserId());
+        session.setAttribute("customerId", customer.getId());
+        
+        System.out.println("Authenticated successful!");
+	}
+	
+	@PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody String jsonString) {
     	JSONObject userData = new JSONObject(jsonString);
     	
@@ -162,6 +143,48 @@ public class AuthController {
 	                .toString());
 		}
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserAuthenticationRequest user, 
+    									HttpServletRequest request,
+    									HttpServletResponse response) {
+    	try {
+            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+            Authentication authenticated = authenticationManager.authenticate(authentication);
+            
+            // Get user information after successful authentication
+            UserCustom userAuthenticated = (UserCustom) authenticated.getPrincipal();
+            String username = userAuthenticated.getUsername();
+
+            // Save authentication state in current session
+            createSession(username, request);
+            // Generate a token to save authentication state
+            String jwtToken = jwtTokenProvider.generateToken(userAuthenticated.getUsername(), " ");
+            
+            // Save user token to Firebase for authenticate on future visits
+            firebaseService.saveUserToken(userAuthenticated.getUsername(), jwtToken);
+
+            // Sent token to client
+            response.setHeader("Authorization", "Bearer " + jwtToken);
+   
+            return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new JSONObject()
+                    .put("success", false)
+                    .put("message", "Invalid username or password")
+                    .toString());
+        } catch (LockedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JSONObject()
+                    .put("success", false)
+                    .put("message", "Account locked")
+                    .toString());
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JSONObject()
+                    .put("success", false)
+                    .put("message", "Server error")
+                    .toString());
+        }
+    }
     
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestHeader(name = "Authorization") String tokenRequest, 
@@ -192,71 +215,68 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestHeader(name = "Authorization") String tokenRequest, 
 								    		HttpServletRequest request){
-        final String token;
-
-        if (tokenRequest != null && tokenRequest.startsWith("Bearer ")) {
-            token = tokenRequest.substring(7);
-
-            String username = jwtTokenProvider.getUsernameFromToken(token);
-
-            CompletableFuture<Boolean> authenticationFuture = new CompletableFuture<>();
-
-            firebaseService.getTokenByUsername(username).thenAccept(userToken -> {
-                boolean authenticationStatus = false;
-
-                if (userToken != null && token.equals(userToken)) {
-                    System.out.println("Token: " + userToken);
-
-                    try {
-                        boolean isValidToken = jwtTokenProvider.validateToken(token);
-
-                        if(isValidToken) {
-                            authenticationStatus = true;
-                        } else {
-                            authenticationStatus = false;
-                        }
-                    } catch (JwtException e) {
-                        e.printStackTrace();
-                        authenticationStatus = false;
-                    }
-
-                } else {
-                	authenticationStatus = false;
-                    System.out.println("Token not found");
-                }
-
-                authenticationFuture.complete(authenticationStatus);
-            });
-            
-            try {
-                boolean authenticationStatus = authenticationFuture.get();
-                
-                UserCustom user = userService.getUserByUsername(username);
-                Customer customer = customerService.getCustomerByUserId(user.getUserId());
-
-                // Return the current session or create a new one if it doesn't exist
-                HttpSession session = request.getSession(true);
-                session.setAttribute("isUserAuthenticated", true);
-                session.setAttribute("userId", user.getUserId());
-                session.setAttribute("username", username);
-                session.setAttribute("customerId", customer.getId());
-                
-                return ResponseEntity.ok().body(new JSONObject()
-                        .put("success", authenticationStatus)
-                        .put("message", authenticationStatus ? "Authentication successful!" : "Authentication failed!")
-                        .toString());
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JSONObject()
-                        .put("success", false)
-                        .put("message", "Internal server error")
-                        .toString());
-            }
-        }
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JSONObject()
-                .put("success", false)
-                .put("message", "Invalid token request")
-                .toString());
+    	
+    	if (tokenRequest != null && tokenRequest.startsWith("Bearer ")) {
+    		tokenRequest = tokenRequest.substring(7);
+    		
+			if (tokenRequest.isEmpty()) {
+				return ResponseEntity.badRequest().body(new JSONObject()
+						.put("success", false)
+						.put("message", "NOT FOUND! Can not found a token.")
+						.toString());
+				
+			} else {
+				
+				try {
+					String username = jwtTokenProvider.getUsernameFromToken(tokenRequest);
+		    		
+		    		if (username == null || username.isEmpty()) {
+		    			return ResponseEntity.badRequest().body(new JSONObject()
+		    							.put("success", false)
+		    							.put("message", "Invalid token! Missing user data.")
+		    							.toString());
+		    			
+		    		} else {
+		    			
+		    			CompletableFuture<String> getUserToken = firebaseService.getTokenByUsername(username);
+						String userToken = getUserToken.get();
+						
+						if (userToken != null && userToken.equals(tokenRequest)) {
+							boolean isValid = jwtTokenProvider.validateToken(tokenRequest);
+							
+							if(isValid) {
+								// Save user authentication state in current session
+								createSession(username, request);
+								
+								return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
+							} else {
+								return ResponseEntity.ok().body(new JSONObject()
+										.put("success", false)
+										.put("message", "Invalid token! Can not authenticate user data.")
+										.toString());
+							}
+						} else {
+							return ResponseEntity.badRequest().body(new JSONObject()
+	    							.put("success", false)
+	    							.put("message", "Invalid token! Can not found user.")
+	    							.toString());
+						}
+		    		}
+		    		
+				} catch (Exception e) {
+					e.printStackTrace();
+					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JSONObject()
+							.put("success", false)
+							.put("message", "Server error! Can not decode token.")
+							.toString());
+				}
+			}
+			
+		}
+		
+    	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new JSONObject()
+				.put("success", false)
+				.put("message", "Request is empty!")
+				.toString());
     }
 }

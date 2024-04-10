@@ -23,34 +23,37 @@ public class FirebaseService {
 
 		databaseReference.child(username).setValue(token, null);
 	}
-	
+
+	// An asynchronous function to get data from firebase
 	public CompletableFuture<String> getTokenByUsername(String username) {
-	    DatabaseReference reference = firebaseDatabase.getReference().child("user/token");
-	    CompletableFuture<String> future = new CompletableFuture<>();
+		CompletableFuture<String> future = new CompletableFuture<>();
+        DatabaseReference reference = firebaseDatabase.getReference().child("user/token");
 
-	    reference.orderByKey().equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
-	        @Override
-	        public void onDataChange(DataSnapshot snapshot) {
-	            if (snapshot.exists()) {
-	                future.complete(snapshot.getValue(String.class));
-	            } else {
-	                future.complete(null); // Token do not exist
-	            }
-	        }
+        reference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String token = snapshot.getValue(String.class);
 
-	        @Override
-	        public void onCancelled(DatabaseError error) {
-	            future.completeExceptionally(error.toException());
-	        }
-	    });
+                    future.complete(token);
+                } else {
+                    future.complete(null); // Token do not exist
+                }
+            }
 
-	    return future;
-	}
+            @Override
+            public void onCancelled(DatabaseError error) {
+                future.completeExceptionally(error.toException());
+            }
+        });
+
+        return future;
+    }
 
 	public void deleteUserToken(String username) {
 		DatabaseReference reference = firebaseDatabase.getReference().child("user/token");
-		
-		if(username != null)
+
+		if (username != null)
 			reference.child(username).removeValue(null);
 	}
 }
