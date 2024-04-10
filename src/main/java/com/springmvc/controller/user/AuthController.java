@@ -2,6 +2,8 @@ package com.springmvc.controller.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.firebase.database.DatabaseReference;
 import com.springmvc.firebase.FirebaseService;
 import com.springmvc.model.Customer;
 import com.springmvc.model.UserCustom;
@@ -161,28 +164,23 @@ public class AuthController {
     }
     
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    public ResponseEntity<?> logout(@RequestHeader(name = "Authorization") String tokenRequest, 
+						    		HttpServletRequest request, 
+						    		HttpServletResponse response) {
         
-        if (authentication != null) {
-            new SecurityContextLogoutHandler().logout(request, response, authentication);
-            
-            boolean isLoggedOut = authentication.isAuthenticated();
-            
-            if(!isLoggedOut)
-            	return ResponseEntity.badRequest().body(new JSONObject()
-                		.put("success", false)
-                		.put("message", "Can not logged out your account!")
-                		.toString());
-        }
-            
-        HttpSession session = request.getSession(false);
+    	HttpSession session = request.getSession(false);
         	
         if (session != null) {
-            session.invalidate();
+        	if (tokenRequest != null && tokenRequest.startsWith("Bearer ")) {
+                tokenRequest = tokenRequest.substring(7);
+
+                String username = jwtTokenProvider.getUsernameFromToken(tokenRequest);        	
+	            firebaseService.deleteUserToken(username);
+        	}
             response.setHeader("Authorization", "");
+            session.invalidate();
             
-            return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());            	
+            return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());         	
         } else {
         	return ResponseEntity.badRequest().body(new JSONObject()
             		.put("success", false)
@@ -190,49 +188,75 @@ public class AuthController {
             		.toString());
         }
     }
-    
+        
     @PostMapping("/authenticate")
-    public ResponseEntity<?> authenticate(@RequestHeader(name = "Authorization") String token, HttpServletRequest request){
-    	
-    	if (token != null && token.startsWith("Bearer ")) {
-			token = token.substring(7);
-			
-			try {
-				boolean status = jwtTokenProvider.validateToken(token);
+    public ResponseEntity<?> authenticate(@RequestHeader(name = "Authorization") String tokenRequest, 
+								    		HttpServletRequest request){
+        final String token;
 
-				if(status) {
-					String username = jwtTokenProvider.getUsernameFromToken(token);
-					UserCustom user = userService.getUserByUsername(username);
-					Customer customer = customerService.getCustomerByUserId(user.getUserId());
-					
-					// Returns the current session or creates a new one if it doesn't exist
-					HttpSession session = request.getSession(true);
-			        session.setAttribute("isUserAuthenticated", true);
-			        session.setAttribute("userId", user.getUserId());
-			        session.setAttribute("username", username);
-			        session.setAttribute("customerId", customer.getId());
-			        
-					
-					return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
-				} else {
-					return ResponseEntity.ok().body(new JSONObject()
-							.put("success", false)
-							.put("message", "Token is expired!")
-							.toString());
-				}
-			} catch (JwtException e) {
-				e.printStackTrace();
-				
-				return ResponseEntity.badRequest().body(new JSONObject()
-		                .put("success", false)
-		                .put("message", "Exception validate token!")
-		                .toString());
-			}
-		}
-    	
-    	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new JSONObject()
-    			.put("success", false)
-    			.put("message", "Token not founded!")
-    			.toString());
+        if (tokenRequest != null && tokenRequest.startsWith("Bearer ")) {
+            token = tokenRequest.substring(7);
+
+            String username = jwtTokenProvider.getUsernameFromToken(token);
+
+            CompletableFuture<Boolean> authenticationFuture = new CompletableFuture<>();
+
+            firebaseService.getTokenByUsername(username).thenAccept(userToken -> {
+                boolean authenticationStatus = false;
+
+                if (userToken != null && token.equals(userToken)) {
+                    System.out.println("Token: " + userToken);
+
+                    try {
+                        boolean isValidToken = jwtTokenProvider.validateToken(token);
+
+                        if(isValidToken) {
+                            authenticationStatus = true;
+                        } else {
+                            authenticationStatus = false;
+                        }
+                    } catch (JwtException e) {
+                        e.printStackTrace();
+                        authenticationStatus = false;
+                    }
+
+                } else {
+                	authenticationStatus = false;
+                    System.out.println("Token not found");
+                }
+
+                authenticationFuture.complete(authenticationStatus);
+            });
+            
+            try {
+                boolean authenticationStatus = authenticationFuture.get();
+                
+                UserCustom user = userService.getUserByUsername(username);
+                Customer customer = customerService.getCustomerByUserId(user.getUserId());
+
+                // Return the current session or create a new one if it doesn't exist
+                HttpSession session = request.getSession(true);
+                session.setAttribute("isUserAuthenticated", true);
+                session.setAttribute("userId", user.getUserId());
+                session.setAttribute("username", username);
+                session.setAttribute("customerId", customer.getId());
+                
+                return ResponseEntity.ok().body(new JSONObject()
+                        .put("success", authenticationStatus)
+                        .put("message", authenticationStatus ? "Authentication successful!" : "Authentication failed!")
+                        .toString());
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JSONObject()
+                        .put("success", false)
+                        .put("message", "Internal server error")
+                        .toString());
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JSONObject()
+                .put("success", false)
+                .put("message", "Invalid token request")
+                .toString());
     }
 }

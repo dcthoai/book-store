@@ -28,10 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
 const logoutButton = document.getElementById('logout');
 
 logoutButton.addEventListener('click', function(){
+	const token = localStorage.getItem('jwtToken');
+	
     fetch(`/bookstore/logout`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     })
     .then(response => response.json())
