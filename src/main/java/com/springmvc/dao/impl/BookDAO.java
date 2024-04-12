@@ -1,12 +1,23 @@
 package com.springmvc.dao.impl;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import com.springmvc.dao.IBookDAO;
+import com.springmvc.mapper.MapperAuthor;
 import com.springmvc.mapper.MapperBook;
+import com.springmvc.mapper.MapperCategory;
+import com.springmvc.mapper.MapperLanguage;
+import com.springmvc.mapper.MapperPublisher;
+import com.springmvc.model.Author;
 import com.springmvc.model.Book;
+import com.springmvc.model.Category;
+import com.springmvc.model.Language;
+import com.springmvc.model.Publisher;
 
 @Repository 
 public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
@@ -114,5 +125,65 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 		
 		List<Book> listBooks = executeQuery(sql, new MapperBook(), publisherId);
 		return listBooks;
+	}
+
+	@Override
+	public Author getBookAuthor(int authorId) {
+		String sql = "SELECT * FROM `bookstore`.`author` WHERE (`id` = ?)";
+		
+		List<Author> listAuthors = _jdbcTemplate.query(sql, new PreparedStatementSetter() {
+			
+			    public void setValues(PreparedStatement preparedStatement) throws SQLException {
+			        preparedStatement.setInt(1, authorId);
+			    }
+			    
+			}, new MapperAuthor());
+		
+		return listAuthors.isEmpty() ? null : listAuthors.get(0);
+	}
+
+	@Override
+	public Category getBookCategory(int categoryId) {
+		String sql = "SELECT * FROM `bookstore`.`category` WHERE (`id` = ?)";
+		
+		List<Category> listCategories = _jdbcTemplate.query(sql, new PreparedStatementSetter() {
+			
+			    public void setValues(PreparedStatement preparedStatement) throws SQLException {
+			        preparedStatement.setInt(1, categoryId);
+			    }
+			    
+			}, new MapperCategory());
+		
+		return listCategories.isEmpty() ? null : listCategories.get(0);
+	}
+
+	@Override
+	public Language getBookLanguage(int languageId) {
+		String sql = "SELECT * FROM `bookstore`.`language` WHERE (`id` = ?)";
+		
+		List<Language> listLanguages = _jdbcTemplate.query(sql, new PreparedStatementSetter() {
+			
+			    public void setValues(PreparedStatement preparedStatement) throws SQLException {
+			        preparedStatement.setInt(1, languageId);
+			    }
+			    
+			}, new MapperLanguage());
+		
+		return listLanguages.isEmpty() ? null : listLanguages.get(0);
+	}
+
+	@Override
+	public Publisher getBookPublisher(int publisherId) {
+		String sql = "SELECT * FROM `bookstore`.`publisher` WHERE (`id` = ?)";
+		
+		List<Publisher> listPublishers = _jdbcTemplate.query(sql, new PreparedStatementSetter() {
+			
+			    public void setValues(PreparedStatement preparedStatement) throws SQLException {
+			        preparedStatement.setInt(1, publisherId);
+			    }
+			    
+			}, new MapperPublisher());
+		
+		return listPublishers.isEmpty() ? null : listPublishers.get(0);
 	}
 }

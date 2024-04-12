@@ -49,10 +49,10 @@
             <div class="col-12 col-lg-6 col-xl-7 mt-5 mt-lg-0 ps-md-5 ps-lg-0">
                 <h4 class="mb-4 fs-4 fw-medium" style="color: #333;">${ book.title }</h4>
                 
-                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">${ book.publisherId }</span></p>
-                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">${ book.authorId }</span></p>
-                <p class="mb-1 fs-6 fw-medium">Ngôn ngữ: <span class="fw-semibold">${ book.languageId }</span></p>
-                <p class="mb-1 fs-6 fw-medium">Thể loại: <span class="fw-semibold">${ book.categoryId }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">${ publisher }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">${ author }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Ngôn ngữ: <span class="fw-semibold">${ language }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Thể loại: <span class="fw-semibold">${ category }</span></p>
 
                 <div class="my-4 opacity-75">
                     <i class="fa-regular fa-star"></i>
@@ -93,8 +93,11 @@
                 </div>
 
                 <div class="product__button pt-4">
-                    <button class="buy-now me-2" type="button">Mua ngay</button>
-                    <button class="add-to-cart" type="button"><i class="fa-solid fa-cart-shopping pe-2"></i>Thêm vào giỏ hàng</button>
+                    <button class="buy-now me-2" type="button" id="buy-now" data-product="${ book.id }">Mua ngay</button>
+                    <button class="add-to-cart" type="button" id="add-to-cart" data-product="${ book.id }">
+                    	<i class="fa-solid fa-cart-shopping pe-2"></i>
+                    	Thêm vào giỏ hàng
+                    </button>
                 </div>
             </div>
         </div>
@@ -371,15 +374,17 @@
                 <p class="m-0 py-1">Nhà xuất bản</p>
                 <p class="m-0 py-1">Năm xuất bản</p>
                 <p class="m-0 py-1">Ngôn ngữ</p>
+                <p class="m-0 py-1">Thể loại</p>
                 <p class="m-0 py-1">Trọng lượng (gram)</p>
                 <p class="m-0 py-1">Kích thước (d x r x c)</p>
                 <p class="m-0 py-1">Số trang</p>
             </div>
             <div class="col-6 col-lg-4 info">
-                <p class="m-0 py-1">${ book.authorId }</p>
-                <p class="m-0 py-1">${ book.publisherId }</p>
+                <p class="m-0 py-1">${ author }</p>
+                <p class="m-0 py-1">${ publisher }</p>
                 <p class="m-0 py-1">${ book.releaseDate }</p>
-                <p class="m-0 py-1">${ book.languageId }</p>
+                <p class="m-0 py-1">${ language }</p>
+                <p class="m-0 py-1">${ category }</p>
                 <p class="m-0 py-1">${ book.weight }</p>
                 <p class="m-0 py-1">${ book.size }</p>
                 <p class="m-0 py-1">${ book.pages }</p>
@@ -456,4 +461,6 @@
             </div>
         </div>
     </div>
+    
+    <script src="assets/js/cart.js"></script>
 </body>

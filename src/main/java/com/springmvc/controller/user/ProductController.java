@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springmvc.model.Book;
 import com.springmvc.service.user.impl.BookService;
 import com.springmvc.service.user.impl.MediaService;
 
@@ -19,7 +20,12 @@ public class ProductController {
 	@GetMapping("/product")
     public ModelAndView getProduct(@RequestParam("id") int id) {
         ModelAndView mav = new ModelAndView("user/product");
-        mav.addObject("book", bookService.getBookById(id));
+        Book book = bookService.getBookById(id);
+        mav.addObject("book", book);
+        mav.addObject("author", bookService.getBookAuthor(book.getAuthorId()));
+        mav.addObject("publisher", bookService.getBookPublisher(book.getPublisherId()));
+        mav.addObject("language", bookService.getBookLanguage(book.getLanguageId()));
+        mav.addObject("category", bookService.getBookCategory(book.getCategoryId()));
         mav.addObject("mediaService", mediaService);
         
         return mav;

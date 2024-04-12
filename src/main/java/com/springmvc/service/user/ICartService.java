@@ -2,10 +2,10 @@ package com.springmvc.service.user;
 
 import java.util.List;
 
-import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 import com.springmvc.model.Book;
 import com.springmvc.model.Cart;
 import com.springmvc.model.CartProduct;
+import com.springmvc.model.Pair;
 
 public interface ICartService{
 	public int insertCart(Cart cart);
@@ -16,5 +16,5 @@ public interface ICartService{
 	public int addCartProduct(CartProduct cartProduct);
 	public boolean updateCartProduct(CartProduct cartProduct);
 	public boolean deleteCartProduct(int cartProductId);
-	public List<Pair<Book, Integer>> getAllCartProducts(int cartId);
+	public List<Pair<Book, CartProduct>> getAllCartProducts(int cartId);
 }

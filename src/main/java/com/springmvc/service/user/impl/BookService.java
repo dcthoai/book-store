@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.impl.BookDAO;
+import com.springmvc.model.Author;
 import com.springmvc.model.Book;
+import com.springmvc.model.Category;
+import com.springmvc.model.Language;
+import com.springmvc.model.Publisher;
 import com.springmvc.service.user.IBookService;
 
 @Service
 public class BookService implements IBookService{
 	@Autowired
-	BookDAO bookDAO;
+	private BookDAO bookDAO;
 	
 	@Override
 	public int insertBook(Book book) {
@@ -36,6 +40,42 @@ public class BookService implements IBookService{
 	public Book getBookById(int id) {
 		Book book = bookDAO.getById(id);
 		return book;
+	}
+	
+	@Override
+	public String getBookAuthor(int authorId) {
+		Author author = bookDAO.getBookAuthor(authorId);
+		
+		if (author != null)
+			return author.getName();
+		return "Không có thông tin";
+	}
+	
+	@Override
+	public String getBookCategory(int categoryId) {
+		Category category = bookDAO.getBookCategory(categoryId);
+		
+		if (category != null)
+			return category.getName();
+		return "Không có thông tin";
+	}
+	
+	@Override
+	public String getBookLanguage(int languageId) {
+		Language language = bookDAO.getBookLanguage(languageId);
+		
+		if (language != null) 
+			return language.getName();
+		return "Không có thông tin";
+	}
+	
+	@Override
+	public String getBookPublisher(int publisherId) {
+		Publisher publisher = bookDAO.getBookPublisher(publisherId);
+		
+		if (publisher != null)
+			return publisher.getName();
+		return "Không có thông tin";
 	}
 	
 	@Override

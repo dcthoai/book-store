@@ -33,13 +33,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springmvc.firebase.FirebaseService;
-
+import com.springmvc.model.Cart;
 import com.springmvc.model.Customer;
 import com.springmvc.model.UserCustom;
 
 import com.springmvc.security.JwtTokenProvider;
 import com.springmvc.security.UserAuthenticationRequest;
-
+import com.springmvc.service.user.impl.CartService;
 import com.springmvc.service.user.impl.CustomerService;
 import com.springmvc.service.user.impl.UserService;
 
@@ -51,6 +51,9 @@ public class AuthController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -65,17 +68,27 @@ public class AuthController {
 	private FirebaseService firebaseService;
 	
 	public void createSession(String username, HttpServletRequest request) {
-		UserCustom user = userService.getUserByUsername(username);
-        Customer customer = customerService.getCustomerByUserId(user.getUserId());
-
         // Return the current session or create a new one if it doesn't exist
         HttpSession session = request.getSession(true);
         session.setAttribute("username", username);
         session.setAttribute("isUserAuthenticated", true);
-        session.setAttribute("userId", user.getUserId());
-        session.setAttribute("customerId", customer.getId());
         
-        System.out.println("Authenticated successful!");
+        try {
+        	UserCustom user = userService.getUserByUsername(username);
+            Customer customer = customerService.getCustomerByUserId(user.getUserId());
+            Cart cart = cartService.getCartByUserId(customer.getId());
+            
+            if (user != null)
+            	session.setAttribute("userId", user.getUserId());
+            
+            if (customer != null)
+            	session.setAttribute("customerId", customer.getId());
+            
+            if (cart != null)
+            	session.setAttribute("quantityCart", cart.getQuantity());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	@PostMapping("/register")

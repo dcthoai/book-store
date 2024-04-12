@@ -48,9 +48,18 @@
                 
                 <ul class="navbar-nav mt-2 mt-md-0 fs-5">
                     <li class="mt-4 mt-md-0 mx-md-2 mx-lg-4">
-                        <a class="p-2 d-block h-100 position-relative" >
+                        <a class="p-2 d-block h-100 position-relative" href="/bookstore/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="quantity-cart fs-6">0</span>
+                            
+							<c:choose>
+							    <c:when test="${not empty sessionScope.quantityCart}">
+							        <span class="quantity-cart fs-6">${sessionScope.quantityCart}</span>
+							    </c:when>
+							    <c:otherwise>
+							        <span class="quantity-cart fs-6">0</span>
+							    </c:otherwise>
+							</c:choose>
+							
                         </a>
                     </li>
                     <li class="mt-3 mt-md-0 ms-1">

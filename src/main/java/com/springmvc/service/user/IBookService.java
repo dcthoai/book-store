@@ -10,6 +10,11 @@ public interface IBookService {
 	public boolean deleteBook(int id);
 	public Book getBookById(int id);
 	
+	public String getBookAuthor(int authorId);
+	public String getBookCategory(int categoryId);
+	public String getBookLanguage(int languageId);
+	public String getBookPublisher(int publisherId);
+	
 	public List<Book> getNewestBooks();
 	public List<Book> getLatestReleaseBooks();
 	
