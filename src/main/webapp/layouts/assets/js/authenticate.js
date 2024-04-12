@@ -1,134 +1,17 @@
-const popup = document.getElementById('popup');
-const popupContent = document.getElementById('popup-content');
-const popupCloseButton = document.getElementById('popup-close-button');
-const userControls = document.getElementById('user-controls');
-const userButton = document.getElementById('user-button');
-const userNav = document.getElementById('user-nav');
-const logoutButton = document.getElementById('logout');
-var authenticationState = false;
 
-const formSignInHtml = `
-    <div id="form-signin" class="form">
-        <h2>Đăng nhập</h2>
+function welcomeWebsite(){
+	const currentState = getAuthenticationSate();
+    const welcomeStatus = sessionStorage.getItem('welcomeStatus');
 
-        <form id="form-login" action="#" class="mt-4">
-            <div class="input-box">
-                <span class="label-error"></span>
-                <input type="text" placeholder="Nhập username" id="username" name="username">
-            </div>
-            <div class="input-box">
-                <span class="label-error"></span>
-                <input type="password" placeholder="Nhập mật khẩu" id="password" name="password">
-            </div>
-            <div class="input-box button">
-                <button type="submit">Đăng nhập</button>
-            </div>
-        </form>
-
-        <h3 class="change-link m-0 pt-3 w-100 text-center">Bạn chưa có tài khoản? <span id="register-link" class="link ms-1">Đăng ký ngay</span></h3>
-        <h3 class="change-link m-0 pt-2 w-100 text-center"><a href="" class="link">Quên mật khẩu</a></h3>
-    </div>
-`;
-
-const formSignUpHtml = `
-    <div id="form-signup" class="form">
-        <h2>Đăng ký</h2>
-
-        <form id="form-register" action="#" class="mt-4">
-            <div class="input-box">
-                <span class="label-error"></span>
-                <input type="text" placeholder="Nhập username" id="username" name="username">
-            </div>
-            <div class="input-box">
-                <span class="label-error"></span>
-                <input type="text" placeholder="Nhập email của bạn" id="email" name="email">
-            </div>
-            <div class="input-box">
-                <span class="label-error"></span>
-                <input type="password" placeholder="Nhập mật khẩu của bạn" id="password" name="password">
-            </div>
-            <div class="input-box">
-                <span class="label-error"></span>
-                <input type="password" placeholder="Xác nhận lại mật khẩu" id="repeat-password" name="repeat-password">
-            </div>
-            <div class="policy">
-                <input type="checkbox" aria-label="checkbox" name="policy" required>
-                <h3 class="mb-0">Tôi đồng ý với mọi <a href="#">điều khoản và điều kiện</a></h3>
-            </div>
-            <div class="input-box button">
-                <button type="submit">Đăng ký ngay</button>
-            </div>
-        </form>
-
-        <h3 class="change-link m-0 pt-3 w-100 text-center">Bạn đã có tài khoản? <span id="login-link" class="link">Đăng nhập</span></h3>
-    </div>
-`;
-
-function openPopup(content){
-    popupContent.innerHTML = content;
-    popup.style.display = 'block';
-}
-
-function closePopup(){
-    popupContent.innerHTML = '';
-    popup.style.display = 'none';
-}
-
-function closePopupListener(){
-    popupCloseButton.addEventListener('click', function(){
-        closePopup();
-    });
-}
-
-function changeToRegister(){
-    openPopup(formSignUpHtml);
-    const loginLink = document.getElementById('login-link');
-
-    loginLink.addEventListener('click', function(){
-        changeToLogin();
-    });
-
-    validateRegister();
-    closePopupListener();
-}
-
-function changeToLogin(){
-    openPopup(formSignInHtml);
-    const registerLink = document.getElementById('register-link');
-
-    registerLink.addEventListener('click', function(){
-        changeToRegister();
-    });
-
-    validateLogin();
-    closePopupListener();
-}
-
-function loginViews(){
-    authenticationState = true;
-    closePopup();
-    userControls.classList.add('login');
-}
-
-function logoutViews(){
-    authenticationState = false;
-    userControls.classList.remove('login');
-}
-
-function setViewsByAuthenticationState(){
-	if (authenticationState){
-        loginViews();
-
-        logoutButton.addEventListener('click', function(){
-			console.log('logout button');
-            logout();       // Permit action logout if user has been authenticated
-        });
-    } else {
-        logoutViews();
-
-        userButton.addEventListener('click', function(){
-            changeToLogin();    // Permit action login if user was not authenticated
-        });      
+    if (welcomeStatus !== 'true') {
+        if (currentState) {
+            openPopupNotify('Hello', 
+            				'Rất vui khi bạn quay lại, cùng nhau mua sắm sách thỏa thích nào.', 'notify');
+        } else {
+            openPopupNotify('Chào mừng bạn đến với BookStore', 
+            				'Hãy đăng nhập để sử dụng đầy đủ tiện ích của chúng tôi.', 'notify');
+        }
+        sessionStorage.setItem('welcomeStatus', 'true');
     }
 }
 
@@ -146,17 +29,28 @@ function authenticate(){
         })
         .then(response => response.json())
         .then(status => {
-            if(status.success){
-				authenticationState = true;
-				setViewsByAuthenticationState();
-			} else {
-				console.log(status.message);
-        	}
+            closeLoadingAnimation();
+            
+			if (status.success) {
+                setLoginState();
+                setViewsByAuthenticationState();
+            } else {
+                setLogoutState();
+                console.log(status.message);
+            }
+            
+            welcomeWebsite();
         })
         .catch(error => {
+			setLogoutState();
+			closeLoadingAnimation();
+			welcomeWebsite();
             console.error(error);
         });
     } else {
+		setLogoutState();
+		closeLoadingAnimation();
+		welcomeWebsite();
         console.log('Not found token! User is not logged in.');
     }
 }
@@ -212,6 +106,7 @@ function validateLogin(){
 }
 
 function register(user){
+    openLoadingAnimation();
 
     fetch('/bookstore/register', {
         method: 'POST',
@@ -222,19 +117,25 @@ function register(user){
     })
     .then(response => response.json())
 	.then(status => {
+        closeLoadingAnimation();
+
 		if (status.success){
-			alert('Đăng ký thành công!');
+			openPopupNotify('Đăng ký thành công!', 'Đăng nhập để trải nghiệm ngay nào.', 'success');
             viewSignIn();
 		} else {
-			alert(`Đăng ký thất bại! ${status.message}`);
+			openPopupNotify('Đăng ký thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
+			console.log(status.message);
 		}
 	})
     .catch(error => {
+        closeLoadingAnimation();
+        openPopupNotify('Đăng ký thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
         console.log(error);
     });
 }
 
 function login(user){
+    openLoadingAnimation();
 
     fetch('/bookstore/login', {
         method: 'POST',
@@ -256,20 +157,28 @@ function login(user){
 	    return response.json();
 	})
     .then(status => {
+        closeLoadingAnimation();
+
         if (status.success){
-            alert('Đăng nhập thành công!');
-            loginViews();
+			openPopupNotify('Đăng nhập thành công', 
+							'Chào mừng bạn đến với Bookstore, chúc bạn có một trải nghiệm thật tốt với dịch vụ của chúng tôi.', 
+							'success');
+            setLoginState();
+            setViewsByAuthenticationState();
         } else {
-            logoutViews();
-            alert(`Đăng nhập thất bại! ${status.message}`);
+            openPopupNotify('Đăng nhập thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
+            console.log(status.message);
         }
     })
     .catch(error => {
+        closeLoadingAnimation();
+        openPopupNotify('Đăng nhập thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
         console.log(error);
     })
 }
 
 function logout(){
+    openLoadingAnimation();
     const token = localStorage.getItem('jwtToken');
 	
     fetch(`/bookstore/logout`, {
@@ -281,16 +190,30 @@ function logout(){
     })
     .then(response => response.json())
     .then(status => {
+        closeLoadingAnimation();
+
         if(status.success){
-            localStorage.removeItem('jwtToken');
-            alert('Đăng xuất thành công!');
-            logoutViews();
+			openPopupNotify('Đăng xuất thành công!', 
+							'Rất tiếc khi bạn rời đi, nếu có gì không hài lòng vui lòng cho chúng tôi biết hoặc liên hệ trợ giúp để được hướng dẫn.', 
+							'success');
+            setLogoutState();
+            setViewsByAuthenticationState();
         } else {
-            alert(`Đăng xuất thất bại! ${ status.message }.`);
-            loginViews();
+            openPopupNotify('Đăng xuất thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
+            console.log(status.message);
         }
     })
     .catch(error => {
+        closeLoadingAnimation();
+        openPopupNotify('Đăng xuất thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
         console.error(error);
     })
 }
+
+openLoadingAnimation();
+setViewsByAuthenticationState();
+
+document.addEventListener('DOMContentLoaded', function(){
+    // Check authentication state when user visit site
+    authenticate();
+});

@@ -19,6 +19,7 @@
     		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS custom -->
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/notify.css">
     <decorator:head></decorator:head>
 </head>
 
@@ -75,13 +76,40 @@
     </header>
 
     <div class="header-margin"></div>
+    
+    <!-- Pop up to show notifications -->
+    <div id="notify" class="">
+        <div class="notify-status px-3 px-md-4 fs-1 fs-md-0">
+            <i class="fa-solid fa-circle-check"></i>
+            <i class="fa-solid fa-bug"></i>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <i class="fa-regular fa-comment-dots"></i>
+        </div>
+
+        <div class="notify-content">
+            <div id="notify-title">This is title</div>
+            <div id="notify-message">This is a example message.</div>
+        </div>
+         
+        <div id="notify-close-button" class="click px-2 px-md-3 fs-3 fs-md-2">
+            <i class="w-75 p-3 text-secondary fa-solid fa-xmark"></i>
+        </div>
+    </div>
+    
+    <!-- Loading animation -->
+    <div id="popup-loader">
+    	<div class="circle"></div>
+    </div>
+    
+    <!-- Pop up form input -->
     <div class="popup" id="popup">
     	<div class="popup-wrapper">
     		<button id="popup-close-button" ><span class="fa-solid fa-xmark"></span></button>
-    		<div id="popup-content" class="popup-content"></div>    	
+    		<div id="popup-content" class="popup-content"></div>  	
     	</div>
     </div>
 	
+	<!-- Body content -->
 	<decorator:body></decorator:body>
 	
 	<!-- Footer -->
@@ -182,8 +210,9 @@
     		crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
+    <script src="assets/js/notify.js"></script>
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/validator.js"></script>
    	<script src="assets/js/authenticate.js"></script>
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
