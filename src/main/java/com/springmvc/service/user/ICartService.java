@@ -12,9 +12,10 @@ public interface ICartService{
 	public boolean updateCart(Cart cart);
 	public boolean deleteCart(int cartId);
 	public Cart getCartById(int cartId);
-	public Cart getCartByUserId(int userId);
+	public Cart getCartByCustomerId(int customerId);
 	public int addCartProduct(CartProduct cartProduct);
 	public boolean updateCartProduct(CartProduct cartProduct);
 	public boolean deleteCartProduct(int cartProductId);
 	public List<Pair<Book, CartProduct>> getAllCartProducts(int cartId);
+	public int countTotalQuantityCart(int cartId);
 }

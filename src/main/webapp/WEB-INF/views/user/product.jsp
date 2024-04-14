@@ -24,6 +24,7 @@
 
     <!-- Product -->
     <c:set var="media" value="${mediaService.getMediaById(book.thumbnailId)}"/>
+    
     <div class="container product mt-5">
         <div class="row">
             <div class="col-12 col-lg-6 col-xl-5 ps-lg-4">
@@ -87,7 +88,7 @@
 
                     <div class="quantity d-inline-block">
                         <button type="button" class="quantity__sub"><i class="fa-solid fa-minus"></i></button>
-                        <input disabled class="quantity__input" type="number" id="quantity" name="quantity" min="1" value="1">
+                        <input type="number" class="quantity__input" min="1" value="1" disabled>
                         <button type="button" class="quantity__add"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
@@ -462,5 +463,5 @@
         </div>
     </div>
     
-    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/product.js"></script>
 </body>

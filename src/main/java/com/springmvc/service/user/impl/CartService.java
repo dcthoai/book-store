@@ -53,24 +53,71 @@ public class CartService implements ICartService {
 	}
 
 	@Override
-	public Cart getCartByUserId(int userId) {
-		Cart cart = cartDAO.getCartByUserId(userId);
+	public Cart getCartByCustomerId(int customerId) {
+		Cart cart = cartDAO.getCartByCustomerId(customerId);
 		
 		return cart;
 	}
 
 	@Override
 	public int addCartProduct(CartProduct cartProduct) {
-		int cartProductId = cartProductDAO.insert(cartProduct);
+		CartProduct oldCartProduct = cartProductDAO.isExist(cartProduct);
 		
-		return cartProductId;
+		if (oldCartProduct != null && oldCartProduct.getId() > 0) {
+			int newQuantity = cartProduct.getQuantity() + oldCartProduct.getQuantity();
+			
+			if (newQuantity > 0) {
+				oldCartProduct.setQuantity(newQuantity);
+				
+				if (updateCartProduct(oldCartProduct)) {
+					Cart cart = getCartById(oldCartProduct.getCartId());
+					int totalCartQuantity = countTotalQuantityCart(cart.getId());
+					
+					cart.setQuantity(totalCartQuantity);
+					
+					if (updateCart(cart))
+						return 1;
+					return 0;
+				} else {
+					return 0;
+				}
+			} else {
+				if (deleteCartProduct(oldCartProduct.getId()))
+					return 1;
+				return 0;
+			}
+			
+		} else {
+			return cartProductDAO.insert(cartProduct);
+		}
 	}
 
 	@Override
 	public boolean updateCartProduct(CartProduct cartProduct) {
-		int affectedRows = cartProductDAO.update(cartProduct);
-		
-		return affectedRows > 0;
+		try {
+			CartProduct oldCartProduct = cartProductDAO.getById(cartProduct.getId());
+			
+			if (oldCartProduct != null) {
+				int newQuantity = cartProduct.getQuantity();
+				
+				if (newQuantity > 0) {
+					oldCartProduct.setQuantity(newQuantity);
+					
+					int affectedRows = cartProductDAO.update(oldCartProduct);
+					
+					return affectedRows > 0;
+				} else {
+					int affectedRows = cartProductDAO.delete(oldCartProduct.getId());
+					
+					return affectedRows > 0;
+				}
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
@@ -92,5 +139,10 @@ public class CartService implements ICartService {
 	    }
 
 	    return cartProductPairs;
+	}
+	
+	@Override
+	public int countTotalQuantityCart(int cartId) {
+		return cartProductDAO.countTotalCartQuantity(cartId);
 	}
 }

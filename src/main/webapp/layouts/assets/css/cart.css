@@ -5,7 +5,7 @@ body{
 
 .cart button{
     height: 2.5rem;
-    padding: 0 0.75rem;
+    padding: 0;
     border-radius: 0.5rem;
     color: var(--text-dark);
     background-color: unset;
@@ -32,8 +32,7 @@ body{
 }
 
 .cart .product .product__img{
-    width: 6.75rem;
-    height: 10rem;
+    aspect-ratio: 5/7;
 }
 
 .cart .product .product__img img{
@@ -48,7 +47,16 @@ body{
     color: #555;
 }
 
+.cart .product .title{
+    text-align: justify;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
 .cart .product .description{
+    text-align: justify;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -65,7 +73,7 @@ body{
 
 .cart .quantity .quantity__input{
     width: 2.5rem;
-    height: 2.5rem;
+    height: 2rem;
     margin: 0;
     padding: 0;
     border: none;
@@ -81,6 +89,55 @@ body{
 
 .cart .quantity .quantity__sub,
 .cart .quantity .quantity__add{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.cart .product .delete {
+	line-height: 1;
+}
+
+@media (min-width: 768px) {
+    .cart .product .title{
+        font-size: 1.125rem !important;
+    }
+
+    .cart .product .description{
+        display: -webkit-box !important;
+    }
+
+    .cart .product .sell-price{
+        font-size: 1.25rem !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .cart .product .title{
+        font-size: 1.375rem !important;
+    }
+
+    .cart .product .sell-price{
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+	.cart .quantity .quantity__sub,
+	.cart .quantity .quantity__add{
+	    width: 1.5rem;
+	    height: 1.5rem;
+	    font-size: 0.875rem !important;
+	}
+	
+	.cart .quantity .quantity__input{
+		width: 2rem;
+		height: 1.5rem;
+		font-size: 0.875rem !important;
+	}
+}
+
+@media (max-width: 360px) {
+    .cart .product .delete{
+        padding: 0 0.5rem !important;
+    }
 }

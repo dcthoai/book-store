@@ -44,7 +44,7 @@ public class CartProductDAO extends AbstractDAO<CartProduct> implements ICartPro
 
 	@Override
 	public CartProduct getById(int id) {
-		String sql = "SELECT * FROM `bookstore`.`cartProduct` WHERE `id` = ?";
+		String sql = "SELECT * FROM `bookstore`.`cartProduct` WHERE (`id` = ?)";
 		
 		List<CartProduct> listCartProducts = executeQuery(sql, new MapperCartProduct(), id);
 		
@@ -53,10 +53,29 @@ public class CartProductDAO extends AbstractDAO<CartProduct> implements ICartPro
 
 	@Override
 	public List<CartProduct> getAllCartProducts(int cartId) {
-		String sql = "SELECT * FROM `bookstore`.`cartProduct` WHERE `cartId` = ?";
+		String sql = "SELECT * FROM `bookstore`.`cartProduct` WHERE (`cartId` = ?)";
 		
 		List<CartProduct> listCartProducts = executeQuery(sql, new MapperCartProduct(), cartId);
 		
 		return listCartProducts;
+	}
+	
+	@Override
+	public CartProduct isExist(CartProduct cartProduct) {
+		String sql = "SELECT * FROM `bookstore`.`cartProduct` WHERE (`cartId` = ? AND `bookId` = ?)";
+		
+		List<CartProduct> listCartProducts = executeQuery(sql, new MapperCartProduct(), 
+																cartProduct.getCartId(), 
+																cartProduct.getBookId());
+		
+		return listCartProducts.isEmpty() ? null : listCartProducts.get(0);
+	}
+	
+	@Override
+	public int countTotalCartQuantity(int cartId) {
+		String sql = "SELECT SUM(quantity) FROM `bookstore`.`cartProduct` WHERE (`cartId` = ?)";
+		
+		Integer totalQuantity = _jdbcTemplate.queryForObject(sql, Integer.class, cartId);
+        return totalQuantity != null ? totalQuantity : 0;
 	}
 }

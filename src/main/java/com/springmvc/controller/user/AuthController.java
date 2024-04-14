@@ -12,7 +12,6 @@ import org.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,12 +32,15 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springmvc.firebase.FirebaseService;
+
 import com.springmvc.model.Cart;
 import com.springmvc.model.Customer;
+import com.springmvc.model.ResponseJSON;
 import com.springmvc.model.UserCustom;
 
 import com.springmvc.security.JwtTokenProvider;
 import com.springmvc.security.UserAuthenticationRequest;
+
 import com.springmvc.service.user.impl.CartService;
 import com.springmvc.service.user.impl.CustomerService;
 import com.springmvc.service.user.impl.UserService;
@@ -76,7 +78,7 @@ public class AuthController {
         try {
         	UserCustom user = userService.getUserByUsername(username);
             Customer customer = customerService.getCustomerByUserId(user.getUserId());
-            Cart cart = cartService.getCartByUserId(customer.getId());
+            Cart cart = cartService.getCartByCustomerId(customer.getId());
             
             if (user != null)
             	session.setAttribute("userId", user.getUserId());
@@ -84,8 +86,10 @@ public class AuthController {
             if (customer != null)
             	session.setAttribute("customerId", customer.getId());
             
-            if (cart != null)
+            if (cart != null) {
+            	session.setAttribute("cartId", cart.getId());
             	session.setAttribute("quantityCart", cart.getQuantity());
+            }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -97,10 +101,7 @@ public class AuthController {
     	
     	// Check data format from client
         if (!userData.has("username") || !userData.has("email") || !userData.has("password")) {
-            return ResponseEntity.badRequest().body(new JSONObject()
-                .put("success", false)
-                .put("message", "Missing required data attributes from client")
-                .toString());
+            return new ResponseJSON(false, "Missing required data attributes from client!").badRequest();
         }
 	        
         try {
@@ -112,10 +113,7 @@ public class AuthController {
 			boolean isExists = userService.isExistCustomerOrUser(username, email);
 			
 			if(isExists) {
-				return ResponseEntity.badRequest().body(new JSONObject()
-    	                .put("success", false)
-    	                .put("message", "User is exists!")
-    	                .toString());
+				return new ResponseJSON(false, "User has already exist!").badRequest();
 			} else {
 				List<GrantedAuthority> authorities = new ArrayList<>();
 				authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
@@ -132,27 +130,29 @@ public class AuthController {
 					
 					int customerId = customerService.insertCustomer(customer);
 					
-					if(customerId > 0)
-						return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
-					else
-						return ResponseEntity.badRequest().body(new JSONObject()
-		    	                .put("success", false)
-		    	                .put("message", "Register failure! Can not create a customer account.")
-		    	                .toString());
-				} else {
-					return ResponseEntity.badRequest().body(new JSONObject()
-	    	                .put("success", false)
-	    	                .put("message", "Register failure! Can not save user to database.")
-	    	                .toString());
+					
+					if(customerId > 0) {
+						Cart cart = new Cart();
+						cart.setCustomerId(customerId);
+						cart.setQuantity(0);
+						cart.setCreatedBy(username);
+						
+						int cartId = cartService.insertCart(cart);
+						
+						if (cartId > 0)
+							return new ResponseJSON(true, "Successful").ok();
+						return new ResponseJSON(false, "Register failure! Can not create a customer cart.").serverError();
+					}
+
+					return new ResponseJSON(false, "Register failure! Can not create a customer account.").badRequest();
 				}
+					
+				return new ResponseJSON(false, "Register failure! Can not save user to database.").badRequest();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-			return ResponseEntity.badRequest().body(new JSONObject()
-	                .put("success", false)
-	                .put("message", "Exception when checking data user!")
-	                .toString());
+			return new ResponseJSON(false, "Exception when checking data user!").badRequest();
 		}
     }
 
@@ -179,22 +179,13 @@ public class AuthController {
             // Sent token to client
             response.setHeader("Authorization", "Bearer " + jwtToken);
    
-            return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
+            return new ResponseJSON(true, "Successful!").ok();
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new JSONObject()
-                    .put("success", false)
-                    .put("message", "Invalid username or password")
-                    .toString());
+        	return new ResponseJSON(false, "Invalid username or password!").unAuthorized();
         } catch (LockedException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JSONObject()
-                    .put("success", false)
-                    .put("message", "Account locked")
-                    .toString());
+        	return new ResponseJSON(false, "Account has been locked!").accessDenied();
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JSONObject()
-                    .put("success", false)
-                    .put("message", "Server error")
-                    .toString());
+        	return new ResponseJSON(false, "Internal server error!").serverError();
         }
     }
     
@@ -215,12 +206,9 @@ public class AuthController {
             response.setHeader("Authorization", "");
             session.invalidate();
             
-            return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());         	
+            return new ResponseJSON(true, "Successful!").ok();       	
         } else {
-        	return ResponseEntity.badRequest().body(new JSONObject()
-            		.put("success", false)
-            		.put("message", "Can not logged out your account!")
-            		.toString());
+        	return new ResponseJSON(false, "Can not logged out your account!").badRequest();
         }
     }
         
@@ -232,10 +220,7 @@ public class AuthController {
     		tokenRequest = tokenRequest.substring(7);
     		
 			if (tokenRequest.isEmpty()) {
-				return ResponseEntity.badRequest().body(new JSONObject()
-						.put("success", false)
-						.put("message", "NOT FOUND! Can not found a token.")
-						.toString());
+				return new ResponseJSON(false, "Not found token!").notFound();
 				
 			} else {
 				
@@ -243,11 +228,7 @@ public class AuthController {
 					String username = jwtTokenProvider.getUsernameFromToken(tokenRequest);
 		    		
 		    		if (username == null || username.isEmpty()) {
-		    			return ResponseEntity.badRequest().body(new JSONObject()
-		    							.put("success", false)
-		    							.put("message", "Invalid token! Missing user data.")
-		    							.toString());
-		    			
+		    			return new ResponseJSON(false, "Invalid token! Missing user data.").badRequest();
 		    		} else {
 		    			
 		    			CompletableFuture<String> getUserToken = firebaseService.getTokenByUsername(username);
@@ -260,35 +241,24 @@ public class AuthController {
 								// Save user authentication state in current session
 								createSession(username, request);
 								
-								return ResponseEntity.ok().body(new JSONObject().put("success", true).toString());
+								return new ResponseJSON(true, "Successful!").ok();
 							} else {
-								return ResponseEntity.ok().body(new JSONObject()
-										.put("success", false)
-										.put("message", "Invalid token! Can not authenticate user data.")
-										.toString());
+								return new ResponseJSON(false, "Invalid token! Can not authenticate user data.").ok();
 							}
+							
 						} else {
-							return ResponseEntity.badRequest().body(new JSONObject()
-	    							.put("success", false)
-	    							.put("message", "Invalid token! Can not found user.")
-	    							.toString());
+							return new ResponseJSON(false, "Invalid token! Can not found user.").badRequest();
 						}
 		    		}
 		    		
 				} catch (Exception e) {
 					e.printStackTrace();
-					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JSONObject()
-							.put("success", false)
-							.put("message", "Server error! Can not decode token.")
-							.toString());
+					return new ResponseJSON(false, "Server error! Can not decode token.").serverError();
 				}
 			}
 			
 		}
 		
-    	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new JSONObject()
-				.put("success", false)
-				.put("message", "Request is empty!")
-				.toString());
+    	return new ResponseJSON(false, "Empty request!").notFound();
     }
 }

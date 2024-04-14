@@ -121,7 +121,7 @@ function register(user){
 
 		if (status.success){
 			openPopupNotify('Đăng ký thành công!', 'Đăng nhập để trải nghiệm ngay nào.', 'success');
-            viewSignIn();
+            changeToLogin();
 		} else {
 			openPopupNotify('Đăng ký thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
 			console.log(status.message);

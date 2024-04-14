@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,8 @@ import com.springmvc.model.Book;
 import com.springmvc.model.Cart;
 import com.springmvc.model.CartProduct;
 import com.springmvc.model.Pair;
+import com.springmvc.model.ResponseJSON;
+
 import com.springmvc.service.user.impl.BookService;
 import com.springmvc.service.user.impl.CartService;
 import com.springmvc.service.user.impl.MediaService;
@@ -49,7 +53,7 @@ public class CartController {
 			
 			if (isUserAuthenticated != null && isUserAuthenticated) {
 				if (customerId != null && customerId > 0) {
-					Cart cart = cartService.getCartByUserId(customerId);
+					Cart cart = cartService.getCartByCustomerId(customerId);
 					
 					if (cart != null) {
 						List<Pair<Book, CartProduct>> cartProductPairs = cartService.getAllCartProducts(cart.getId());
@@ -65,112 +69,126 @@ public class CartController {
 		
 		return mav;
 	}
+	
+	private int updateCartQuantity(HttpServletRequest request) {
+		 HttpSession session = request.getSession(false);
+		 
+		 if (session != null) {
+			 try {
+				 int cartId = (Integer) session.getAttribute("cartId");
+				 int quantityCart = cartService.countTotalQuantityCart(cartId);
+				 Cart cart = cartService.getCartById(cartId);
+				 
+				 System.out.println("new quantity cart:" + quantityCart);
+				 
+				 cart.setQuantity(quantityCart);
+				 if (cartService.updateCart(cart)) {
+					 session.setAttribute("quantityCart", quantityCart);
+					 
+					 return 1;
+				 }
+				 
+				 return 0;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}
+		 }
+		 return 0;
+	}
 
 	@PostMapping(value = "/cart/add")
-	public ResponseEntity<?> addToCart(@RequestBody String jsonString) {
+	public ResponseEntity<?> addToCart(@RequestBody String jsonString, HttpServletRequest request) {
 	    try {
 	        JSONObject jsonObject = new JSONObject(jsonString);
 
 	        // Check data format from client
-	        if (!jsonObject.has("bookId") || !jsonObject.has("cartId") || !jsonObject.has("quantity")) {
-	            return ResponseEntity.badRequest().body(new JSONObject()
-	                .put("success", false)
-	                .put("message", "Missing required data attributes from client")
-	                .toString());
+	        if (!jsonObject.has("bookId") || !jsonObject.has("quantity")) {
+	            return new ResponseJSON(false, "Missing required data attributes from client.").badRequest();
 	        }
 
-	        CartProduct cartProduct = new CartProduct();
-	        cartProduct.setBookId(jsonObject.getInt("bookId"));
-	        cartProduct.setCartId(jsonObject.getInt("cartId"));
-	        cartProduct.setQuantity(jsonObject.getInt("quantity"));
-
-	        JSONObject response = new JSONObject();
-	        int cartProductId = cartService.addCartProduct(cartProduct);
+	        HttpSession session = request.getSession(false);
 	        
-	        if (cartProductId > 0) {
-	            response.put("success", true);
-	            return ResponseEntity.ok(response.toString());
-	        } else {
-	            response.put("success", false);
-	            response.put("message", "Add cart product failure!");
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response.toString());
+	        if (session != null) {
+	        	if ((Boolean) session.getAttribute("isUserAuthenticated")) {
+	        		int customerId = (Integer) session.getAttribute("customerId");
+	        		Cart cart = cartService.getCartByCustomerId(customerId);
+	        		
+	        		if (cart != null) {
+	        			CartProduct cartProduct = new CartProduct();
+	        			cartProduct.setCartId(cart.getId());
+	        	        cartProduct.setBookId(jsonObject.getInt("bookId"));
+	        	        cartProduct.setQuantity(jsonObject.getInt("quantity"));
+	        	        
+	        	        int cartProductId = cartService.addCartProduct(cartProduct);
+	        	        
+	        	        if (cartProductId > 0 && updateCartQuantity(request) > 0)
+	        	        	return new ResponseJSON(true, "Successful!").ok();
+	        	        
+	        	        return new ResponseJSON(false, "Add cart product failure, server error.").serverError(); 
+	        		}
+	        		
+	        		return new ResponseJSON(false, "Can not create a customer cart, server error.").serverError();
+	        	}
+	        	
+	        	return new ResponseJSON(false, "User was not authenticated! Please login again.").badRequest();
 	        }
+	        	
+	        return new ResponseJSON(false, "Not found session! Please login again.").badRequest();
+	        
 	    } catch (JSONException e) {
 	        e.printStackTrace();
-	        return ResponseEntity.badRequest().body(new JSONObject()
-	            .put("success", false)
-	            .put("message", "Exception when converting data to JSON")
-	            .toString());
+	        return new ResponseJSON(false, "Exception when converting data to JSON!").badRequest();
 	    }
 	}
 
 	@PostMapping(value = "/cart/update")
-	public ResponseEntity<?> updateCartProduct(@RequestBody String jsonString) {
+	public ResponseEntity<?> updateCartProduct(@RequestBody String jsonString, HttpServletRequest request) {
 		try {
 	        JSONObject jsonObject = new JSONObject(jsonString);
 
 	        // Check data format from client
 	        if (!jsonObject.has("cartProductId") || !jsonObject.has("quantity")) {
-	            return ResponseEntity.badRequest().body(new JSONObject()
-	                .put("success", false)
-	                .put("message", "Missing required data attributes from client")
-	                .toString());
+	        	return new ResponseJSON(false, "Missing required data attributes from client.").badRequest();
 	        }
 
 	        CartProduct cartProduct = new CartProduct();
 	        cartProduct.setId(jsonObject.getInt("cartProductId"));
 	        cartProduct.setQuantity(jsonObject.getInt("quantity"));
 
-	        JSONObject response = new JSONObject();
 	        boolean status = cartService.updateCartProduct(cartProduct);
 	        
-	        if (status) {
-	            response.put("success", true);
-	            return ResponseEntity.ok(response.toString());
-	        } else {
-	            response.put("success", false);
-	            response.put("message", "Update cart product failure");
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response.toString());
-	        }
+	        if (status && updateCartQuantity(request) > 0)
+	        	return new ResponseJSON(true, "Successful!").ok();
+	        	
+	        return new ResponseJSON(false, "Update cart product failure! Server error.").serverError();
+	        
 	    } catch (JSONException e) {
 	        e.printStackTrace();
-	        return ResponseEntity.badRequest().body(new JSONObject()
-	            .put("success", false)
-	            .put("message", "Exception when converting data to JSON")
-	            .toString());
+	        return new ResponseJSON(false, "Exception when converting data to JSON!").badRequest();
 	    }
 	}
 
 	@PostMapping(value = "/cart/delete")
-	public ResponseEntity<?> deleteCartProduct(@RequestBody String jsonString) {
+	public ResponseEntity<?> deleteCartProduct(@RequestBody String jsonString, HttpServletRequest request) {
 		try {
 	        JSONObject jsonObject = new JSONObject(jsonString);
 
 	        // Check data format from client
 	        if (!jsonObject.has("cartProductId")) {
-	            return ResponseEntity.badRequest().body(new JSONObject()
-	                .put("success", false)
-	                .put("message", "Missing required data attributes from client")
-	                .toString());
+	        	return new ResponseJSON(false, "Missing required data attributes from client.").badRequest();
 	        }
 
-	        JSONObject response = new JSONObject();
 	        boolean status = cartService.deleteCartProduct(jsonObject.getInt("cartProductId"));
 	        
-	        if (status) {
-	            response.put("success", true);
-	            return ResponseEntity.ok(response.toString());
-	        } else {
-	            response.put("success", false);
-	            response.put("message", "Delete cart product failure");
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response.toString());
-	        }
+	        if (status && updateCartQuantity(request) > 0) 
+	        	return new ResponseJSON(true, "Successful!").ok();
+	        	
+	        return new ResponseJSON(false, "Delete cart product failure! Server error.").serverError();
+
 	    } catch (JSONException e) {
 	        e.printStackTrace();
-	        return ResponseEntity.badRequest().body(new JSONObject()
-	            .put("success", false)
-	            .put("message", "Exception when converting data to JSON")
-	            .toString());
+	        return new ResponseJSON(false, "Exception when converting data to JSON!").badRequest();
 	    }
 	}
 }
