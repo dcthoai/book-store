@@ -1,11 +1,16 @@
 package com.springmvc.dto;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class BookDTO {
 	private int id;
 	private String title, thumbnailPath;
 	private int purchases, rate;
 	private long sellPrice, cost;
 	private float discount;
+	private Date releaseDate;
+	private Timestamp createdDate;
 	
 	public BookDTO() {
 		super();
@@ -73,5 +78,21 @@ public class BookDTO {
 
 	public void setCost(long cost) {
 		this.cost = cost;
+	}
+
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public Timestamp getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
 	}
 }

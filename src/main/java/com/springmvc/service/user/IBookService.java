@@ -2,6 +2,7 @@ package com.springmvc.service.user;
 
 import java.util.List;
 
+import com.springmvc.dto.BookDTO;
 import com.springmvc.model.Book;
 
 public interface IBookService {
@@ -20,10 +21,11 @@ public interface IBookService {
 	public List<Book> filterBooks(int categoryId, int languageId, long minPrice, long maxPrice, int stars);
 	public List<Book> searchBook(String keyword);
 	
-	public List<Book> sortByLowPrice(List<Book> listBooks);
-	public List<Book> sortByHighPrice(List<Book> listBooks);
-	public List<Book> sortByNameAZ(List<Book> listBooks);
-	public List<Book> sortByNameZA(List<Book> listBooks);
-	public List<Book> sortByReleaseDate(List<Book> listBooks);
-	public List<Book> sortByPurchases(List<Book> listBooks);
+	public List<BookDTO> sortByNewest(List<BookDTO> listBooks);
+	public List<BookDTO> sortByLowPrice(List<BookDTO> listBooks);
+	public List<BookDTO> sortByHighPrice(List<BookDTO> listBooks);
+	public List<BookDTO> sortByNameAZ(List<BookDTO> listBooks);
+	public List<BookDTO> sortByDiscount(List<BookDTO> listBooks);
+	public List<BookDTO> sortByReleaseDate(List<BookDTO> listBooks);
+	public List<BookDTO> sortByPurchases(List<BookDTO> listBooks);
 }

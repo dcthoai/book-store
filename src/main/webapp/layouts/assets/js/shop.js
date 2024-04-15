@@ -3,6 +3,7 @@ const searchButton = document.getElementById('search-button');
 const inputSearch = document.getElementById('search-input');
 const bookResultsContainer = document.getElementById('book-results');
 const totalResults = document.getElementById('total-results');
+const sortbyOptions = document.getElementById('sort-by-options');
 
 function getDataBook(book){
     const html = `<div class="col-lg-3 col-md-4 col-6 mb-4">
@@ -40,13 +41,54 @@ function getDataBook(book){
 function searchBookByKeyword(){
     let keyword = inputSearch.value.trim();
 
-    fetch(`/bookstore/shop/search?name=${keyword}`)
+    if (keyword){
+        fetch(`/bookstore/shop/search?name=${keyword}`)
+        .then(response => response.json())
+        .then(data => {
+            let resultsHtml = 'Không tìm thấy sản phẩm nào.';
+
+            if (data) {
+                if (Array.isArray(data)) {
+                    if (data.length > 0) {
+                        resultsHtml = '';
+
+                        data.forEach(book => {
+                            resultsHtml += getDataBook(book);
+                        });
+
+                        totalResults.innerHTML = data.length;
+                    }
+                }
+            }
+
+            bookResultsContainer.innerHTML = resultsHtml;
+        })
+        .catch(error => {
+            // openPopupNotify('Không thể tìm kiếm', 'Đã có lỗi xảy ra, vui lòng thử lại sau', 'error');
+            console.error(error);
+        })
+    }
+}
+
+// Search when click button
+searchButton.addEventListener('click', function(){
+    searchBookByKeyword();
+});
+
+// Search when enter
+inputSearch.addEventListener('keydown', function(event){
+    if (event.key === 'Enter' || event.code === 13) {
+        searchBookByKeyword();
+    }
+});
+
+sortbyOptions.addEventListener('change', function(){
+    const option = sortbyOptions.value;
+
+    fetch(`/bookstore/shop/search/sort?by=${option}`)
     .then(response => response.json())
     .then(data => {
-		
-		console.log(data);
-
-        let resultsHtml = 'Không tìm thấy sản phẩm nào.';
+        let resultsHtml = 'Có lỗi xảy ra, vui lòng thử lại.';
 
         if (data) {
             if (Array.isArray(data)) {
@@ -68,16 +110,32 @@ function searchBookByKeyword(){
         // openPopupNotify('Không thể tìm kiếm', 'Đã có lỗi xảy ra, vui lòng thử lại sau', 'error');
         console.error(error);
     })
-}
+})
 
-// Search when click button
-searchButton.addEventListener('click', function(){
-    searchBookByKeyword();
-});
+document.addEventListener('DOMContentLoaded', function(){
+    fetch(`/bookstore/shop/get`)
+    .then(response => response.json())
+    .then(data => {
+        let resultsHtml = 'Có lỗi xảy ra, vui lòng thử lại.';
 
-// Search when enter
-inputSearch.addEventListener('keydown', function(event){
-    if (event.key === 'Enter' || event.code === 13) {
-        searchBookByKeyword();
-    }
-});
+        if (data) {
+            if (Array.isArray(data)) {
+                if (data.length > 0) {
+                    resultsHtml = '';
+
+                    data.forEach(book => {
+                        resultsHtml += getDataBook(book);
+                    });
+
+                    totalResults.innerHTML = data.length;
+                }
+            }
+        }
+
+        bookResultsContainer.innerHTML = resultsHtml;
+    })
+    .catch(error => {
+        // openPopupNotify('Không thể tìm kiếm', 'Đã có lỗi xảy ra, vui lòng thử lại sau', 'error');
+        console.error(error);
+    })
+})

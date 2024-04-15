@@ -138,14 +138,14 @@
                             <div class="d-flex justify-content-end">
                                 <p class="mb-0 me-2">Sắp xếp theo:</p>
 
-                                <select class="sortby">
-                                    <option value="">Không sắp xếp</option>
-                                    <option value="">Giá tăng dần</option>
-                                    <option value="">Giá giảm dần</option>
-                                    <option value="">Tên a-z</option>
-                                    <option value="">Tên z-a</option>
-                                    <option value="">Ngày ra mắt</option>
-                                    <option value="">Lượt mua</option>
+                                <select id="sort-by-options" class="sortby">
+                                    <option value="newest">Mới nhất</option>
+                                    <option value="discount">Giảm giá nhiều nhất</option>
+                                    <option value="purchases">Mua nhiều nhất</option>
+                                    <option value="low-price">Giá tăng dần</option>
+                                    <option value="high-price">Giá giảm dần</option>
+                                    <option value="name">Tên a-z</option>
+                                    <option value="release-date">Phát hành mới nhất</option>
                                 </select>
                             </div>
                         </div>

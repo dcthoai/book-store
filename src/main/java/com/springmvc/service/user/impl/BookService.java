@@ -1,11 +1,14 @@
 package com.springmvc.service.user.impl;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.impl.BookDAO;
+import com.springmvc.dto.BookDTO;
 import com.springmvc.model.Author;
 import com.springmvc.model.Book;
 import com.springmvc.model.Category;
@@ -103,40 +106,102 @@ public class BookService implements IBookService{
 		List<Book> listBooks = bookDAO.searchBook(s);
 		return listBooks;
 	}
-
+	
 	@Override
-	public List<Book> sortByLowPrice(List<Book> listBooks) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookDTO> sortByNewest(List<BookDTO> listBooks){
+		Comparator<BookDTO> comparator = new Comparator<BookDTO>() {
+            @Override
+            public int compare(BookDTO book1, BookDTO book2) {
+                return book2.getCreatedDate().compareTo(book1.getCreatedDate());
+            }
+        };
+
+        Collections.sort(listBooks, comparator);
+
+        return listBooks;
 	}
 
 	@Override
-	public List<Book> sortByHighPrice(List<Book> listBooks) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookDTO> sortByLowPrice(List<BookDTO> listBooks) {
+		Comparator<BookDTO> comparator = new Comparator<BookDTO>() {
+            @Override
+            public int compare(BookDTO book1, BookDTO book2) {
+                return Long.compare(book1.getSellPrice(), book2.getSellPrice());
+            }
+        };
+
+        Collections.sort(listBooks, comparator);
+
+        return listBooks;
 	}
 
 	@Override
-	public List<Book> sortByNameAZ(List<Book> listBooks) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookDTO> sortByHighPrice(List<BookDTO> listBooks) {
+		Comparator<BookDTO> comparator = new Comparator<BookDTO>() {
+            @Override
+            public int compare(BookDTO book1, BookDTO book2) {
+                return Long.compare(book2.getSellPrice(), book1.getSellPrice());
+            }
+        };
+
+        Collections.sort(listBooks, comparator);
+
+        return listBooks;
 	}
 
 	@Override
-	public List<Book> sortByNameZA(List<Book> listBooks) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookDTO> sortByNameAZ(List<BookDTO> listBooks) {
+		Comparator<BookDTO> comparator = new Comparator<BookDTO>() {
+            @Override
+            public int compare(BookDTO book1, BookDTO book2) {
+                return book1.getTitle().compareTo(book2.getTitle());
+            }
+        };
+
+        Collections.sort(listBooks, comparator);
+
+        return listBooks;
 	}
 
 	@Override
-	public List<Book> sortByReleaseDate(List<Book> listBooks) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookDTO> sortByDiscount(List<BookDTO> listBooks) {
+		Comparator<BookDTO> comparator = new Comparator<BookDTO>() {
+            @Override
+            public int compare(BookDTO book1, BookDTO book2) {
+                return Float.compare(book2.getDiscount(), book1.getDiscount());
+            }
+        };
+
+        Collections.sort(listBooks, comparator);
+
+        return listBooks;
 	}
 
 	@Override
-	public List<Book> sortByPurchases(List<Book> listBooks) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookDTO> sortByReleaseDate(List<BookDTO> listBooks) {
+		Comparator<BookDTO> comparator = new Comparator<BookDTO>() {
+            @Override
+            public int compare(BookDTO book1, BookDTO book2) {
+                return book2.getReleaseDate().compareTo(book1.getReleaseDate());
+            }
+        };
+
+        Collections.sort(listBooks, comparator);
+
+        return listBooks;
+	}
+
+	@Override
+	public List<BookDTO> sortByPurchases(List<BookDTO> listBooks) {
+		Comparator<BookDTO> comparator = new Comparator<BookDTO>() {
+            @Override
+            public int compare(BookDTO book1, BookDTO book2) {
+                return Integer.compare(book2.getPurchases(), book1.getPurchases());
+            }
+        };
+
+        Collections.sort(listBooks, comparator);
+
+        return listBooks;
 	}
 }
