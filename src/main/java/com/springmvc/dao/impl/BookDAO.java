@@ -186,4 +186,13 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 		
 		return listPublishers.isEmpty() ? null : listPublishers.get(0);
 	}
+	
+	@Override
+	public List<Book> searchBook(String keyword){
+		String sql = "SELECT * FROM `bookstore`.`book` WHERE (`title` LIKE ?)";
+		
+		List<Book> listBooks = executeQuery(sql, new MapperBook(), keyword);
+		
+		return listBooks;
+	}
 }

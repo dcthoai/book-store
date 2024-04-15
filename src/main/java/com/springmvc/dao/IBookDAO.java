@@ -18,4 +18,6 @@ public interface IBookDAO extends IGenericDAO<Book>{
 	public Category getBookCategory(int categoryId);
 	public Language getBookLanguage(int languageId);
 	public Publisher getBookPublisher(int publisherId);
+	
+	public List<Book> searchBook(String keyword);
 }

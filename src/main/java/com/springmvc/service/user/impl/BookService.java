@@ -89,6 +89,20 @@ public class BookService implements IBookService{
 		List<Book> listBooks = bookDAO.getLatestReleaseBooks();
 		return listBooks;
 	}
+	
+	@Override
+	public List<Book> filterBooks(int categoryId, int languageId, long minPrice, long maxPrice, int stars){
+		
+		return null;
+	}
+	
+	@Override
+	public List<Book> searchBook(String keyword){
+		String s = "%" + keyword.trim() + "%";
+
+		List<Book> listBooks = bookDAO.searchBook(s);
+		return listBooks;
+	}
 
 	@Override
 	public List<Book> sortByLowPrice(List<Book> listBooks) {

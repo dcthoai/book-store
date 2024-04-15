@@ -27,10 +27,10 @@
             <div class="row">
                 <div class="col-lg-3 pe-5">
                     <div class="row">
-                        <form action="" class="form-search">
-                            <input type="text" placeholder="Tìm tên sách hoặc tác giả">
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
+                        <div class="form-search">
+                            <input type="text" id="search-input" placeholder="Tìm tên sách hoặc tác giả">
+                            <button type="button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
                     </div>
 
                     <div class="nav-filter py-4">
@@ -127,7 +127,11 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <p class="mb-0">Đang xem 1-12 trong 126 kết quả</p>
+                            <p class="mb-0">
+                            	Đang xem 1-12 trong 
+                            	<span id="total-results" class="d-inline">${ newestBooks.size() }</span>
+                            	kết quả
+                            </p>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -147,7 +151,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-5">
+                    <div class="row mt-5" id="book-results">
                         <c:forEach var="book" items="${ newestBooks }">
                         
                         	<div class="col-lg-3 col-md-4 col-6 mb-4">
@@ -198,4 +202,6 @@
             </div>
         </div>
     </div>
+    
+    <script type="text/javascript" src="assets/js/shop.js"></script>
 </body>

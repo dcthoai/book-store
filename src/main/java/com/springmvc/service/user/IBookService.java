@@ -17,6 +17,8 @@ public interface IBookService {
 	
 	public List<Book> getNewestBooks();
 	public List<Book> getLatestReleaseBooks();
+	public List<Book> filterBooks(int categoryId, int languageId, long minPrice, long maxPrice, int stars);
+	public List<Book> searchBook(String keyword);
 	
 	public List<Book> sortByLowPrice(List<Book> listBooks);
 	public List<Book> sortByHighPrice(List<Book> listBooks);
