@@ -478,6 +478,7 @@ button:hover {
 
 /* Loading animation */
 #popup-loader{
+	display: none;
     position: fixed;
     top: 0;
     left: 0;

@@ -1,9 +1,13 @@
-<decorators defaultdir="/layouts/">
+<decorators defaultdir="/templates/">
 	<decorator name="user" page="user/base.jsp">
 		<pattern>/*</pattern>
 	</decorator>
 	
-	<decorator name="admin" page="admin/base.jsp">
-		<pattern>/admin*</pattern>
+	<decorator name="quantri" page="admin/base.jsp">
+		<pattern>/admin/dashboard*</pattern>
+	</decorator>
+	
+	<decorator name="quan-tri" page="">
+		<pattern>/admin</pattern>
 	</decorator>
 </decorators>
