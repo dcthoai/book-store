@@ -1,11 +1,11 @@
-package com.springmvc.service.user.impl;
+package com.springmvc.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.impl.MediaDAO;
 import com.springmvc.model.Media;
-import com.springmvc.service.user.IMediaService;
+import com.springmvc.service.IMediaService;
 
 @Service
 public class MediaService implements IMediaService{

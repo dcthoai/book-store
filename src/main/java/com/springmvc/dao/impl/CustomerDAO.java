@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import com.springmvc.dao.ICustomerDAO;
 import com.springmvc.mapper.MapperCustomer;
+import com.springmvc.mapper.MapperUserCustom;
 import com.springmvc.model.Customer;
+import com.springmvc.model.UserCustom;
 
 @Repository
 public class CustomerDAO extends AbstractDAO<Customer> implements ICustomerDAO{
@@ -87,5 +89,14 @@ public class CustomerDAO extends AbstractDAO<Customer> implements ICustomerDAO{
 		List<Customer> listCustomers = executeQuery(sql, new MapperCustomer(), phone);
 		
 		return listCustomers.isEmpty() ? null : listCustomers.get(0);
+	}
+
+	@Override
+	public List<Customer> getAllCustomer() {
+		String sql = "SELECT * FROM `bookstore`.`customer`";
+		
+		List<Customer> customers = executeQuery(sql, new MapperCustomer());
+		
+		return customers;
 	}
 }

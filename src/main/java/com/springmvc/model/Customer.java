@@ -6,6 +6,7 @@ public class Customer extends AbstractModel{
 	private int userId, avatarId;
 	private String fullname, phone, email;
 	private Date birthday;
+	private String address;
 	
 	public Customer() {
 		super();
@@ -57,5 +58,13 @@ public class Customer extends AbstractModel{
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }

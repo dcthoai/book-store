@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.model.Book;
-import com.springmvc.service.user.impl.BookService;
-import com.springmvc.service.user.impl.MediaService;
+import com.springmvc.service.impl.BookService;
+import com.springmvc.service.impl.MediaService;
 
 @Controller
 public class ProductController {

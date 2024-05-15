@@ -1,4 +1,4 @@
-package com.springmvc.service.user.impl;
+package com.springmvc.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import com.springmvc.model.Book;
 import com.springmvc.model.Cart;
 import com.springmvc.model.CartProduct;
 import com.springmvc.model.Pair;
-import com.springmvc.service.user.ICartService;
+import com.springmvc.service.ICartService;
 
 @Service
 public class CartService implements ICartService {

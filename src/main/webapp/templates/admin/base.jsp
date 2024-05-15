@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS custom -->
     <link rel="stylesheet" href="/bookstore/admin/assets/css/notify.css">
-    <link rel="stylesheet" href="../admin/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/bookstore/admin/assets/css/dashboard.css">
     <decorator:head></decorator:head>
 </head>
 
@@ -54,7 +54,7 @@
 
     <!-- Body -->
     <nav class="navbar navbar-expand fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="dashboard.html">Quản trị viên</a>
+        <a class="navbar-brand ps-3" href="/bookstore/admin/dashboard">Quản trị viên</a>
 
         <button class="btn btn-dark btn-sm order-1 order-lg-0 ms-md-5 me-3 me-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#sideBarNav">
             <i class="fas fa-bars"></i>
@@ -103,7 +103,7 @@
                                     <a href="/bookstore/admin/dashboard/order" class="text-decoration-none">
                                     	<div class="navbtn">Đơn hàng</div>
                                     </a>
-                                    <a href="/bookstore/admin/dashboard/user" class="text-decoration-none">
+                                    <a href="/bookstore/admin/dashboard/account" class="text-decoration-none">
                                     	<div class="navbtn">Người dùng</div>
                                     </a>
                                 </div>
@@ -185,8 +185,8 @@
     		crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
-    <script src="../admin/assets/js/notify.js"></script>
-    <script src="../admin/assets/js/dashboard.js"></script>
+    <script src="/bookstore/admin/assets/js/notify.js"></script>
+    <script src="/bookstore/admin/assets/js/dashboard.js"></script>
 
     <script>
         // Kiểm tra kích thước màn hình và đóng phần tử collapse nếu trên thiết bị di động

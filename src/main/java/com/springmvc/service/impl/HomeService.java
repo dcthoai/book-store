@@ -1,4 +1,4 @@
-package com.springmvc.service.user.impl;
+package com.springmvc.service.impl;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import com.springmvc.dao.impl.BlogDAO;
 import com.springmvc.dao.impl.SlideDAO;
 import com.springmvc.model.Blog;
 import com.springmvc.model.Slide;
-import com.springmvc.service.user.IHomeService;
+import com.springmvc.service.IHomeService;
 
 @Service
 public class HomeService implements IHomeService{

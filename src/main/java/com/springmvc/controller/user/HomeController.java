@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springmvc.service.user.impl.HomeService;
-import com.springmvc.service.user.impl.MediaService;
+import com.springmvc.service.impl.HomeService;
+import com.springmvc.service.impl.MediaService;
 
 @Controller("userHomeController")
 public class HomeController {

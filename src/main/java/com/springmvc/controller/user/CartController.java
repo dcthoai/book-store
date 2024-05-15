@@ -23,10 +23,9 @@ import com.springmvc.model.Cart;
 import com.springmvc.model.CartProduct;
 import com.springmvc.model.Pair;
 import com.springmvc.model.ResponseJSON;
-
-import com.springmvc.service.user.impl.BookService;
-import com.springmvc.service.user.impl.CartService;
-import com.springmvc.service.user.impl.MediaService;
+import com.springmvc.service.impl.BookService;
+import com.springmvc.service.impl.CartService;
+import com.springmvc.service.impl.MediaService;
 
 @Controller("userCartController")
 public class CartController {

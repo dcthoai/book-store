@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.springmvc.dao.IUserCustomDAO;
 import com.springmvc.mapper.MapperUserCustom;
+import com.springmvc.model.Customer;
 import com.springmvc.model.UserCustom;
 
 @Repository
@@ -117,5 +118,14 @@ public class UserCustomDAO extends AbstractDAO<UserCustom> implements IUserCusto
 		List<UserCustom> listUsers = executeQuery(sql, new MapperUserCustom(roleDAO), username);
 		
 		return listUsers.isEmpty() ? null : listUsers.get(0);
+	}
+
+	@Override
+	public List<UserCustom> getAllUsers() {
+		String sql = "SELECT * FROM `bookstore`.`user`";
+		
+		List<UserCustom> listUsers = executeQuery(sql, new MapperUserCustom(roleDAO));
+		
+		return listUsers;
 	}
 }

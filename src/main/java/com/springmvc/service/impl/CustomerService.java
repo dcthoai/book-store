@@ -1,11 +1,13 @@
-package com.springmvc.service.user.impl;
+package com.springmvc.service.impl;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.impl.CustomerDAO;
 import com.springmvc.model.Customer;
-import com.springmvc.service.user.ICustomerService;
+import com.springmvc.service.ICustomerService;
 
 @Service
 public class CustomerService implements ICustomerService{
@@ -60,5 +62,10 @@ public class CustomerService implements ICustomerService{
 		Customer customer = customerDAO.getCustomerByPhone(phone);
 		
 		return customer;
+	}
+
+	@Override
+	public List<Customer> getAllCustomers() {
+		return customerDAO.getAllCustomer();
 	}
 }

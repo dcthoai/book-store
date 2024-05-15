@@ -14,7 +14,7 @@
             <button type="button" class="ms-2 btn btn-primary py-0 fw-medium" id="search-book-button">Tìm kiếm</button>
         </div>
 
-        <a href="add-book.html" class="text-decoration-none">
+        <a href="/bookstore/admin/dashboard/product/add" class="text-decoration-none">
             <button type="button" class="btn btn-primary py-0 fw-medium add-new">Thêm sách</button>
         </a>
     </div>
@@ -47,69 +47,38 @@
             <table id="table-list-books" class="w-100 table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class=""><input type="checkbox" name="table-select-all" id="table-select-all"></th>
-                        <th class="col-4">Tên sản phẩm</th>
-                        <th class="col-2">Tác giả</th>
-                        <th class="col-1 text-center">Giá bán</th>
-                        <th class="col-1 text-center">Giá gốc</th>
-                        <th class="col-1 text-center">Giảm giá</th>
-                        <th class="col-1 text-center">Tồn kho</th>
-                        <th class="col-1 text-center">Ngày thêm</th>
-                        <th class="col-1 text-center">Chỉnh sửa</th>
+                        <th class="col-auto"><input type="checkbox" name="table-select-all" id="table-select-all"></th>
+                        <th class="col">Tên sản phẩm</th>
+                        <th class="col">Tác giả</th>
+                        <th class="col text-center">Giá bán</th>
+                        <th class="col text-center">Giá gốc</th>
+                        <th class="col text-center">Giảm giá</th>
+                        <th class="col text-center">Tồn kho</th>
+                        <th class="col text-center">Ngày thêm</th>
+                        <th class="col text-center">Chỉnh sửa</th>
                     </tr>
                 </thead>
                 
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox" name="table-select"></td>
-                        <td class="table-title">Hail Mary</td>
-                        <td class="table-author">Eric Paul</td>
-                        <td class="table-price text-center ">124.500</td>
-                        <td class="table-cost text-center ">124.500</td>
-                        <td class="table-discount text-center ">5%</td>
-                        <td class="table-stock text-center ">61</td>
-                        <td class="table-date text-center ">2011/04/25</td>
-                        <td>
-                            <div class="w-100 h-100 d-flex justify-content-evenly">
-                                <a href="" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td><input type="checkbox" name="table-select"></td>
-                        <td class="table-title">Hail Mary</td>
-                        <td class="table-author">Eric Paul</td>
-                        <td class="table-price text-center ">124.500</td>
-                        <td class="table-cost text-center ">124.500</td>
-                        <td class="table-discount text-center ">5%</td>
-                        <td class="table-stock text-center ">61</td>
-                        <td class="table-date text-center ">2011/04/25</td>
-                        <td>
-                            <div class="w-100 h-100 d-flex justify-content-evenly">
-                                <a href="" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox" name="table-select"></td>
-                        <td class="table-title">Hail Mary Hail Mary Hail Mary</td>
-                        <td class="table-author">Eric Paul</td>
-                        <td class="table-price text-center ">124.500</td>
-                        <td class="table-cost text-center ">124.500</td>
-                        <td class="table-discount text-center ">5%</td>
-                        <td class="table-stock text-center ">61</td>
-                        <td class="table-date text-center ">2011/04/25</td>
-                        <td>
-                            <div class="w-100 h-100 d-flex justify-content-evenly">
-                                <a href="" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                	<c:set var="bookService" value="${ bookService }"></c:set>
+                    <c:forEach var="book" items="${ books }">
+                    	<tr>
+	                        <td><input type="checkbox" name="table-select"></td>
+	                        <td class="table-title">${ book.title }</td>
+	                        <td class="table-author">${ bookService.getBookAuthor(book.authorId) }</td>
+	                        <td class="table-price text-center ">${ book.getSellPrice() }</td>
+	                        <td class="table-cost text-center ">${ book.price }</td>
+	                        <td class="table-discount text-center ">${ book.discount }%</td>
+	                        <td class="table-stock text-center ">50</td>
+	                        <td class="table-date text-center ">${ book.createdDate }</td>
+	                        <td>
+	                            <div class="w-100 h-100 d-flex justify-content-evenly">
+	                                <a href="/bookstore/admin/dashboard/product/edit?id=${ book.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+	                                <a class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+	                            </div>
+	                        </td>
+	                    </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

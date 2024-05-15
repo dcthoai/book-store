@@ -1,4 +1,6 @@
-package com.springmvc.service.user.impl;
+package com.springmvc.service.impl;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,6 +52,12 @@ public class UserService implements UserDetailsService{
 		UserCustom user = userCustomDAO.getUserByUsername(username);
 		
 		return user;
+	}
+	
+	public List<UserCustom> getAllUsers() {
+		List<UserCustom> users = userCustomDAO.getAllUsers();
+		
+		return users;
 	}
 	
 	public int insertUserCustom(UserCustom user) {

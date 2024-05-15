@@ -1,4 +1,6 @@
-package com.springmvc.service.user;
+package com.springmvc.service;
+
+import java.util.List;
 
 import com.springmvc.model.Customer;
 
@@ -10,4 +12,5 @@ public interface ICustomerService {
 	public Customer getCustomerByUserId(int userId);
 	public Customer getCustomerByEmail(String email);
 	public Customer getCustomerByPhone(String phone);
+	public List<Customer> getAllCustomers();
 }

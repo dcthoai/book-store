@@ -21,7 +21,7 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import com.springmvc.security.JwtTokenFilter;
 import com.springmvc.security.JwtTokenProvider;
-import com.springmvc.service.user.impl.UserService;
+import com.springmvc.service.impl.UserService;
 
 @Configuration
 @EnableWebSecurity

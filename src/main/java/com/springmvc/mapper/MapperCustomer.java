@@ -19,6 +19,7 @@ public class MapperCustomer implements RowMapper<Customer> {
         customer.setPhone(rs.getString("phone"));
         customer.setEmail(rs.getString("email"));
         customer.setBirthday(rs.getDate("birthday"));
+        customer.setAddress(rs.getString("address"));
         
         customer.setCreatedDate(rs.getTimestamp("createdDate"));
         customer.setModifiedDate(rs.getTimestamp("modifiedDate"));

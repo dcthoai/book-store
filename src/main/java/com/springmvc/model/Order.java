@@ -3,10 +3,10 @@ package com.springmvc.model;
 import java.sql.Timestamp;
 
 public class Order extends AbstractModel {
-	private int customerId, addressId;
+	private int customerId;
 	private int orderStatus, paymentStatus, shippingStatus;
 	private long totalPrice, shippingCost, discount, totalPayment;
-	private String paymentMethod;
+	private String paymentMethod, address;
 	private String shippingUnit, shippingMethod, shipperPhone;
 	private Timestamp orderDate, estimatedArrival, deliveredAt;
 
@@ -22,12 +22,12 @@ public class Order extends AbstractModel {
 		this.customerId = customerId;
 	}
 
-	public int getAddressId() {
-		return addressId;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public int getOrderStatus() {

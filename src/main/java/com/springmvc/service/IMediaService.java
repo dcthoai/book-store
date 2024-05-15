@@ -1,4 +1,4 @@
-package com.springmvc.service.user;
+package com.springmvc.service;
 
 import com.springmvc.model.Media;
 

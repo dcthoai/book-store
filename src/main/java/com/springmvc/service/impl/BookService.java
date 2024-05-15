@@ -1,4 +1,4 @@
-package com.springmvc.service.user.impl;
+package com.springmvc.service.impl;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,7 +14,7 @@ import com.springmvc.model.Book;
 import com.springmvc.model.Category;
 import com.springmvc.model.Language;
 import com.springmvc.model.Publisher;
-import com.springmvc.service.user.IBookService;
+import com.springmvc.service.IBookService;
 
 @Service
 public class BookService implements IBookService{

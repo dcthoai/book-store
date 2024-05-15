@@ -95,19 +95,16 @@
     overflow-x: scroll;
 }
 
+.content .card-body .table th:first-child,
+.content .card-body .table td:first-child{
+    width: 1.5rem;
+    vertical-align: middle;
+}
+
 .content .card-body .table th:not(:first-child),
-.content .card-body .table td:not(:first-child) {
-    min-width: 7.5rem;
-}
-
-.content .card-body .table th:nth-child(2),
-.content .card-body .table th:nth-child(3),
-.content .card-body .table td:nth-child(2),
-.content .card-body .table td:nth-child(3) {
-    min-width: 14rem;
-}
-
-.content .card-body .table td{
+.content .card-body .table td:not(:first-child){
+    width: fit-content;
+    white-space: nowrap;
     vertical-align: middle;
 }
 
