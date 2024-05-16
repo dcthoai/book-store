@@ -38,25 +38,17 @@
                             <div class="py-2 d-flex justify-content-between align-items-center">
                                 <h4 class="mb-0 fs-5">Thể loại</h4>
 
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-category" aria-controls="nav-category" aria-expanded="false" aria-label="Toggle navigation">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-category">
                                     <span class="fa-solid fa-angle-down"></span>
                                 </button>
                             </div>
 
                             <div class="filter__body collapse navbar-collapse" id="nav-category">
                                 <ul class="mt-2 mb-4 lh-lg">
-                                    <li><a href="#">Tất cả</a></li>
-                                    <li><a href="#">Truyện tranh</a></li>
-                                    <li><a href="#">Truyện ngôn tình</a></li>
-                                    <li><a href="#">Tiểu thuyết</a></li>
-                                    <li><a href="#">Khoa học</a></li>
-                                    <li><a href="#">Tự truyện</a></li>
-                                    <li><a href="#">Tiểu sử, hồi ký</a></li>
-                                    <li><a href="#">Lịch sử</a></li>
-                                    <li><a href="#">Tạp chí thể thao</a></li>
-                                    <li><a href="#">Tạp chí thời trang</a></li>
-                                    <li><a href="#">Sách dạy nấu ăn</a></li>
-                                    <li><a href="#">Sách giáo khoa</a></li>
+                                    <li><div class="filter-category-item" data-id="-1">Tất cả</div></li>
+                                    <c:forEach var="category" items="${ categories }">
+                                    	<li><div class="filter-category-item" data-id="${ category.id }">${ category.name }</div></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
@@ -72,15 +64,10 @@
 
                             <div class="filter__body collapse navbar-collapse" id="nav-language">
                                 <ul class="mt-2 mb-4 lh-lg">
-                                    <li><a href="#">Tất cả</a></li>
-                                    <li><a href="#">Tiếng Việt</a></li>
-                                    <li><a href="#">Tiếng Anh</a></li>
-                                    <li><a href="#">Tiếng Pháp</a></li>
-                                    <li><a href="#">Tiếng Đức</a></li>
-                                    <li><a href="#">Tiếng Trung</a></li>
-                                    <li><a href="#">Tiếng Hàn</a></li>
-                                    <li><a href="#">Tiếng Nhật</a></li>
-                                    <li><a href="#">Tiếng Nga</a></li>
+                                    <li><div class="filter-language-item" data-id="-1">Tất cả</div></li>
+                                    <c:forEach var="language" items="${ languages }">
+                                    	<li><div class="filter-language-item" data-id="${ language.id }">${ language.name }</div></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
@@ -95,11 +82,13 @@
                             </div>
 
                             <div class="filter__body collapse navbar-collapse" id="nav-price">
-                                <div class="d-flex justify-content-between align-items-center my-4">
-                                    <input class="me-2 h-75" type="number" placeholder="0đ">
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <input id="min-price" class="me-2 h-75" type="number" placeholder="0đ">
                                     <span>-</span>
-                                    <input class="ms-2 h-75" type="number" placeholder="100.000đ">
+                                    <input id="max-price" class="ms-2 h-75" type="number" placeholder="100.000đ">
                                 </div>
+                                
+                                <button id="filter-btn-price" class="btn btn-filter-price mt-3 mb-4">Lọc</button>
                             </div>
                         </div>
 
@@ -114,10 +103,10 @@
 
                             <div class="filter__body collapse navbar-collapse" id="nav-rating">
                                 <ul class="mt-2 mb-4 lh-lg">
-                                    <li><a href="#">Tất cả</a></li>
-                                    <li><a href="#">Trên 5 sao</a></li>
-                                    <li><a href="#">Trên 4 sao</a></li>
-                                    <li><a href="#">Trên 3 sao</a></li>
+                                    <li><div data-star="-1" class="filter-stars-item">Tất cả</div></li>
+                                    <li><div data-star="5" class="filter-stars-item">5 sao</div></li>
+                                    <li><div data-star="4" class="filter-stars-item">4 sao</div></li>
+                                    <li><div data-star="3" class="filter-stars-item">3 sao</div></li>
                                 </ul>
                             </div>
                         </div>

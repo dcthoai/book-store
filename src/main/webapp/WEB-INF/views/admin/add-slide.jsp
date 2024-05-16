@@ -49,10 +49,11 @@
 
          <div class="row justify-content-center justify-content-md-start">
              <div class="col-auto">
-                 <button type="button" class="btn btn-primary fw-medium px-4 w-auto">Xác nhận</button>
-                 <button type="button" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
+                 <button type="button" id="upload-slide" class="btn btn-primary fw-medium px-4 w-auto">Xác nhận</button>
+                 <button type="button" id="cancell" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
              </div>    
          </div>
      </div>
 
+	<script type="text/javascript" src="/bookstore/admin/assets/js/slide.js"></script>
 </body>

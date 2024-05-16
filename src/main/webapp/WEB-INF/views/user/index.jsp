@@ -102,7 +102,7 @@
 	                            <h3><a class="text-decoration-none text-dark fs-4" href="#">${ blog.title }</a></h3>
 	                            <div class="meta">
 	                            	<!-- <c:set var="user" value=""/> -->
-	                                <span>by <a href="#">NULL</a></span>
+	                                <span>by <a href="#">${ customerService.getCustomerById(blog.authorId).getFullname() }</a></span>
 	                                <span>on <a href="#">${ blog.getCreatedDate() }</a></span>
 	                            </div>
 	                        </div>

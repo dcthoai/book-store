@@ -68,6 +68,28 @@
     border-radius: 0.5rem;
 }
 
+.shop .nav-filter .filter ul li {
+	cursor: pointer;
+	color: var(--text-link);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all linear 0.2s;
+}
+
+.shop .nav-filter .filter ul li:hover {
+	opacity: 0.75;
+}
+
+.shop .nav-filter .filter .btn.btn-filter-price {
+	width: 100%;
+	padding: 0 1rem;
+	height: 2.5rem;
+	background-color: var(--bg-header);
+	border-radius: 0.5rem;
+	border: none;
+	color: #fff;
+}
+
 .shop .nav-filter .filter .filter__body{
     border-bottom: 0.0625rem solid #e5e5e5;
     transition: all ease 0.4s;

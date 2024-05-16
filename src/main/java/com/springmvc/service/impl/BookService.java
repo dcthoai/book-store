@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.impl.BookDAO;
+import com.springmvc.dao.impl.CategoryDAO;
+import com.springmvc.dao.impl.LanguageDAO;
 import com.springmvc.dto.BookDTO;
+import com.springmvc.dto.SearchModel;
+import com.springmvc.mapper.MapperBook;
 import com.springmvc.model.Author;
 import com.springmvc.model.Book;
 import com.springmvc.model.Category;
@@ -20,6 +24,12 @@ import com.springmvc.service.IBookService;
 public class BookService implements IBookService{
 	@Autowired
 	private BookDAO bookDAO;
+	
+	@Autowired
+	private CategoryDAO categoryDAO;
+	
+	@Autowired
+	private LanguageDAO languageDAO;
 	
 	@Override
 	public int insertBook(Book book) {
@@ -94,9 +104,27 @@ public class BookService implements IBookService{
 	}
 	
 	@Override
-	public List<Book> filterBooks(int categoryId, int languageId, long minPrice, long maxPrice, int stars){
+	public List<Book> filterBooks(SearchModel searchModel){
+		String sql = "SELECT * FROM `bookstore`.`book` WHERE ";
 		
-		return null;
+		if (searchModel.getMaxPrice() > 0)
+			sql += "price BETWEEN " + searchModel.getMinPrice() + " AND " + searchModel.getMaxPrice();
+		else 
+			sql += "price > " + searchModel.getMinPrice();
+		
+		if (searchModel.getCategoryId() > 0)
+			sql += " AND categoryId = " + searchModel.getCategoryId();
+		
+		if (searchModel.getLanguageId() > 0)
+			sql += " AND languageId = " + searchModel.getLanguageId();
+				
+		/*
+		 * if (searchModel.getStars() > 0) sql += " AND stars > " +
+		 * searchModel.getStars();
+		 */
+		
+		List<Book> listBooks = bookDAO.executeQuery(sql, new MapperBook());
+		return listBooks.isEmpty() ? Collections.emptyList() : listBooks;
 	}
 	
 	@Override
@@ -203,5 +231,15 @@ public class BookService implements IBookService{
         Collections.sort(listBooks, comparator);
 
         return listBooks;
+	}
+
+	@Override
+	public List<Category> getAllCategories() {
+		return categoryDAO.getAllCategories();
+	}
+
+	@Override
+	public List<Language> getAllLanguage() {
+		return languageDAO.getAllLanguages();
 	}
 }

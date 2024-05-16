@@ -9,7 +9,7 @@
 	<h4 class="p-3 ps-lg-0 fs-4 text-light fw-semibold">Banner quảng cáo</h4>
 
     <div class="w-100 d-flex justify-content-end my-4">
-        <a href="add-slide.html" class="text-decoration-none">
+        <a href="/bookstore/admin/dashboard/slide/add" class="text-decoration-none">
             <button type="button" class="btn btn-primary ms-auto py-0 fw-medium add-new">Thêm banner</button>
         </a>
     </div>

@@ -3,7 +3,10 @@ package com.springmvc.service;
 import java.util.List;
 
 import com.springmvc.dto.BookDTO;
+import com.springmvc.dto.SearchModel;
 import com.springmvc.model.Book;
+import com.springmvc.model.Category;
+import com.springmvc.model.Language;
 
 public interface IBookService {
 	public int insertBook(Book book);
@@ -18,7 +21,7 @@ public interface IBookService {
 	
 	public List<Book> getNewestBooks();
 	public List<Book> getLatestReleaseBooks();
-	public List<Book> filterBooks(int categoryId, int languageId, long minPrice, long maxPrice, int stars);
+	public List<Book> filterBooks(SearchModel searchModel);
 	public List<Book> searchBook(String keyword);
 	
 	public List<BookDTO> sortByNewest(List<BookDTO> listBooks);
@@ -28,4 +31,7 @@ public interface IBookService {
 	public List<BookDTO> sortByDiscount(List<BookDTO> listBooks);
 	public List<BookDTO> sortByReleaseDate(List<BookDTO> listBooks);
 	public List<BookDTO> sortByPurchases(List<BookDTO> listBooks);
+	
+	public List<Category> getAllCategories();
+	public List<Language> getAllLanguage();
 }

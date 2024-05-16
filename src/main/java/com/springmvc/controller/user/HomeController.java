@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springmvc.service.impl.CustomerService;
 import com.springmvc.service.impl.HomeService;
 import com.springmvc.service.impl.MediaService;
 
@@ -16,6 +17,8 @@ public class HomeController {
 	private HomeService homeService;
 	@Autowired 
 	private MediaService mediaService;
+	@Autowired
+	private CustomerService customerService;
 	
 	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
 	public ModelAndView homepage() {
@@ -24,6 +27,7 @@ public class HomeController {
 		mav.addObject("slides", homeService.getAllSlides());
 		mav.addObject("newBlogs", homeService.getNewBlogs());
 		mav.addObject("mediaService", mediaService);
+		mav.addObject("customerService", customerService);
 		
 		return mav;
 	}
