@@ -21,7 +21,7 @@ public class AdminBlogController {
 	@GetMapping(value = "")
 	public ModelAndView blog() {
 		ModelAndView mav = new ModelAndView("admin/blog");
-		mav.addObject("customerService", userDetailsService); 
+		mav.addObject("userService", userDetailsService); 
 		mav.addObject("blogs", blogService.getAllBlogs());
 		  
 		return mav; 

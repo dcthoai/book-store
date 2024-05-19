@@ -7,6 +7,17 @@
 
 <body>
 	<h4 class="p-3 ps-lg-0 fs-4 text-light fw-semibold">Quản lý các blog</h4>
+	
+	<div class="w-100 d-flex flex-wrap justify-content-between my-4">
+        <div class="d-flex form-search-book mb-4">
+            <input type="text" class="flex-1 h-100 form-control form-search-input" id="search-blog-input" placeholder="Nhập tên blog">
+            <button type="button" class="ms-2 btn btn-primary py-0 fw-medium" id="search-blog-button">Tìm kiếm</button>
+        </div>
+
+        <a href="/bookstore/admin/dashboard/blog/add" class="text-decoration-none">
+            <button type="button" class="btn btn-primary py-0 fw-medium add-new">Thêm bài viết</button>
+        </a>
+    </div>
 
     <div class="card mb-4 w-100">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center py-3">
@@ -27,12 +38,11 @@
                 </thead>
                 
                 <tbody>
-                	<c:set var="customerService" value="${ customerService }"></c:set>
                 	<c:forEach var="blog" items="${ blogs }">
                 		<tr>
 	                        <td><input type="checkbox" name="table-select"></td>
 	                        <td class="">${ blog.title }</td>
-	                        <td class="">${ customerService.getCustomerById(blog.authorId).getFullname() }</td>
+	                        <td class="">${ userService.getUserById(blog.authorId).getFullname() }</td>
 	                        <td class="text-center ">${ blog.createdDate }</td>
 	                        <td class="text-center ">${ blog.modifiedDate }</td>
 	                        <td>

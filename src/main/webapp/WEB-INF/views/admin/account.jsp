@@ -14,10 +14,6 @@
             <input type="text" class="flex-1 h-100 form-control form-search-input" id="search-book-input" placeholder="Nhập username">
             <button type="button" class="ms-2 btn btn-primary py-0 fw-medium" id="search-book-button">Tìm kiếm</button>
         </div>
-
-        <a href="" class="text-decoration-none">
-            <button type="button" class="btn btn-primary ms-auto py-0 fw-medium add-new">Thêm tài khoản</button>
-        </a>
     </div>
 
     <div class="card mb-4 w-100">
@@ -29,35 +25,30 @@
             <table id="table-list-slides" class="w-100 table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class=""><input type="checkbox" name="table-select-all" id="table-select-all"></th>
-                        <th class="col-2">Username</th>
-                        <th class="col-2">Tên đầy đủ</th>
-                        <th class="col-2">Email</th>
-                        <th class="col-1 text-center">Số điện thoại</th>
-                        <th class="col-2 text-center">Loại tài khoản</th>
-                        <th class="col-1 text-center">Người tạo</th>
-                        <th class="col-2 text-center">Ngày tạo</th>
-                        <th class="col-1 text-center">Chỉnh sửa</th>
+                        <th class="text-center" style="min-width: 8rem;">Tên tài khoản</th>
+                        <th class="text-center">Họ và tên</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Số điện thoại</th>
+                        <th class="text-center">Địa chỉ</th>
+                        <th class="text-center">Người tạo</th>
+                        <th class="text-center">Ngày tạo</th>
+                        <th class="text-center">Người cập nhật</th>
+                        <th class="text-center">Ngày cập nhật</th>
                     </tr>
                 </thead>
                 
                 <tbody>
                 	<c:forEach var="user" items="${ users }">
                 		<tr>
-	                        <td><input type="checkbox" name="table-select" data-account-id="${ user.id }"></td>
 	                        <td class="">${ user.username }</td>
 	                        <td class="">${ user.fullname }</td>
 	                        <td class="">${ user.email }</td>
 	                        <td class="text-center">${ user.phone }</td>
-	                        <td class="text-center">${ user.role }</td>
-	                        <td class="text-center">${ customer.getCreatedBy() }</td>
-	                        <td class="text-center">${ customer.getCreatedDate() }</td>
-	                        <td>
-	                            <div class="w-100 h-100 d-flex justify-content-evenly">
-	                                <a href="" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-	                                <a href="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
-	                            </div>
-	                        </td>
+	                        <td class="">${ user.address }</td>
+	                        <td class="">${ user.createdBy }</td>
+	                        <td class="text-center">${ user.createdDate }</td>
+	                        <td class="">${ user.modifiedBy }</td>
+	                        <td class="text-center">${ user.modifiedDate }</td>
 	                    </tr>
                 	</c:forEach>
                 </tbody>
