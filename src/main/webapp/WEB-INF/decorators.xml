@@ -3,11 +3,12 @@
 		<pattern>/*</pattern>
 	</decorator>
 	
-	<decorator name="quantri" page="admin/base.jsp">
+	<decorator name="admin" page="admin/base.jsp">
 		<pattern>/admin/dashboard*</pattern>
 	</decorator>
 	
-	<decorator name="quan-tri" page="">
+	<decorator name="admin-login" page="">
 		<pattern>/admin</pattern>
+		<pattern>/admin/</pattern>
 	</decorator>
 </decorators>

@@ -15,7 +15,7 @@ public class MapperCart implements RowMapper<Cart>{
 		
 		cart.setId(rs.getInt("id"));
 		
-        cart.setCustomerId(rs.getInt("customerId"));
+        cart.setUserId(rs.getInt("userId"));
         cart.setQuantity(rs.getInt("quantity"));
         
         cart.setCreatedDate(rs.getTimestamp("createdDate"));

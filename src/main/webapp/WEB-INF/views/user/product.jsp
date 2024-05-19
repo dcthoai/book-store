@@ -50,8 +50,8 @@
             <div class="col-12 col-lg-6 col-xl-7 mt-5 mt-lg-0 ps-md-5 ps-lg-0">
                 <h4 class="mb-4 fs-4 fw-medium" style="color: #333;">${ book.title }</h4>
                 
-                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">${ publisher }</span></p>
-                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">${ author }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Nhà xuất bản: <span class="fw-semibold">${ book.publisher }</span></p>
+                <p class="mb-1 fs-6 fw-medium">Tác giả: <span class="fw-semibold">${ book.author }</span></p>
                 <p class="mb-1 fs-6 fw-medium">Ngôn ngữ: <span class="fw-semibold">${ language }</span></p>
                 <p class="mb-1 fs-6 fw-medium">Thể loại: <span class="fw-semibold">${ category }</span></p>
 
@@ -189,179 +189,38 @@
         <h4 class="fs-4 fw-medium mt-2 mb-4 ms-3">Đề xuất cho bạn</h4>
 
         <div class="row mb-3">
-            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                <div class="product">
-                    <a href="" class="product__link">
-                        <div class="product__img">
-                            <img src="assets/images/doi-thua.jpg" alt="product image">
-                        </div>
-
-                        <div class="product__info pt-2">
-                            <h6 class="name mb-2">Đời thừa</h6>
-
-                            <div class="rating mb-2">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-
-                            <div class="price">
-                                45.000đ
-                                <span class="discount">-25%</span>
-                            </div>
-
-                            <del class="cost">54.000đ</del>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                <div class="product">
-                    <a href="" class="product__link">
-                        <div class="product__img">
-                            <img src="assets/images/doi-thua.jpg" alt="product image">
-                        </div>
-
-                        <div class="product__info pt-2">
-                            <h6 class="name mb-2">Đời thừa</h6>
-
-                            <div class="rating mb-2">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-
-                            <div class="price">
-                                45.000đ
-                                <span class="discount">-25%</span>
-                            </div>
-
-                            <del class="cost">54.000đ</del>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                <div class="product">
-                    <a href="" class="product__link">
-                        <div class="product__img">
-                            <img src="assets/images/why-choose-us-img.jpg" alt="product image">
-                        </div>
-
-                        <div class="product__info pt-2">
-                            <h6 class="name mb-2">Đời thừa</h6>
-
-                            <div class="rating mb-2">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-
-                            <div class="price">
-                                45.000đ
-                                <span class="discount">-25%</span>
-                            </div>
-
-                            <del class="cost">54.000đ</del>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                <div class="product">
-                    <a href="" class="product__link">
-                        <div class="product__img">
-                            <img src="assets/images/post-2.jpg" alt="product image">
-                        </div>
-
-                        <div class="product__info pt-2">
-                            <h6 class="name mb-2">Đời thừa</h6>
-
-                            <div class="rating mb-2">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-
-                            <div class="price">
-                                45.000đ
-                                <span class="discount">-25%</span>
-                            </div>
-
-                            <del class="cost">54.000đ</del>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                <div class="product">
-                    <a href="" class="product__link">
-                        <div class="product__img">
-                            <img src="assets/images/post-1.jpg" alt="product image">
-                        </div>
-
-                        <div class="product__info pt-2">
-                            <h6 class="name mb-2">Đời thừa</h6>
-
-                            <div class="rating mb-2">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-
-                            <div class="price">
-                                45.000đ
-                                <span class="discount">-25%</span>
-                            </div>
-
-                            <del class="cost">54.000đ</del>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                <div class="product">
-                    <a href="" class="product__link">
-                        <div class="product__img">
-                            <img src="assets/images/img-grid-1.jpg" alt="product image">
-                        </div>
-
-                        <div class="product__info pt-2">
-                            <h6 class="name mb-2">Đời thừa</h6>
-
-                            <div class="rating mb-2">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-
-                            <div class="price">
-                                45.000đ
-                                <span class="discount">-25%</span>
-                            </div>
-
-                            <del class="cost">54.000đ</del>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        
+        	<c:forEach var="book" items="${ bookSuggesstion }">
+        		<div class="col-6 col-sm-4 col-md-3 col-xl-2">
+	                <div class="product">
+	                    <a href="/bookstore/product?id=${ book.id }" class="product__link">
+	                        <div class="product__img">
+	                            <img src="${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="product image">
+	                        </div>
+	
+	                        <div class="product__info pt-2">
+	                            <h6 class="name mb-2">${ book.title }</h6>
+	
+	                            <div class="rating mb-2">
+	                                <i class="fa-regular fa-star"></i>
+	                                <i class="fa-regular fa-star"></i>
+	                                <i class="fa-regular fa-star"></i>
+	                                <i class="fa-regular fa-star"></i>
+	                                <i class="fa-regular fa-star"></i>
+	                            </div>
+	
+	                            <div class="price">
+	                                ${ book.getSellPrice() }đ
+	                                <span class="discount">-${ book.discount }%</span>
+	                            </div>
+	
+	                            <del class="cost">${ book.price }đ</del>
+	                        </div>
+	                    </a>
+	                </div>
+	            </div>
+        	</c:forEach>
+            
         </div>
     </div>
 
@@ -381,8 +240,8 @@
                 <p class="m-0 py-1">Số trang</p>
             </div>
             <div class="col-6 col-lg-4 info">
-                <p class="m-0 py-1">${ author }</p>
-                <p class="m-0 py-1">${ publisher }</p>
+                <p class="m-0 py-1">${ book.author }</p>
+                <p class="m-0 py-1">${ book.publisher }</p>
                 <p class="m-0 py-1">${ book.releaseDate }</p>
                 <p class="m-0 py-1">${ language }</p>
                 <p class="m-0 py-1">${ category }</p>
@@ -422,7 +281,7 @@
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <span>( đánh giá)</span>
+                    <span>(0 đánh giá)</span>
                 </div>
 
                 <div class="review__chart">

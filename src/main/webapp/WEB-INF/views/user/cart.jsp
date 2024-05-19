@@ -36,7 +36,7 @@
                 <div class="col-10 col-md-11">
                     <div class="row g-0">
                         <div class="col-12 col-md-11 col-lg-6 p-0">
-                            <p class="m-0 fs-5">Chọn tất cả (<span id="quantity-cart">${sessionScope.quantityCart}</span> sản phẩm)</p>
+                            <p class="m-0 fs-5">Chọn tất cả (<span id="quantity-cart">${ quantityCart }</span> sản phẩm)</p>
                         </div>
         
                         <div class="col-lg-3 d-none d-lg-block text-center"><p class="m-0">Số lượng</p></div>
@@ -79,7 +79,7 @@
 	                                        </h5>
 	                                        <p class="m-0 d-none d-md-block fw-semibold">
 	                                        	Tác giả: 
-	                                        	<span class="fw-normal">${ bookService.getBookAuthor(book.authorId) }</span>
+	                                        	<span class="fw-normal">${ book.author }</span>
 	                                        </p>
 	                                        <p class="m-0 pe-2 d-none fw-semibold description">
 	                                        	Mô tả: 

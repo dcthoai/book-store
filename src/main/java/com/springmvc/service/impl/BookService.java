@@ -13,11 +13,9 @@ import com.springmvc.dao.impl.LanguageDAO;
 import com.springmvc.dto.BookDTO;
 import com.springmvc.dto.SearchModel;
 import com.springmvc.mapper.MapperBook;
-import com.springmvc.model.Author;
 import com.springmvc.model.Book;
 import com.springmvc.model.Category;
 import com.springmvc.model.Language;
-import com.springmvc.model.Publisher;
 import com.springmvc.service.IBookService;
 
 @Service
@@ -56,15 +54,6 @@ public class BookService implements IBookService{
 	}
 	
 	@Override
-	public String getBookAuthor(int authorId) {
-		Author author = bookDAO.getBookAuthor(authorId);
-		
-		if (author != null)
-			return author.getName();
-		return "Không có thông tin";
-	}
-	
-	@Override
 	public String getBookCategory(int categoryId) {
 		Category category = bookDAO.getBookCategory(categoryId);
 		
@@ -81,15 +70,7 @@ public class BookService implements IBookService{
 			return language.getName();
 		return "Không có thông tin";
 	}
-	
-	@Override
-	public String getBookPublisher(int publisherId) {
-		Publisher publisher = bookDAO.getBookPublisher(publisherId);
-		
-		if (publisher != null)
-			return publisher.getName();
-		return "Không có thông tin";
-	}
+
 	
 	@Override
 	public List<Book> getNewestBooks() {
@@ -241,5 +222,10 @@ public class BookService implements IBookService{
 	@Override
 	public List<Language> getAllLanguage() {
 		return languageDAO.getAllLanguages();
+	}
+
+	@Override
+	public List<Book> suggestBooks() {
+		return bookDAO.getRandomBook();
 	}
 }

@@ -17,10 +17,10 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/user/");
     }
 	
-	@Bean(name = "multipartResolver")
-    public CommonsMultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(2097152); // 2MB
-        return multipartResolver;
-    }
+//	@Bean(name = "multipartResolver")
+//    public CommonsMultipartResolver multipartResolver() {
+//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(2097152); // 2MB
+//        return multipartResolver;
+//    }
 }

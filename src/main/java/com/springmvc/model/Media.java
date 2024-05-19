@@ -1,19 +1,10 @@
 package com.springmvc.model;
 
 public class Media extends AbstractModel {
-	private String name, path, type;
-	private int size;
+	private String path, type;
 	
 	public Media() {
-		super();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		
 	}
 
 	public String getPath() {
@@ -30,13 +21,5 @@ public class Media extends AbstractModel {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
 	}
 }

@@ -14,24 +14,18 @@ public class OrderDAO extends AbstractDAO<Order> implements IOrderDAO {
 	@Override
 	public int insert(Order order) {
 		String sql = "INSERT INTO `bookstore`.`order` ("
-				+ " customerId, address, orderStatus, paymentStatus, shippingStatus, "
-				+ " totalPrice, shippingCost, discount, totalPayment, paymentMethod, "
-				+ " shippingUnit, shippingMethod, shipperPhone, orderDate, estimatedArrival, createdBy)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " userId, orderStatus, address, paymentMethod, "
+				+ " shippingCost, discount, totalPayment, "
+				+ " orderDate, estimatedArrival, createdBy) "
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		int idOrder = executeInsert(sql, order.getCustomerId(),
-										 order.getAddress(),
+		int idOrder = executeInsert(sql, order.getUserId(),
 										 order.getOrderStatus(),
-										 order.getPaymentStatus(),
-										 order.getShippingStatus(),
-										 order.getTotalPrice(),
+										 order.getAddress(),
+										 order.getPaymentMethod(),
 										 order.getShippingCost(),
 										 order.getDiscount(),
 										 order.getTotalPayment(),
-										 order.getPaymentMethod(),
-										 order.getShippingUnit(),
-										 order.getShippingMethod(),
-										 order.getShipperPhone(),
 										 order.getOrderDate(),
 										 order.getEstimatedArrival(),
 										 order.getCreatedBy());
@@ -42,30 +36,18 @@ public class OrderDAO extends AbstractDAO<Order> implements IOrderDAO {
 	@Override
 	public int update(Order order) {
 		String sql = "UPDATE `bookstore`.`order` SET "
-				+ "    address = ?, "
-				+ "    orderStatus = ?, "
-				+ "    paymentStatus = ?, "
-				+ "    shippingStatus = ?, "
-				+ "    paymentMethod = ?, "
-				+ "    shippingUnit = ?, "
-				+ "    shippingMethod = ?, "
-				+ "    shipperPhone = ?, "
-				+ "    estimatedArrival = ?, "
-				+ "    deliveredAt = ?, "
-				+ "    modifiedBy = ? "
-				+ "WHERE id = ?";
+				+ " orderStatus = ?, address = ?, paymentMethod = ?, "
+				+ " estimatedArrival = ?, shipperPhone = ?, deliveredAt = ?, modifiedBy = ? "
+				+ " WHERE id = ?";
 		
-		int affectedRows = executeUpdate(sql, order.getAddress(),
-											 order.getOrderStatus(),
-											 order.getPaymentStatus(),
-											 order.getShippingStatus(),
-											 order.getPaymentMethod(),
-											 order.getShippingUnit(),
-											 order.getShippingMethod(),
-											 order.getShipperPhone(),
-											 order.getEstimatedArrival(),
-											 order.getDeliveredAt(),
-											 order.getModifiedBy());
+		int affectedRows = executeUpdate(sql, order.getOrderStatus(),
+											  order.getAddress(),
+											  order.getPaymentMethod(),
+											  order.getEstimatedArrival(),
+											  order.getShipperPhone(),
+											  order.getDeliveredAt(),
+											  order.getModifiedBy(),
+											  order.getId());
 	
 		return affectedRows;
 	}
@@ -88,17 +70,10 @@ public class OrderDAO extends AbstractDAO<Order> implements IOrderDAO {
 	}
 
 	@Override
-	public List<Order> getOrderByCustomer(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Order> getAllOrder() {
 		String sql = "SELECT * FROM `bookstore`.`order`";
 		
 		List<Order> listOrders = executeQuery(sql, new MapperOrder());
 		return listOrders;
 	}
-	
 }

@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.service.impl.BlogService;
-import com.springmvc.service.impl.CustomerService;
+import com.springmvc.service.impl.CustomUserDetailsService;
 
 @Controller
 @RequestMapping(value = "/admin/dashboard/blog")
 public class AdminBlogController {
 	
 	@Autowired 
-	private CustomerService customerService;
+	private CustomUserDetailsService userDetailsService;
 	@Autowired 
 	private BlogService blogService;
 	
 	@GetMapping(value = "")
 	public ModelAndView blog() {
 		ModelAndView mav = new ModelAndView("admin/blog");
-		mav.addObject("customerService", customerService); 
+		mav.addObject("customerService", userDetailsService); 
 		mav.addObject("blogs", blogService.getAllBlogs());
 		  
 		return mav; 

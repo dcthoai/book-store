@@ -34,8 +34,7 @@
                         <th class="col-2">Tên đầy đủ</th>
                         <th class="col-2">Email</th>
                         <th class="col-1 text-center">Số điện thoại</th>
-                        <th class="col-1 text-center">Phân loại</th>
-                        <th class="col-2 text-center">Trạng thái</th>
+                        <th class="col-2 text-center">Loại tài khoản</th>
                         <th class="col-1 text-center">Người tạo</th>
                         <th class="col-2 text-center">Ngày tạo</th>
                         <th class="col-1 text-center">Chỉnh sửa</th>
@@ -43,20 +42,14 @@
                 </thead>
                 
                 <tbody>
-                	<c:forEach var="account" items="${accounts}">
-                		<c:set var="customer" value="${ customerService.getCustomerByUserId(account.userId) }"></c:set>
-                		
+                	<c:forEach var="user" items="${ users }">
                 		<tr>
-	                        <td><input type="checkbox" name="table-select" data-account-id="${ account.userId }"></td>
-	                        <td class="">${ account.getUsername() }</td>
-	                        <td class="">${ customer.getFullname() }</td>
-	                        <td class="">${ customer.getEmail() }</td>
-	                        <td class="text-center">${ customer.getPhone() }</td>
-	                        <td class="text-center">Khách hàng</td>
-	                        <td class="text-center">
-	                        	<c:if test="${ account.isEnabled() }">Hoạt động</c:if>
-	                        	<c:if test="${ !account.isEnabled() }">Không hoạt động</c:if>
-	                        </td>
+	                        <td><input type="checkbox" name="table-select" data-account-id="${ user.id }"></td>
+	                        <td class="">${ user.username }</td>
+	                        <td class="">${ user.fullname }</td>
+	                        <td class="">${ user.email }</td>
+	                        <td class="text-center">${ user.phone }</td>
+	                        <td class="text-center">${ user.role }</td>
 	                        <td class="text-center">${ customer.getCreatedBy() }</td>
 	                        <td class="text-center">${ customer.getCreatedDate() }</td>
 	                        <td>

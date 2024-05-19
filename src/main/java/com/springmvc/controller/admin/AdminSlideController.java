@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springmvc.firebase.FirebaseStorageService;
 import com.springmvc.model.ResponseJSON;
 import com.springmvc.service.impl.SlideService;
 
@@ -20,8 +19,6 @@ public class AdminSlideController {
 	
 	@Autowired
 	private SlideService slideService;
-	@Autowired
-	private FirebaseStorageService storageService;
 	
 	@GetMapping(value = "")
 	public ModelAndView slide() {
@@ -41,13 +38,6 @@ public class AdminSlideController {
                                                @RequestParam("title") String title,
                                                @RequestParam("description") String description,
                                                @RequestParam("slideProductLink") String slideProductLink) {
-    	try {
-    		String imageUrl = storageService.uploadFile(file);
-        	
-        	return new ResponseJSON(true, imageUrl).ok();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseJSON(false, slideProductLink).ok();
-		}
+    	return null;
     }
 }

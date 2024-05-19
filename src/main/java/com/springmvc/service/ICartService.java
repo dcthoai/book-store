@@ -12,7 +12,8 @@ public interface ICartService{
 	public boolean updateCart(Cart cart);
 	public boolean deleteCart(int cartId);
 	public Cart getCartById(int cartId);
-	public Cart getCartByCustomerId(int customerId);
+	public Cart getCartByUsername(String username);
+
 	public int addCartProduct(CartProduct cartProduct);
 	public boolean updateCartProduct(CartProduct cartProduct);
 	public boolean deleteCartProduct(int cartProductId);

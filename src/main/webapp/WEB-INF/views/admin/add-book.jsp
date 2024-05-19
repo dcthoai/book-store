@@ -66,11 +66,6 @@
             <div class="col-12 col-sm-6 col-md-7 col-lg-6 col-xl-5 col-xxl-4 pe-2 pe-sm-0">
                 <input type="text" class="form-control flex-sm-1 mb-3 mb-sm-0 me-sm-2 py-1" id="author" name="author">
             </div>
-
-            <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Tìm kiếm</button>
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
-            </div>
         </div>
 
         <div class="row mt-4">
@@ -78,11 +73,6 @@
             
             <div class="col-12 col-sm-6 col-md-7 col-lg-6 col-xl-5 col-xxl-4 pe-2 pe-sm-0">
                 <input type="text" class="form-control flex-sm-1 mb-3 mb-sm-0 me-sm-2 py-1" id="publisher" name="publisher">
-            </div>
-
-            <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Tìm kiếm</button>
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
             </div>
         </div>
 

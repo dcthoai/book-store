@@ -18,17 +18,17 @@ public class MapperBook implements RowMapper<Book>{
         book.setTitle(rs.getString("title"));
         book.setDescription(rs.getString("description"));
         book.setSize(rs.getString("size"));
+        book.setAuthor(rs.getString("author"));
+        book.setPublisher(rs.getString("publisher"));
         
-        book.setAuthorId(rs.getInt("authorId"));
-        book.setPublisherId(rs.getInt("publisherId"));
         book.setLanguageId(rs.getInt("languageId"));
         book.setCategoryId(rs.getInt("categoryId"));
-        book.setVoucherId(rs.getInt("voucherId"));
         book.setThumbnailId(rs.getInt("thumbnailId"));
         book.setPages(rs.getInt("pages"));
         book.setWeight(rs.getInt("weight"));
         book.setPurchases(rs.getInt("purchases"));
-        book.setRate(rs.getInt("rate"));;
+        book.setRate(rs.getInt("rate"));
+        book.setStock(rs.getInt("stock"));
         
         book.setPrice(rs.getLong("price"));
         book.setDiscount(rs.getFloat("discount"));

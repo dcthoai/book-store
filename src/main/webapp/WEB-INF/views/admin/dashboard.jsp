@@ -65,7 +65,7 @@
                     	<tr>
 	                        <td><input type="checkbox" name="table-select"></td>
 	                        <td class="table-title">${ book.title }</td>
-	                        <td class="table-author">${ bookService.getBookAuthor(book.authorId) }</td>
+	                        <td class="table-author">${ book.author }</td>
 	                        <td class="table-price text-center ">${ book.getSellPrice() }</td>
 	                        <td class="table-cost text-center ">${ book.price }</td>
 	                        <td class="table-discount text-center ">${ book.discount }%</td>

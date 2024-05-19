@@ -1,25 +1,33 @@
 package com.springmvc.model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Order extends AbstractModel {
-	private int customerId;
-	private int orderStatus, paymentStatus, shippingStatus;
-	private long totalPrice, shippingCost, discount, totalPayment;
-	private String paymentMethod, address;
-	private String shippingUnit, shippingMethod, shipperPhone;
-	private Timestamp orderDate, estimatedArrival, deliveredAt;
+	private int userId;
+	private String orderStatus, address, paymentMethod, shipperPhone;
+	private long shippingCost, discount, totalPayment;
+	private Timestamp orderDate, deliveredAt;
+	private Date estimatedArrival;
 
 	public Order() {
-		super();
+		
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public String getAddress() {
@@ -30,36 +38,20 @@ public class Order extends AbstractModel {
 		this.address = address;
 	}
 
-	public int getOrderStatus() {
-		return orderStatus;
+	public String getPaymentMethod() {
+		return paymentMethod;
 	}
 
-	public void setOrderStatus(int orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
-	public int getPaymentStatus() {
-		return paymentStatus;
+	public String getShipperPhone() {
+		return shipperPhone;
 	}
 
-	public void setPaymentStatus(int paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
-
-	public int getShippingStatus() {
-		return shippingStatus;
-	}
-
-	public void setShippingStatus(int shippingStatus) {
-		this.shippingStatus = shippingStatus;
-	}
-
-	public long getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(long totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setShipperPhone(String shipperPhone) {
+		this.shipperPhone = shipperPhone;
 	}
 
 	public long getShippingCost() {
@@ -86,38 +78,6 @@ public class Order extends AbstractModel {
 		this.totalPayment = totalPayment;
 	}
 
-	public String getPaymentMethod() {
-		return paymentMethod;
-	}
-
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
-
-	public String getShippingUnit() {
-		return shippingUnit;
-	}
-
-	public void setShippingUnit(String shippingUnit) {
-		this.shippingUnit = shippingUnit;
-	}
-
-	public String getShippingMethod() {
-		return shippingMethod;
-	}
-
-	public void setShippingMethod(String shippingMethod) {
-		this.shippingMethod = shippingMethod;
-	}
-
-	public String getShipperPhone() {
-		return shipperPhone;
-	}
-
-	public void setShipperPhone(String shipperPhone) {
-		this.shipperPhone = shipperPhone;
-	}
-
 	public Timestamp getOrderDate() {
 		return orderDate;
 	}
@@ -126,11 +86,11 @@ public class Order extends AbstractModel {
 		this.orderDate = orderDate;
 	}
 
-	public Timestamp getEstimatedArrival() {
+	public Date getEstimatedArrival() {
 		return estimatedArrival;
 	}
 
-	public void setEstimatedArrival(Timestamp estimatedArrival) {
+	public void setEstimatedArrival(Date estimatedArrival) {
 		this.estimatedArrival = estimatedArrival;
 	}
 

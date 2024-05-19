@@ -22,11 +22,10 @@ public class ProductController {
         ModelAndView mav = new ModelAndView("user/product");
         Book book = bookService.getBookById(id);
         mav.addObject("book", book);
-        mav.addObject("author", bookService.getBookAuthor(book.getAuthorId()));
-        mav.addObject("publisher", bookService.getBookPublisher(book.getPublisherId()));
         mav.addObject("language", bookService.getBookLanguage(book.getLanguageId()));
         mav.addObject("category", bookService.getBookCategory(book.getCategoryId()));
         mav.addObject("mediaService", mediaService);
+        mav.addObject("bookSuggesstion", bookService.suggestBooks());
         
         return mav;
     }

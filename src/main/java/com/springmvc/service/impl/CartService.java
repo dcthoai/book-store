@@ -12,6 +12,7 @@ import com.springmvc.model.Book;
 import com.springmvc.model.Cart;
 import com.springmvc.model.CartProduct;
 import com.springmvc.model.Pair;
+import com.springmvc.model.UserCustom;
 import com.springmvc.service.ICartService;
 
 @Service
@@ -23,6 +24,8 @@ public class CartService implements ICartService {
 	private CartProductDAO cartProductDAO;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private CustomUserDetailsService userDetailsService;
 
 	@Override
 	public int insertCart(Cart cart) {
@@ -51,12 +54,11 @@ public class CartService implements ICartService {
 		
 		return cart;
 	}
-
+	
 	@Override
-	public Cart getCartByCustomerId(int customerId) {
-		Cart cart = cartDAO.getCartByCustomerId(customerId);
-		
-		return cart;
+	public Cart getCartByUsername(String username) {
+		UserCustom user = userDetailsService.getUserByUsername(username);
+		return cartDAO.getCartByUserId(user.getId());
 	}
 
 	@Override

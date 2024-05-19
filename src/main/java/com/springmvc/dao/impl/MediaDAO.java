@@ -13,13 +13,11 @@ public class MediaDAO extends AbstractDAO<Media> implements IMediaDAO{
 
 	@Override
 	public int insert(Media media) {
-		String sql = "INSERT INTO `bookstore`.`media` (`name`, `path`, `type`, `size`, `createdBy`)"
+		String sql = "INSERT INTO `bookstore`.`media` (`path`, `type`, `createdBy`)"
 						+ " VALUES (?, ?, ?, ?, ?)";
 		
-		int mediaId = executeInsert(sql, media.getName(),
-										 media.getPath(),
+		int mediaId = executeInsert(sql, media.getPath(),
 										 media.getType(),
-										 media.getSize(),
 										 media.getCreatedBy());
 										 
 		return mediaId;
@@ -28,12 +26,10 @@ public class MediaDAO extends AbstractDAO<Media> implements IMediaDAO{
 	@Override
 	public int update(Media media) {
 		String sql = "UPDATE `bookstore`.`media` "
-						+ "SET `name` = ?, `path` = ?, `type` = ?, `size` = ?, `modifiedBy` = ? WHERE (`id` = ?)";
+						+ "SET `path` = ?, `type` = ?, `modifiedBy` = ? WHERE (`id` = ?)";
 		
-		int effectedRows = executeUpdate(sql, media.getName(),
-											  media.getPath(),
+		int effectedRows = executeUpdate(sql, media.getPath(),
 											  media.getType(),
-											  media.getSize(),
 											  media.getModifiedBy(),
 											  media.getId());
 		

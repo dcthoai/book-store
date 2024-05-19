@@ -15,21 +15,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import com.springmvc.security.JwtTokenFilter;
 import com.springmvc.security.JwtTokenProvider;
-import com.springmvc.service.impl.UserService;
+import com.springmvc.service.impl.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    private UserService userService;	// A class implements UserDetailsService in Spring Security
-
+    private CustomUserDetailsService userService;	// A class implements UserDetailsService in Spring Security
+    
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
     
@@ -43,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     	http.csrf().disable()
 	        .authorizeRequests()
 	            .antMatchers("/login").permitAll()
-	            .anyRequest().authenticated()
+	            .antMatchers("/admin/**").authenticated()
+	            .anyRequest().permitAll()
 	            .and()
 	            .logout()
 	                .logoutUrl("/logout")

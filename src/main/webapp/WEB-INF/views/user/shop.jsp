@@ -117,7 +117,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <p class="mb-0">
-                            	Đang xem 1-12 trong 
+                            	Đang xem
                             	<span id="total-results" class="d-inline">${ newestBooks.size() }</span>
                             	kết quả
                             </p>
@@ -176,7 +176,7 @@
                         </c:forEach>
                     </div>
 
-                    <div class="row mt-5 text-center">
+                    <!-- <div class="row mt-5 text-center">
                         <div class="col-lg-12">
                             <div class="product__pagination">
                                 <a class="mx-2 active" href="#">1</a>
@@ -186,7 +186,7 @@
                                 <a class="mx-2" href="#">21</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

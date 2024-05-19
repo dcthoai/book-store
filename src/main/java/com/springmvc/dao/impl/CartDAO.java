@@ -13,9 +13,9 @@ public class CartDAO extends AbstractDAO<Cart> implements ICartDAO{
 
 	@Override
 	public int insert(Cart cart) {
-		String sql = "INSERT INTO `bookstore`.`cart` (`customerId`, `quantity`, `createdBy`) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO `bookstore`.`cart` (`userId`, `quantity`, `createdBy`) VALUES (?, ?, ?)";
 		
-		int cartId = executeInsert(sql, cart.getCustomerId(),
+		int cartId = executeInsert(sql, cart.getUserId(),
 										cart.getQuantity(),
 										cart.getCreatedBy());
 		
@@ -24,9 +24,9 @@ public class CartDAO extends AbstractDAO<Cart> implements ICartDAO{
 
 	@Override
 	public int update(Cart cart) {
-		String sql = "UPDATE `bookstore`.`cart` SET `customerId` = ?, `quantity` = ?, `modifiedBy` = ? WHERE (`id` = ?)";
+		String sql = "UPDATE `bookstore`.`cart` SET `userId` = ?, `quantity` = ?, `modifiedBy` = ? WHERE (`id` = ?)";
 		
-		int affectedRows = executeUpdate(sql, cart.getCustomerId(),
+		int affectedRows = executeUpdate(sql, cart.getUserId(),
 											  cart.getQuantity(),
 											  cart.getModifiedBy(),
 											  cart.getId());
@@ -53,10 +53,10 @@ public class CartDAO extends AbstractDAO<Cart> implements ICartDAO{
 	}
 
 	@Override
-	public Cart getCartByCustomerId(int customerId) {
-		String sql = "SELECT * FROM `bookstore`.`cart` WHERE (`customerId` = ?)";
+	public Cart getCartByUserId(int userId) {
+		String sql = "SELECT * FROM `bookstore`.`cart` WHERE (`userId` = ?)";
 		
-		List<Cart> listCarts = executeQuery(sql, new MapperCart(), customerId);
+		List<Cart> listCarts = executeQuery(sql, new MapperCart(), userId);
 		
 		return listCarts.isEmpty() ? null : listCarts.get(0);
 	}

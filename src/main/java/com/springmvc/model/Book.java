@@ -3,14 +3,14 @@ package com.springmvc.model;
 import java.sql.Date;
 
 public class Book extends AbstractModel {
-	private String title, description, size;
-	private int authorId, publisherId, languageId, categoryId, voucherId, thumbnailId, pages, weight, purchases, rate;
+	private String title, description, size, author, publisher;
+	private int rate, languageId, categoryId, thumbnailId, pages, weight, purchases, stock;
 	private long price;
 	private float discount;
 	private Date releaseDate;
 
 	public Book() {
-		super();
+
 	}
 
 	public String getTitle() {
@@ -37,20 +37,28 @@ public class Book extends AbstractModel {
 		this.size = size;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
-	public int getPublisherId() {
-		return publisherId;
+	public String getPublisher() {
+		return publisher;
 	}
 
-	public void setPublisherId(int publisherId) {
-		this.publisherId = publisherId;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 	public int getLanguageId() {
@@ -69,20 +77,12 @@ public class Book extends AbstractModel {
 		this.categoryId = categoryId;
 	}
 
-	public int getVoucherId() {
-		return voucherId;
-	}
-
-	public void setVoucherId(int voucherId) {
-		this.voucherId = voucherId;
-	}
-
 	public int getThumbnailId() {
 		return thumbnailId;
 	}
 
-	public void setThumbnailId(int thumbnail) {
-		this.thumbnailId = thumbnail;
+	public void setThumbnailId(int thumbnailId) {
+		this.thumbnailId = thumbnailId;
 	}
 
 	public int getPages() {
@@ -100,7 +100,7 @@ public class Book extends AbstractModel {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	
+
 	public int getPurchases() {
 		return purchases;
 	}
@@ -109,12 +109,12 @@ public class Book extends AbstractModel {
 		this.purchases = purchases;
 	}
 
-	public int getRate() {
-		return rate;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setRate(int rate) {
-		this.rate = rate;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public long getPrice() {

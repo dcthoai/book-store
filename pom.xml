@@ -110,14 +110,6 @@
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- Firebase Admin -->
-		<!-- https://mvnrepository.com/artifact/com.google.firebase/firebase-admin -->
-		<dependency>
-		    <groupId>com.google.firebase</groupId>
-		    <artifactId>firebase-admin</artifactId>
-		    <version>8.1.0</version>
-		</dependency>
-
 		<!-- For use JSONObject -->
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
@@ -133,19 +125,7 @@
 		    <version>2.10.1</version>
 		</dependency>
 
-		<!-- For write log -->
-		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-		<dependency>
-		    <groupId>ch.qos.logback</groupId>
-		    <artifactId>logback-classic</artifactId>
-		    <version>1.4.14</version>
-		</dependency>
-
-		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.4</version>
-		</dependency>
+		
 
 	</dependencies>
 

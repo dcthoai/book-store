@@ -15,23 +15,19 @@ public class MapperOrder implements RowMapper<Order>{
 		
 		order.setId(rs.getInt("id"));
 		
-        order.setCustomerId(rs.getInt("customerId"));
+        order.setUserId(rs.getInt("userId"));
         order.setAddress(rs.getString("address"));
-        order.setOrderStatus(rs.getInt("orderStatus"));
-        order.setPaymentStatus(rs.getInt("paymentStatus"));
-        order.setShippingStatus(rs.getInt("shippingStatus"));
-        
-        order.setTotalPrice(rs.getLong("totalPrice"));
+        order.setOrderStatus(rs.getString("orderStatus"));
+
         order.setShippingCost(rs.getLong("shippingCost"));
         order.setDiscount(rs.getLong("discount"));
         order.setTotalPayment(rs.getLong("totalPayment"));
+        
         order.setPaymentMethod(rs.getString("paymentMethod"));
-        order.setShippingUnit(rs.getString("shippingUnit"));
-        order.setShippingMethod(rs.getString("shippingMethod"));
         order.setShipperPhone(rs.getString("shipperPhone"));
         
         order.setOrderDate(rs.getTimestamp("orderDate"));
-        order.setEstimatedArrival(rs.getTimestamp("estimatedArrival"));
+        order.setEstimatedArrival(rs.getDate("estimatedArrival"));
         order.setDeliveredAt(rs.getTimestamp("deliveredAt"));
         
         order.setCreatedDate(rs.getTimestamp("createdDate"));

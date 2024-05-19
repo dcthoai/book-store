@@ -1,9 +1,9 @@
 package com.springmvc.security;
 
-public class UserAuthenticationRequest {
+public class UserRequest {
 	private String username, password;
 	
-	public UserAuthenticationRequest() {
+	public UserRequest() {
 		super();
 	}
 
