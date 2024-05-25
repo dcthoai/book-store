@@ -1,6 +1,39 @@
 
-function login(){
-
+function login(user){
+	fetch('/bookstore/admin/login', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(user)
+	})
+	.then(response => {
+		const authorizationHeader = response.headers.get('Authorization');
+	    
+	    if(authorizationHeader){
+			const token = authorizationHeader.split(' ')[1];
+			localStorage.setItem('AdminToken', token);
+		} else {
+			console.error("Missing Authorization header in response.");
+		}
+	    
+	    return response.json();
+	})
+	.then(status => {
+		if (status.success){
+			openPopupNotify('Đăng nhập thành công', '', 'success');
+			
+			setTimeout(() => {
+				window.location.href = '/bookstore/admin/dashboard';
+			}, 1000);
+		} else {
+			openPopupNotify('Thất bại', status.message, 'error');
+		}
+	})
+	.catch(error => {
+        openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');
+		console.error(error);
+	})
 }
 
 function validateLogin(){
@@ -13,15 +46,14 @@ function validateLogin(){
             Validator.isRequired('#password', 'Vui lòng nhập mật khẩu của bạn!'),
             Validator.minLength('#password', 8, 'Vui lòng nhập tối thiểu 8 kí tự!'),
         ],
-        // onSubmit: function(data){
-        //     let user = {
-		// 		username: data['username'],
-        //         password: data['password']
-        //     }
-        
-        //     console.log(user);
-		// 	login();
-        // }
+        onSubmit: function(data){
+	        let user = {
+				username: data['username'],
+		        password: data['password']
+	        }
+        	
+        	login(user);
+        }
     });
 }
 

@@ -22,27 +22,8 @@
     <div class="card mb-4 w-100">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center py-3">
             <div class="mb-3 fs-5 fw-medium opacity-75"><i class="fas fa-table me-3"></i>Danh sách sản phẩm</div>
-
-            <div class="panigations-box ms-auto">
-                <nav>
-                    <ul class="pagination m-0">
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
         </div>
+        
         <div class="card-body">
             <table id="table-list-books" class="w-100 table table-striped table-bordered table-hover">
                 <thead>

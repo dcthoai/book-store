@@ -67,7 +67,7 @@
                     <li><a class="dropdown-item" href="#!">Cài đặt</a></li>
                     <li><a class="dropdown-item" href="#!">Tài khoản</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#!">Đăng xuất</a></li>
+                    <li><button class="dropdown-item" id="logout-admin-btn">Đăng xuất</button></li>
                 </ul>
             </li>
         </ul>

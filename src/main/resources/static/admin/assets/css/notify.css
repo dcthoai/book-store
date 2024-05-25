@@ -4,7 +4,7 @@
 	position: fixed;
     top: 0;
     left: 50%;
-    z-index: 1000;
+    z-index: 1050;
     width: 35rem;
     max-width: calc(100% - 2rem);
     transform: translate(-50%, -105%);

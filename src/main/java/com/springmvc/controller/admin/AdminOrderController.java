@@ -1,5 +1,8 @@
 package com.springmvc.controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,19 +22,49 @@ public class AdminOrderController {
 	private CustomUserDetailsService customUserDetailsService;
 
 	@GetMapping(value = {"", "/"})
-	public ModelAndView order() {
-		ModelAndView mav = new ModelAndView("admin/order");
-		mav.addObject("orders", orderService.getAllOrder());
-		mav.addObject("userService", customUserDetailsService);
+	public ModelAndView order(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			
+			if (session != null) {
+				boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+				
+				if (!isAdmin)
+					return null;
+				
+				ModelAndView mav = new ModelAndView("admin/order");
+				mav.addObject("orders", orderService.getAllOrder());
+				mav.addObject("userService", customUserDetailsService);
+				
+				return mav;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		return null;
 		
-		return mav;
 	}
 	
 	@GetMapping(value = "update")
-	public ModelAndView orderUpdate() {
-		ModelAndView mav = new ModelAndView("admin/update-order");
-
-		return mav;
+	public ModelAndView orderUpdate(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			
+			if (session != null) {
+				boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+				
+				if (!isAdmin)
+					return null;
+				
+				ModelAndView mav = new ModelAndView("admin/update-order");
+				
+				return mav;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }

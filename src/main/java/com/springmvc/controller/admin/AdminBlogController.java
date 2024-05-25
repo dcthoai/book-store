@@ -1,5 +1,8 @@
 package com.springmvc.controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +21,49 @@ public class AdminBlogController {
 	@Autowired 
 	private BlogService blogService;
 	
-	@GetMapping(value = "")
-	public ModelAndView blog() {
-		ModelAndView mav = new ModelAndView("admin/blog");
-		mav.addObject("userService", userDetailsService); 
-		mav.addObject("blogs", blogService.getAllBlogs());
-		  
-		return mav; 
+	@GetMapping
+	public ModelAndView blog(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			
+			if (session != null) {
+				boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+				
+				if (!isAdmin)
+					return null;
+				
+				ModelAndView mav = new ModelAndView("admin/blog");
+				mav.addObject("userService", userDetailsService); 
+				mav.addObject("blogs", blogService.getAllBlogs());
+				  
+				return mav;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	@GetMapping(value = "/add")
-	public ModelAndView addBlog() {
-		ModelAndView mav = new ModelAndView("admin/add-blog");
+	public ModelAndView addBlog(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			
+			if (session != null) {
+				boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+				
+				if (!isAdmin)
+					return null;
+				
+				ModelAndView mav = new ModelAndView("admin/add-blog");
+				
+				return mav;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return mav; 
+		return null;
 	}
 }

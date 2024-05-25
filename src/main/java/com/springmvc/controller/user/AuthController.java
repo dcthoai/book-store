@@ -139,8 +139,7 @@ public class AuthController {
     }
     
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader(name = "Authorization") String tokenRequest, 
-						    		HttpServletRequest request, 
+    public ResponseEntity<?> logout(HttpServletRequest request, 
 						    		HttpServletResponse response) {
         
     	HttpSession session = request.getSession(false);

@@ -161,9 +161,10 @@ public class CartController {
 				String username = (String) session.getAttribute("username");
 				Cart cart = cartService.getCartByUsername(username);
 				
-				int quantityCart = cartService.countTotalQuantityCart(cart.getId());
-				
-				return ResponseJSON.ok(quantityCart + "");
+				if (cart != null) {
+					int quantityCart = cartService.countTotalQuantityCart(cart.getId());
+					return ResponseJSON.ok(quantityCart + "");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
