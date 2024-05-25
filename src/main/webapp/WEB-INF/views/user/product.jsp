@@ -242,7 +242,7 @@
             <div class="col-6 col-lg-4 info">
                 <p class="m-0 py-1">${ book.author }</p>
                 <p class="m-0 py-1">${ book.publisher }</p>
-                <p class="m-0 py-1">${ book.releaseDate }</p>
+                <p class="m-0 py-1"><fmt:formatDate value="${ book.releaseDate }" pattern="dd/MM/yyyy" /></p>
                 <p class="m-0 py-1">${ language }</p>
                 <p class="m-0 py-1">${ category }</p>
                 <p class="m-0 py-1">${ book.weight }</p>

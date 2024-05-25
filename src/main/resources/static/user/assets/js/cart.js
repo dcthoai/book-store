@@ -4,8 +4,12 @@ var listDecreaseQuantityButton = document.querySelectorAll('.cart .product .quan
 var listInputQuantity = document.querySelectorAll('.cart .product .quantity .quantity__input');
 var listDeleteButton = document.querySelectorAll('.cart .product .delete');
 
+var selectAllCartProductBtn = document.getElementById('select-all-cart-product');
+var selectCartProductsBtn = document.querySelectorAll('.select-cart-product');
+var totalPrice = document.getElementById('total-price');
+var paymentBtn = document.getElementById('payment-btn');
+
 function updateCartProduct(cartProduct, inputIndex){
-	console.log(cartProduct);
 	
 	fetch('/bookstore/cart/update', {
 		method: 'POST',
@@ -18,6 +22,7 @@ function updateCartProduct(cartProduct, inputIndex){
 	.then(status => {
 		if (status.success){
 			listInputQuantity[inputIndex].value = cartProduct.quantity;
+			getQuantityCart();
 		} else {
 			openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');
             console.log(status.message);
@@ -104,3 +109,90 @@ listDeleteButton.forEach((button) => {
 		});
 	});
 });
+
+function getTotalPrice() {
+	let total = 0;
+	let inputs = document.querySelectorAll('.product-total');
+	
+	selectCartProductsBtn.forEach((button, index) => {
+		if (button.checked) {
+			let temp = inputs[index].textContent.trim();
+            total += Number(temp.replace(/đ/g, ''));
+		}
+	});
+	
+	return total;
+}
+
+selectAllCartProductBtn.addEventListener('change', () => {
+	if (selectAllCartProductBtn.checked) {
+		selectCartProductsBtn.forEach(button => {
+			button.checked = true;
+		});
+	} else {
+		selectCartProductsBtn.forEach(button => {
+			button.checked = false;
+		});
+	}
+	
+	totalPrice.innerText = getTotalPrice() + "đ";
+});
+
+selectCartProductsBtn.forEach(button => {
+	button.addEventListener('change', () => {
+		if (!button.checked) {
+			if (selectAllCartProductBtn.checked)
+				selectAllCartProductBtn.checked = false;
+		}
+		
+		totalPrice.innerText = getTotalPrice() + "đ";
+	});
+});
+
+paymentBtn.addEventListener('click', () => {
+	let check = false;
+	let cartProducts = [];
+	
+	selectCartProductsBtn.forEach(button => {
+		if (button.checked){
+			check = true;
+			
+			let cartProduct = {};
+			cartProduct.bookId = button.dataset.id;
+			cartProduct.quantity = button.dataset.quantity;
+			
+			cartProducts.push(cartProduct);
+		}
+	});
+	
+	if (check) 
+		saveOrderCache(cartProducts);
+	else 
+		openPopupNotify('Bạn chưa chọn sản phẩm nào', '', 'notify');
+});
+
+function saveOrderCache(cartProducts) {
+	
+	fetch('/bookstore/order/cache', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			'cartProducts': cartProducts
+		})
+	})
+	.then(response => response.json())
+	.then(status => {
+		if (status.success){
+			window.location.href = `/bookstore/payment`;
+		} else {
+			openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');
+            console.log(status.message);
+		}
+	})
+	.catch(error => {
+        openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');
+		console.error(error);
+	})
+}

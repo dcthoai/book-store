@@ -52,28 +52,35 @@
             <div class="row justify-content-between">
                 <div class="col-lg-7 mb-5 mb-lg-0">
                     <div class="row align-items-start img-wrapper">
-                        <div class="col-8"><img class="img-1 rounded-4" src="assets/images/img-grid-1.jpg" alt="trending-img"></div>
+                        <div class="col-8"><img class="img-1 rounded-4" src="assets/images/trend1.jpg" alt="trending-img"></div>
                         <div class="col-4 position-relative">
-                            <img class="img-2 rounded-4" src="assets/images/img-grid-2.jpg" alt="trending-img">
-                            <img class="img-3 rounded-4" src="assets/images/img-grid-3.jpg" alt="trending-img">
+                            <img class="img-2 rounded-4" src="assets/images/trend2.png" alt="trending-img">
+                            <img class="img-3 rounded-4" src="assets/images/trend3.jpg" alt="trending-img">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-5 pt-5 pt-lg-0 ps-lg-5 mt-5 mt-lg-0">
                     <h2 class="mb-4 fs-2 text-dark">Xu hướng sách mùa này</h2>
-                    <p>
-	                    Chưa có nội dung.
+                    <p class="fs-6">
+	                    Cập nhật các xu hướng mới nhất cho bạn đọc.
                     </p>
 
-                    <ul class="list-unstyled my-4">
-                        <li>Nội dung mẫu</li>
-                        <li>Nội dung mẫu</li>
-                        <li>Nội dung mẫu</li>
-                        <li>Nội dung mẫu</li>
+                    <ul class="my-4">
+                        <li class="mb-3" style="list-style: inside;">
+                        	Marketing và Design: Sự sáng tạo không giới hạn
+                        </li>
+                        <li class="mb-3" style="list-style: inside;">
+                        	Sức khỏe tinh thần và não bộ: 
+                        	Xu hướng sách tập trung vào phát triển cá nhân và kiến thức về tâm lý học.
+	                    </li>
+                        <li class="mb-3" style="list-style: inside;">
+                        	Tương lai và xu hướng toàn cầu: 
+                        	Cái nhìn sâu sắc về các xu hướng lớn sẽ ảnh hưởng đến thế giới trong thập kỷ tới.
+                        </li>
                     </ul>
 
-                    <a herf="" class="btn btn-dark mt-4 px-4 py-2 fs-5 fw-medium rounded-5">Xem ngay</a>
+                    <a href="/bookstore/shop" class="btn btn-dark mt-4 px-4 py-2 fs-5 fw-medium rounded-5">Xem ngay</a>
                 </div>
             </div>
         </div>
@@ -103,7 +110,7 @@
 	                            <div class="meta">
 	                            	<!-- <c:set var="user" value=""/> -->
 	                                <span>by <a href="#">${ userService.getUserById(blog.authorId).getFullname() }</a></span>
-	                                <span>on <a href="#">${ blog.getCreatedDate() }</a></span>
+	                                <span>on <a href="#"><fmt:formatDate value="${ blog.modifiedDate }" pattern="dd/MM/yyyy HH:mm:ss"/></a></span>
 	                            </div>
 	                        </div>
 	                    </div>

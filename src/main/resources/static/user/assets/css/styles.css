@@ -107,7 +107,7 @@ button:hover {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 100;
     background-color: var(--bg-header);
 }
 
@@ -507,4 +507,20 @@ button:hover {
     } to {
         transform: rotate(360deg);
     }
+}
+
+@media (max-width: 767px) {
+	.user {
+		margin-left: 0;
+	}
+	
+	.user .user__nav {
+		right: unset;
+		left: 0;
+		transform-origin: 1.25rem -0.5rem;
+	}
+	
+	.user .user__nav::before {
+		left: 0.75rem;
+	}
 }

@@ -97,6 +97,40 @@ body{
 	line-height: 1;
 }
 
+
+.cart__payment{
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.cart__payment .total__price{
+    display: flex;
+    align-items: center;
+}
+
+.cart__payment .total__price-heading{
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.cart__payment .total__price span{
+    margin-left: 32px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ff0000;
+}
+
+.cart__payment .payment__link{
+    background-color: #ff0000;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 1px #d8d8d8;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .cart .product .title{
         font-size: 1.125rem !important;

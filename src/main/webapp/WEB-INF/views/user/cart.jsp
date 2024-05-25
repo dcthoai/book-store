@@ -30,7 +30,7 @@
         <div class="w-100 cart__header">
             <div class="row g-0 py-4 fs-5 align-items-center fw-normal">
                 <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
-                    <input type="checkbox" name="select-all" id="select-all">
+                    <input type="checkbox" name="select-all-cart-product" id="select-all-cart-product">
                 </div>
 
                 <div class="col-10 col-md-11">
@@ -56,7 +56,7 @@
 	            <div class="row py-4 g-0 align-items-center product">
 	                <div class="col-2 col-md-1">
 	                    <div class="d-flex align-items-center justify-content-center">
-	                        <input type="checkbox" name="select">
+	                        <input type="checkbox" name="select" class="select-cart-product" data-id="${ pair.first.id }" data-quantity="${ cartProduct.quantity }">
 	                    </div>
 	                </div>
 	
@@ -109,7 +109,7 @@
 	                                        </div>
 	                
 	                                        <div class="col-lg-5 d-none d-lg-block text-center">
-	                                            <span class="fs-5 fw-bold text-danger">${ cartProduct.quantity * book.getSellPrice() } đ</span>
+	                                            <span class="fs-5 fw-bold text-danger product-total">${ cartProduct.quantity * book.getSellPrice() }đ</span>
 	                                        </div>
 	                
 	                                        <div class="col-auto col-lg-2 flex-fill px-0 px-sm-3 px-lg-0">
@@ -127,6 +127,15 @@
 	            <!-- End a product -->
             </c:forEach>
         </div>
+        
+        <div class="cart__payment d-flex flex-column flex-md-row align-items-center justify-content-between justify-content-lg-around mt-5 px-4 px-lg-0">
+	        <div class="total__price mt-5 mt-md-0">
+	            <div class="total__price-heading">Tổng thanh toán:</div>
+	            <span id="total-price">0đ</span>
+	        </div>
+	
+	        <button type="button" id="payment-btn" class="payment__link my-5 px-4 py-2 h-auto">Thanh toán</button>
+	    </div>
     </div>
 
 	<script src="assets/js/cart.js"></script>

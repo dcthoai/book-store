@@ -165,6 +165,9 @@ function login(user){
 							'success');
             setLoginState();
             setViewsByAuthenticationState();
+            setTimeout(() => {
+				window.location.reload();
+			}, 2000);
         } else {
             openPopupNotify('Đăng nhập thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
             console.log(status.message);
@@ -198,6 +201,9 @@ function logout(){
 							'success');
             setLogoutState();
             setViewsByAuthenticationState();
+            setTimeout(() => {
+				window.location.reload();
+			}, 2000);
         } else {
             openPopupNotify('Đăng xuất thất bại!', 'Rất tiếc khi xảy ra lỗi, vui lòng thử lại sau.', 'error');
             console.log(status.message);
@@ -213,7 +219,25 @@ function logout(){
 openLoadingAnimation();
 setViewsByAuthenticationState();
 
+function getQuantityCart() {
+	fetch(`/bookstore/cart/quantity-cart`)
+    .then(response => response.json())
+    .then(status => {
+        if(status.success){
+			let quantityCart = parseInt(status.message);
+			
+			document.getElementById('quantity-cart-header').innerText = quantityCart;
+        } else {
+            console.log(status.message);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    })
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     // Check authentication state when user visit site
     authenticate();
+    getQuantityCart();
 });

@@ -26,4 +26,11 @@ public class AdminBlogController {
 		  
 		return mav; 
 	}
+	
+	@GetMapping(value = "/add")
+	public ModelAndView addBlog() {
+		ModelAndView mav = new ModelAndView("admin/add-blog");
+		
+		return mav; 
+	}
 }

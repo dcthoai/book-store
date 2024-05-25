@@ -8,8 +8,7 @@
 
 <body>
     <div class="banner">
-        <img class="w-100" src="assets/images/img-grid-1.jpg" alt="" class="banner__img">
-        <h1 class="banner__heading">Our Blogs</h1>
+        <img class="w-100" src="assets/images/blog-bgg.jpg" alt="" class="banner__img">
     </div>
 
     <div class="blogs">
@@ -22,7 +21,7 @@
 	                        <div class="blog__info">
 	                            <div class="blog__info-date">
 	                                <i class="fa-regular fa-calendar-check me-2"></i>
-	                                <span>${ blog.createdDate }</span>
+	                                <span><fmt:formatDate value="${ blog.createdDate }" pattern="dd/MM/yyyy HH:mm:ss"/></span>
 	                            </div>
 	    
 	                            <h4 class="blog__info-title">${ blog.title }</h4>

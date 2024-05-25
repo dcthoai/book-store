@@ -147,4 +147,19 @@ public class CartService implements ICartService {
 	public int countTotalQuantityCart(int cartId) {
 		return cartProductDAO.countTotalCartQuantity(cartId);
 	}
+
+	@Override
+	public CartProduct getCartProductById(int cartProductId) {
+		return cartProductDAO.getById(cartProductId);
+	}
+	
+	public int deleteCartProductByBookId(int bookId, String username) {
+		Cart cart = getCartByUsername(username);
+		
+		String sql = "DELETE FROM `cartproduct` WHERE(cartId = ? AND bookId = ?)";
+		
+		int affectedRows = cartProductDAO.executeUpdate(sql, cart.getId(), bookId);
+		
+		return affectedRows;
+	}
 }

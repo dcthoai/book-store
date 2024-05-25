@@ -29,11 +29,7 @@
         <div class="container">
             <a href="/bookstore/home" class="fs-3 fw-bold">BookStore.</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-			            								 data-bs-target="#header-navbar" 
-			            								 aria-controls="header-navbar" 
-			            								 aria-expanded="false" 
-			            								 aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -43,23 +39,14 @@
                     <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/shop">Shop</a></li>
                     <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/blog">Blogs</a></li>
                     <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/about">About us</a></li>
-                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="#">Contact us</a></li>
+                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/contact">Contact us</a></li>
                 </ul>
                 
                 <ul class="navbar-nav mt-2 mt-md-0 fs-5">
                     <li class="mt-4 mt-md-0 mx-md-2 mx-lg-4">
                         <a class="p-2 d-block h-100 position-relative" href="/bookstore/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            
-							<c:choose>
-							    <c:when test="${not empty sessionScope.quantityCart}">
-							        <span class="quantity-cart fs-6">${sessionScope.quantityCart}</span>
-							    </c:when>
-							    <c:otherwise>
-							        <span class="quantity-cart fs-6">0</span>
-							    </c:otherwise>
-							</c:choose>
-							
+							<span class="quantity-cart fs-6" id="quantity-cart-header">0</span>
                         </a>
                     </li>
                     <li class="mt-3 mt-md-0 ms-1">
@@ -70,9 +57,9 @@
                             </div>
                                 
                             <div class="user__nav" id="user-nav">
-                                <a href="">Tài khoản</a>
+                                <a href="/bookstore/account">Tài khoản</a>
                                 <a href="/bookstore/cart">Giỏ hàng</a>
-                                <a href="">Đơn hàng</a>
+                                <a href="/bookstore/order">Đơn hàng</a>
                                 <a href="">Trợ giúp</a>
                                 
                                 <button id="logout" class="logout">Đăng xuất</button>
@@ -185,10 +172,10 @@
 
                         <div class="col-6 col-md-4">
                             <ul class="lh-lg">
-                                <li><a href="">Về chúng tôi</a></li>
-                                <li><a href="">Dịch vụ</a></li>
-                                <li><a href="">Blog</a></li>
-                                <li><a href="">Liên hệ</a></li>
+                                <li><a href="/bookstore/about">Về chúng tôi</a></li>
+                                <li><a href="/bookstore/shop">Dịch vụ</a></li>
+                                <li><a href="/bookstore/blog">Blog</a></li>
+                                <li><a href="/bookstore/contact">Liên hệ</a></li>
                             </ul>
                         </div>
 

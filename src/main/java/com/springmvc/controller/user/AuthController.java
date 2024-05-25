@@ -124,8 +124,6 @@ public class AuthController {
             HttpSession session = request.getSession(true);
             session.setAttribute("username", username);
             session.setAttribute("isAuthenticated", true);
-            
-            System.out.println("Auth controller");
 
             // Sent token to client
             response.setHeader("Authorization", "Bearer " + jwtToken);
@@ -152,8 +150,6 @@ public class AuthController {
         	UserCustom user = customUserDetailsService.getUserByUsername(username);
         	user.setToken(null);
         	customUserDetailsService.update(user);
-        	
-        	System.out.println("Logout session is not null");
         	
             response.setHeader("Authorization", "");
             session.invalidate();

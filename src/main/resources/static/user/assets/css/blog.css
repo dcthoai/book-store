@@ -5,19 +5,6 @@
 	position: relative;
 }
 
-.banner img {
-	aspect-ratio: 16/7;
-}
-
-.banner .banner__heading {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 60px;
-	color: #fff;
-}
-
 .blog {
 	position: relative;
 	margin-bottom: 10rem;
