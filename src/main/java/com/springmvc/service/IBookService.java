@@ -34,4 +34,14 @@ public interface IBookService {
 	public List<Language> getAllLanguage();
 	
 	public List<Book> suggestBooks();
+	
+	public int insertCategory(Category category);
+	public boolean updateCategory(Category category);
+	public boolean deleteCategory(int categoryId);
+	public Category getCategoryById(int id);
+	
+	public int insertLanguage(Language language);
+	public boolean updateLanguage(Language language);
+	public boolean deleteLanguage(int languageId);
+	public Language getLanguageById(int id);
 }

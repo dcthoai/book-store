@@ -250,4 +250,52 @@ public class BookService implements IBookService{
         
         return book;
 	}
+
+	@Override
+	public int insertCategory(Category category) {
+		return categoryDAO.insert(category);
+	}
+
+	@Override
+	public boolean updateCategory(Category category) {
+		int affectedRows = categoryDAO.update(category);
+		
+		return affectedRows > 0;
+	}
+
+	@Override
+	public boolean deleteCategory(int categoryId) {
+		int affectedRows = categoryDAO.delete(categoryId);
+		
+		return affectedRows > 0;
+	}
+
+	@Override
+	public int insertLanguage(Language language) {
+		return languageDAO.insert(language);
+	}
+
+	@Override
+	public boolean updateLanguage(Language language) {
+		int affectedRows = languageDAO.update(language);
+		
+		return affectedRows > 0;
+	}
+
+	@Override
+	public boolean deleteLanguage(int languageId) {
+		int affectedRows = languageDAO.delete(languageId);
+		
+		return affectedRows > 0;
+	}
+
+	@Override
+	public Category getCategoryById(int id) {
+		return categoryDAO.getById(id);
+	}
+
+	@Override
+	public Language getLanguageById(int id) {
+		return languageDAO.getById(id);
+	}
 }

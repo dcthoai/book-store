@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +25,7 @@ import com.google.gson.Gson;
 import com.springmvc.dto.BookDTO;
 import com.springmvc.dto.BookRequest;
 import com.springmvc.model.Book;
+import com.springmvc.model.Category;
 import com.springmvc.model.Media;
 import com.springmvc.model.ResponseJSON;
 import com.springmvc.service.impl.BookService;
@@ -41,28 +44,6 @@ public class AdminProductController {
 	
 	@Autowired 
 	private MediaService mediaService;
-	
-	@GetMapping(value = "/info")
-	public ModelAndView info(HttpServletRequest request) {
-		try {
-			HttpSession session = request.getSession(false);
-			
-			if (session != null) {
-				boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
-				
-				if (!isAdmin)
-					return null;
-				
-				ModelAndView mav = new ModelAndView("admin/add-category-language");
-				
-				return mav;
-			}			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
 
 	@GetMapping(value = "/add")
 	public ModelAndView addBook(HttpServletRequest request) {

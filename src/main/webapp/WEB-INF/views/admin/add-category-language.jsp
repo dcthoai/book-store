@@ -20,7 +20,7 @@
             </div>
 
             <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
+                <button id="add-category-btn" type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
             </div>
 
             <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
+                <button id="add-language-btn" type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
             </div>
         </div>
         
@@ -45,7 +45,7 @@
 	            <table class="w-100 table table-striped table-bordered table-hover">
 	                <thead>
 	                    <tr>
-	                        <th class="col">Tên</th>
+	                        <th class="col" style="width: max-content; text-wrap: nowrap;">Tên</th>
 	                        <th class="col text-center">Người thêm</th>
 	                        <th class="col text-center">Ngày thêm</th>
 	                        <th class="col text-center">Chỉnh sửa</th>
@@ -53,19 +53,19 @@
 	                </thead>
 	                
 	                <tbody>
-	                    <%-- <c:forEach var="book" items="">
+	                    <c:forEach var="category" items="${ categories }">
 	                    	<tr>
-		                        <td class=""></td>
-		                        <td class="text-center "></td>
-		                        <td class="text-center "></td>
+		                        <td class="" style="width: max-content; text-wrap: nowrap;">${ category.name }</td>
+		                        <td class="text-center ">${ category.createdBy }</td>
+		                        <td class="text-center ">${ category.modifiedDate }</td>
 		                        <td>
 		                            <div class="w-100 h-100 d-flex justify-content-evenly">
-		                                <a href="/bookstore/admin/dashboard/product/" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-		                                <a data-id="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+		                                <a href="/bookstore/admin/dashboard/category/update?id=${ category.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+		                                <a data-id="${ category.id }" class="flex-fill delete-book delete-category-btn"><i class="fa-regular fa-trash-can"></i></a>
 		                            </div>
 		                        </td>
 		                    </tr>
-	                    </c:forEach> --%>
+	                    </c:forEach>
 	                </tbody>
 	            </table>
 	        </div>
@@ -80,7 +80,7 @@
 	            <table class="w-100 table table-striped table-bordered table-hover">
 	                <thead>
 	                    <tr>
-	                        <th class="col">Tên</th>
+	                        <th class="col" style="width: max-content; text-wrap: nowrap;">Tên</th>
 	                        <th class="col text-center">Người thêm</th>
 	                        <th class="col text-center">Ngày thêm</th>
 	                        <th class="col text-center">Chỉnh sửa</th>
@@ -88,23 +88,24 @@
 	                </thead>
 	                
 	                <tbody>
-	                    <%-- <c:forEach var="book" items="">
+	                    <c:forEach var="language" items="${ languages }">
 	                    	<tr>
-		                        <td class=""></td>
-		                        <td class="text-center "></td>
-		                        <td class="text-center "></td>
+		                        <td class="" style="width: max-content; text-wrap: nowrap;">${ language.name }</td>
+		                        <td class="text-center ">${ language.createdBy }</td>
+		                        <td class="text-center ">${ language.modifiedDate }</td>
 		                        <td>
 		                            <div class="w-100 h-100 d-flex justify-content-evenly">
-		                                <a href="/bookstore/admin/dashboard/product/" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-		                                <a data-id="" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+		                                <a href="/bookstore/admin/dashboard/language/update?id=${ language.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+		                                <a data-id="${ language.id }" class="flex-fill delete-book delete-language-btn"><i class="fa-regular fa-trash-can"></i></a>
 		                            </div>
 		                        </td>
 		                    </tr>
-	                    </c:forEach> --%>
+	                    </c:forEach>
 	                </tbody>
 	            </table>
 	        </div>
 	    </div>
     </div>
 
+	<script type="text/javascript" src="/bookstore/admin/assets/js/category-language.js"></script>
 </body>
