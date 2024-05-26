@@ -1,5 +1,5 @@
 
-const submitSlideBtn = document.getElementById('upload-slide');
+const submitSlideBtn = document.getElementById('edit-slide');
 const thumbnailSlideInput = document.getElementById('thumbnail-demo');
 
 document.getElementById('thumbnail').addEventListener('change', function(e) {
@@ -13,9 +13,15 @@ submitSlideBtn.addEventListener('click', () => {
     formData.append('caption', document.getElementById('caption').value);
     formData.append('content', document.getElementById('content').value);
     formData.append('link', document.getElementById('link').value);
-    formData.append('thumbnail', document.getElementById('thumbnail').files[0]);
     
-    fetch('/bookstore/admin/dashboard/slide/add', {
+	let thumbnailFile = document.getElementById('thumbnail').files[0];
+    
+	if (thumbnailFile)
+	    formData.append('thumbnail', thumbnailFile);
+    
+    formData.append('id', submitSlideBtn.dataset.id);
+    
+    fetch('/bookstore/admin/dashboard/slide/update', {
         method: 'POST',
         body: formData
     })

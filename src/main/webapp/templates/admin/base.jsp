@@ -177,6 +177,9 @@
             </div>
         </div>
 
+		
+    	<script src="/bookstore/admin/assets/js/notify.js"></script>
+    
         <div class="vh-100 content-wrapper px-2 px-lg-4">
         	<decorator:body></decorator:body>
         </div>
@@ -188,7 +191,6 @@
     		crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
-    <script src="/bookstore/admin/assets/js/notify.js"></script>
     <script src="/bookstore/admin/assets/js/dashboard.js"></script>
 
     <script>

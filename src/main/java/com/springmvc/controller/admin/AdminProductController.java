@@ -1,11 +1,14 @@
 package com.springmvc.controller.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.springmvc.dto.BookDTO;
 import com.springmvc.dto.BookRequest;
 import com.springmvc.model.Book;
 import com.springmvc.model.Media;
@@ -268,6 +273,49 @@ public class AdminProductController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseJSON.serverError("Cannot delete this product");
+		}
+		
+		return ResponseJSON.badRequest("You cannot have authorities");
+	}
+	
+	@GetMapping(value = "/search")
+	public ResponseEntity<?> searchProduct(HttpServletRequest request, @RequestParam("name") String keyword){
+		
+		try {
+			HttpSession session = request.getSession(false);
+			
+			if (session != null) {
+				boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+				
+				if (!isAdmin)
+					return null;
+				
+				List<Book> listBooks = bookService.searchBook(keyword);
+				List<BookDTO> listBookDTOs = new ArrayList<BookDTO>();
+				
+				for (Book book : listBooks) {
+					BookDTO bookDto = new BookDTO();
+					
+					bookDto.setId(book.getId());
+					bookDto.setTitle(book.getTitle());
+					bookDto.setAuthor(book.getAuthor());
+					bookDto.setCost(book.getPrice());
+					bookDto.setDiscount(book.getDiscount());
+					bookDto.setSellPrice(book.getSellPrice());
+					bookDto.setCreatedDate(book.getCreatedDate());
+					bookDto.setStock(book.getStock());
+					
+					listBookDTOs.add(bookDto);
+				}
+
+				Gson gson = new Gson();
+				String json = gson.toJson(listBookDTOs);
+				
+				// Use UTF-8 to transmit data
+				return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(json);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return ResponseJSON.badRequest("You cannot have authorities");

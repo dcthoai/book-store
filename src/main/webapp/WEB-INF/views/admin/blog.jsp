@@ -28,7 +28,7 @@
             <table id="table-list-slides" class="w-100 table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class=""><input type="checkbox" name="table-select-all" id="table-select-all"></th>
+                        <th class="d-none"><input type="checkbox" name="table-select-all" id="table-select-all"></th>
                         <th class="text-center">Tiêu đề</th>
                         <th class="text-center">Tác giả</th>
                         <th class="text-center">Ngày tạo</th>
@@ -40,7 +40,7 @@
                 <tbody>
                 	<c:forEach var="blog" items="${ blogs }">
                 		<tr>
-	                        <td><input type="checkbox" name="table-select"></td>
+	                        <td class="d-none"><input type="checkbox" name="table-select"></td>
 	                        <td class="">${ blog.title }</td>
 	                        <td class="">${ userService.getUserById(blog.authorId).getFullname() }</td>
 	                        <td class="text-center ">${ blog.createdDate }</td>

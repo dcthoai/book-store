@@ -28,8 +28,7 @@
             <table id="table-list-books" class="w-100 table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class="col-auto"><input type="checkbox" name="table-select-all" id="table-select-all"></th>
-                        <th class="col">Tên sản phẩm</th>
+                        <th class="" style="width: max-content; max-width: 20rem; overflow-x:hidden; text-wrap: nowrap;">Tên sản phẩm</th>
                         <th class="col">Tác giả</th>
                         <th class="col text-center">Giá bán</th>
                         <th class="col text-center">Giá gốc</th>
@@ -40,17 +39,17 @@
                     </tr>
                 </thead>
                 
-                <tbody>
+                <tbody id="search-book-container">
                 	<c:set var="bookService" value="${ bookService }"></c:set>
                     <c:forEach var="book" items="${ books }">
                     	<tr>
-	                        <td><input type="checkbox" name="table-select"></td>
-	                        <td class="table-title">${ book.title }</td>
+	                        <td class="table-title" style="width: max-content; max-width: 20rem; overflow-x:hidden; text-wrap: nowrap;">
+	                        	${ book.title }</td>
 	                        <td class="table-author">${ book.author }</td>
 	                        <td class="table-price text-center ">${ book.getSellPrice() }</td>
 	                        <td class="table-cost text-center ">${ book.price }</td>
 	                        <td class="table-discount text-center ">${ book.discount }%</td>
-	                        <td class="table-stock text-center ">50</td>
+	                        <td class="table-stock text-center ">${ book.stock }</td>
 	                        <td class="table-date text-center ">${ book.createdDate }</td>
 	                        <td>
 	                            <div class="w-100 h-100 d-flex justify-content-evenly">

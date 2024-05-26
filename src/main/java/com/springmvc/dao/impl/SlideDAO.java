@@ -27,13 +27,13 @@ public class SlideDAO extends AbstractDAO<Slide> implements ISlideDAO{
 	@Override
 	public int update(Slide slide) {
 		String sql = "UPDATE `bookstore`.`slide` SET "
-						+ "`thumbnailId` = '2', "
+						+ "`thumbnailId` = ?, "
 						+ "`caption` = ?, "
 						+ "`content` = ?, "
 						+ "`link` = ?, "
 						+ "`modifiedBy` = ? WHERE (`id` = ?)";
 		
-		int affectedRows = executeInsert(sql, slide.getThumbnailId(),
+		int affectedRows = executeUpdate(sql, slide.getThumbnailId(),
 											  slide.getCaption(),
 											  slide.getContent(),
 											  slide.getLink(),

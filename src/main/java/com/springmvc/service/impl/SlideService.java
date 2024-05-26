@@ -20,4 +20,28 @@ public class SlideService implements ISlideService{
 		return slideDAO.getAllSlides();
 	}
 
+	@Override
+	public int insertSlide(Slide slide) {
+		return slideDAO.insert(slide);
+	}
+
+	@Override
+	public boolean updateSlide(Slide slide) {
+		int affectedRows = slideDAO.update(slide);
+		
+		return affectedRows > 0;
+	}
+
+	@Override
+	public boolean deleteSlide(int slideId) {
+		int affectedRows = slideDAO.delete(slideId);
+		
+		return affectedRows > 0;
+	}
+
+	@Override
+	public Slide getById(int slideId) {
+		return slideDAO.getById(slideId);
+	}
+
 }

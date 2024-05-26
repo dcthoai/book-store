@@ -5,15 +5,23 @@ import java.sql.Timestamp;
 
 public class BookDTO {
 	private int id;
-	private String title, thumbnailPath;
-	private int purchases, rate;
+	private String title, thumbnailPath, author;
+	private int purchases, rate, stock;
 	private long sellPrice, cost;
 	private float discount;
 	private Date releaseDate;
 	private Timestamp createdDate;
 	
 	public BookDTO() {
-		super();
+
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public int getId() {
@@ -94,5 +102,13 @@ public class BookDTO {
 
 	public void setCreatedDate(Timestamp createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }
