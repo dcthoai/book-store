@@ -94,6 +94,9 @@
                                     <a href="/bookstore/admin/dashboard" class="text-decoration-none">
                                     	<div class="navbtn">Sản phẩm</div>
                                     </a>
+                                    <a href="/bookstore/admin/dashboard/product/info" class="text-decoration-none">
+                                    	<div class="navbtn">Danh mục sản phẩm</div>
+                                    </a>
                                     <a href="/bookstore/admin/dashboard/blog" class="text-decoration-none">
                                     	<div class="navbtn">Blogs</div>
                                     </a>

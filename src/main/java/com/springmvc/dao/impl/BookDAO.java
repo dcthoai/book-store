@@ -54,9 +54,9 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 				    	+ "languageid = ?, categoryid = ?, thumbnailid = ?, "
 				    	+ "pages = ?, weight = ?, stock = ?, price = ?, "
 				    	+ "discount = ?, releasedate = ?, modifiedBy = ? "
-						+ "WHERE (`id` = ?)";
+						+ "WHERE `id` = ?";
 		
-		int affectedRows = executeInsert(sql, book.getTitle(),
+		int affectedRows = executeUpdate(sql, book.getTitle(),
 												book.getDescription(),
 												book.getSize(),
 												book.getAuthor(),

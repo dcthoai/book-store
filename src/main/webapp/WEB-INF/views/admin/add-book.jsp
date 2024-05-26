@@ -16,8 +16,8 @@
             <div class="col-12 col-lg-8">
                 <label for="thumbnail" class="form-label mb-4 fs-6 fw-medium opacity-75">Ảnh thumbnail</label>
                 <br>
-                <div class="img-wrapper" id="thumbnail-img" style="display: none;">
-                    <!-- <img class="rounded img-fluid" src="" alt="thumbnail" > -->
+                <div class="img-wrapper">
+                    <img id="thumbnail-demo" class="rounded img-fluid" src="">
                 </div>
             </div>
 
@@ -79,27 +79,21 @@
         <div class="row mt-4">
             <label for="category" class="form-label fs-6 fw-medium opacity-75">Thể loại</label>
             
-            <div class="col-12 col-sm-6 col-md-7 col-lg-6 col-xl-5 col-xxl-4 pe-2 pe-sm-0">
-                <input type="text" class="form-control mb-3 mb-sm-0 me-sm-2 py-1" id="category" name="category">
-            </div>
-
-            <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Tìm kiếm</button>
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
-            </div>
+            <select id="category" class="form-control ms-3 mt-2" style="width: 260px">
+            	<c:forEach var="category" items="${ categories }">
+            		<option value="${ category.id }">${ category.name }</option>
+            	</c:forEach>
+	        </select>
         </div>
 
         <div class="row mt-4">
             <label for="language" class="form-label fs-6 fw-medium opacity-75">Ngôn ngữ</label>
             
-            <div class="col-12 col-sm-6 col-md-7 col-lg-6 col-xl-5 col-xxl-4 pe-2 pe-sm-0">
-                <input type="text" class="form-control flex-sm-1 mb-3 mb-sm-0 me-sm-2 py-1" id="language" name="language">
-            </div>
-
-            <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Tìm kiếm</button>
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
-            </div>
+            <select id="language" class="form-control ms-3 mt-2" style="width: 260px">
+            	<c:forEach var="language" items="${ languages }">
+            		<option value="${ language.id }">${ language.name }</option>
+            	</c:forEach>
+	        </select>
         </div>
 
         <div class="row mt-5 align-items-center">
@@ -154,7 +148,7 @@
         <div class="row justify-content-center justify-content-md-start">
             <div class="col-auto">
                 <button type="button" id="submit-book" class="btn btn-primary fw-medium px-4 w-auto">Xác nhận</button>
-                <button type="button" id="cancell" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
+                <button type="button" id="cancell-add" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
             </div>    
         </div>
     </div>

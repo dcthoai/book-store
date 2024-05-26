@@ -36,6 +36,28 @@ public class AdminProductController {
 	
 	@Autowired 
 	private MediaService mediaService;
+	
+	@GetMapping(value = "/info")
+	public ModelAndView info(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			
+			if (session != null) {
+				boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+				
+				if (!isAdmin)
+					return null;
+				
+				ModelAndView mav = new ModelAndView("admin/add-category-language");
+				
+				return mav;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	@GetMapping(value = "/add")
 	public ModelAndView addBook(HttpServletRequest request) {
@@ -49,6 +71,8 @@ public class AdminProductController {
 					return null;
 				
 				ModelAndView mav = new ModelAndView("admin/add-book");
+				mav.addObject("categories", bookService.getAllCategories());
+				mav.addObject("languages", bookService.getAllLanguage());
 				
 				return mav;
 			}			
@@ -77,6 +101,8 @@ public class AdminProductController {
 					mav.addObject("book", book);
 					mav.addObject("mediaService", mediaService);
 					mav.addObject("bookService", bookService);
+					mav.addObject("categories", bookService.getAllCategories());
+					mav.addObject("languages", bookService.getAllLanguage());
 				}
 				
 				return mav;
@@ -147,10 +173,12 @@ public class AdminProductController {
 					return null;
 				
 				Book book = bookService.getBookById(bookRequest.getId());
-				
+
 				if (book == null)
 					return ResponseJSON.badRequest("Data invalid");
 
+				book.setModifiedBy((String) session.getAttribute("username"));
+				
 				if (mediaFileService.isUploadFile(bookRequest.getThumbnail())) {
 					Media media = new Media();
 					String imageUrl = mediaFileService.saveFile(bookRequest.getThumbnail());
@@ -159,36 +187,63 @@ public class AdminProductController {
 						media.setPath(imageUrl);
 						int thumbnailId = mediaService.insertMedia(media);
 						
-						Media oldImage = mediaService.getMediaById(book.getThumbnailId());
-						
-						if (oldImage != null) {
-							mediaFileService.deleteFile(oldImage.getPath());
-							mediaService.deleteMedia(book.getThumbnailId());
-						}
-
-						Book newBook = bookService.transferRequest(bookRequest);
-						
-						newBook.setId(book.getId());
-						newBook.setThumbnailId(thumbnailId);
-						newBook.setModifiedBy((String) session.getAttribute("username"));
-						
-						boolean isSuccess = bookService.updateBook(newBook);
-						
-						if (isSuccess)
-							return ResponseJSON.ok("Save book success");
-						return ResponseJSON.badRequest("Missing data feild for this book");
+						if (thumbnailId > 0)
+							book.setThumbnailId(thumbnailId);
 					}
-						
-					return ResponseJSON.serverError("Cannot save image");
 				}
 				
-				return ResponseJSON.badRequest("Missing thumbnail");
-			}			
+				if (bookRequest.getTitle() != null) 
+				    book.setTitle(bookRequest.getTitle());
+				
+				if (bookRequest.getDescription() != null) 
+				    book.setDescription(bookRequest.getDescription());
+				
+				if (bookRequest.getSize() != null) 
+				    book.setSize(bookRequest.getSize());
+				
+				if (bookRequest.getAuthor() != null) 
+				    book.setAuthor(bookRequest.getAuthor());
+				
+				if (bookRequest.getPublisher() != null) 
+				    book.setPublisher(bookRequest.getPublisher());
+				
+				if (bookRequest.getLanguageId() != null) 
+				    book.setLanguageId(bookRequest.getLanguageId());
+				
+				if (bookRequest.getCategoryId() != null) 
+				    book.setCategoryId(bookRequest.getCategoryId());
+						  
+				if (bookRequest.getPages() != null) 
+				    book.setPages(bookRequest.getPages());
+				
+				if (bookRequest.getWeight() != null) 
+				    book.setWeight(bookRequest.getWeight());
+				
+				if (bookRequest.getStock() != null) 
+				    book.setStock(bookRequest.getStock());
+				
+				if (bookRequest.getPrice() != null) 
+				    book.setPrice(bookRequest.getPrice());
+				
+				if (bookRequest.getDiscount() != null) 
+				    book.setDiscount(bookRequest.getDiscount());
+				
+				if (bookRequest.getReleaseDate() != null) 
+				    book.setReleaseDate(bookRequest.getReleaseDate());
+
+				boolean isSuccess = bookService.updateBook(book);
+
+				if (isSuccess)
+					return ResponseJSON.ok("Success");
+				
+				return ResponseJSON.serverError("Server error, cannot save this product");
+			}		
 		} catch (Exception e) {
 			e.printStackTrace();
+			return ResponseJSON.serverError(e.getMessage());
 		}
 		
-		return ResponseJSON.badRequest("You cannot have authorities");
+		return ResponseJSON.badRequest("You cannot does this action");
 	}
 	
 	@DeleteMapping(value = "/delete")

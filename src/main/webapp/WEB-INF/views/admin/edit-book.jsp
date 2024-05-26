@@ -19,7 +19,7 @@
                 <label for="thumbnail" class="form-label mb-4 fs-6 fw-medium opacity-75">Ảnh thumbnail</label>
                 <br>
                 <div class="img-wrapper">
-                    <img class="rounded img-fluid" src="/bookstore/${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="thumbnail" id="thumbnail-img">
+                    <img id="thumbnail-demo" class="rounded img-fluid" src="/bookstore/${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="thumbnail" id="thumbnail-img">
                 </div>
             </div>
 
@@ -83,63 +83,55 @@
         <div class="row mt-4">
             <label for="category" class="form-label fs-6 fw-medium opacity-75">Thể loại</label>
             
-            <div class="col-12 col-sm-6 col-md-7 col-lg-6 col-xl-5 col-xxl-4 pe-2 pe-sm-0">
-                <input type="text" class="form-control mb-3 mb-sm-0 me-sm-2 py-1" 
-                		id="category" name="category" value="${ bookService.getBookCategory(book.categoryId) }">
-            </div>
-
-            <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Tìm kiếm</button>
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
-            </div>
+            <select id="category" class="form-control ms-3 mt-2" style="width: 260px">
+            	<c:forEach var="category" items="${ categories }">
+            		<option value="${ category.id }">${ category.name }</option>
+            	</c:forEach>
+	        </select>
         </div>
 
         <div class="row mt-4">
             <label for="language" class="form-label fs-6 fw-medium opacity-75">Ngôn ngữ</label>
             
-            <div class="col-12 col-sm-6 col-md-7 col-lg-6 col-xl-5 col-xxl-4 pe-2 pe-sm-0">
-                <input type="text" class="form-control flex-sm-1 mb-3 mb-sm-0 me-sm-2 py-1" 
-                		id="language" name="language" value="${ bookService.getBookLanguage(book.languageId) }">
-            </div>
-
-            <div class="col-auto">
-                <button type="button" class="btn btn-primary py-1 fw-medium">Tìm kiếm</button>
-                <button type="button" class="btn btn-primary py-1 fw-medium">Thêm mới</button>
-            </div>
+            <select id="language" class="form-control ms-3 mt-2" style="width: 260px">
+            	<c:forEach var="language" items="${ languages }">
+            		<option value="${ language.id }">${ language.name }</option>
+            	</c:forEach>
+	        </select>
         </div>
 
         <div class="row mt-5 align-items-center">
             <label for="pages" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Số trang</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="pages" min="0" placeholder="0" value="${ book.pages }">
+                <input id="pages" type="number" class="form-control" name="pages" min="0" placeholder="0" value="${ book.pages }">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="weight" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Trọng lượng</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="weight" min="0" placeholder="0g" value="${ book.weight }">
+                <input id="weight" type="number" class="form-control" name="weight" min="0" placeholder="0g" value="${ book.weight }">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="cost" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Giá gốc</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="cost" min="0" placeholder="0đ" value="${ book.price }">
+                <input id="price" type="number" class="form-control" name="cost" min="0" placeholder="0đ" value="${ book.price }">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="discount" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Giảm giá</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="discount" min="0" max="100" placeholder="0%" value="${ book.discount }">
+                <input id="discount" type="number" class="form-control" name="discount" min="0" max="100" placeholder="0%" value="${ book.discount }">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="stock" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0">Tồn kho</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="stock" min="0" placeholder="0">
+                <input id="stock" type="number" class="form-control" name="stock" min="0" placeholder="0" value="${ book.stock }">
             </div>
         </div>
 
@@ -147,22 +139,24 @@
             <div class="col-12 col-md-6 col-xxl-4 mb-4">
                 <label for="dimension" class="form-label fs-6 fw-medium opacity-75">Kích thước</label>
                 <input type="text" class="form-control" 
-                		id="dimension" name="dimension" placeholder="Dài x rộng x cao (mm)" value="${ book.size }">
+                		id="size" name="dimension" placeholder="Dài x rộng x cao (mm)" value="${ book.size }">
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-md-6 col-xxl-4 mb-5">
                 <label for="release-date" class="form-label fs-6 fw-medium opacity-75">Ngày phát hành</label>
-                <input type="date" class="form-control" id="release-date" name="release-date" value="${ book.releaseDate }">
+                <input type="date" class="form-control" id="releaseDate" name="release-date" value="${ book.releaseDate }">
             </div>
         </div>
 
         <div class="row justify-content-center justify-content-md-start">
             <div class="col-auto">
-                <button type="button" class="btn btn-primary fw-medium px-4 w-auto">Xác nhận</button>
-                <button type="button" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
+                <button data-id="${ book.id }" id="submit-book" type="button" class="btn btn-primary fw-medium px-4 w-auto">Xác nhận</button>
+                <button type="button" id="cancell-edit" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
             </div>    
         </div>
     </div>
+    
+    <script type="text/javascript" src="/bookstore/admin/assets/js/editbook.js"></script>
 </body>

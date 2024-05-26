@@ -25,22 +25,3 @@
     position: relative;
     width: fit-content;
 }
-
-.content .form-add-book .img-wrapper:before{
-    content: " ";
-    display: block;
-    position: absolute;
-    top: -0.625rem;
-    right: -0.625rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    /* z-index: 1040; */
-    border-radius: 50%;
-    background-color: #ffffffe1;
-    background-image: url(/bookstore/admin/assets/images/icon-xmark.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    box-shadow: 0 0 0.25rem 0 var(--color-shadow);
-    cursor: pointer;
-}

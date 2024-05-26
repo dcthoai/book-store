@@ -24,11 +24,14 @@ submitBookBtn.addEventListener('click', () => {
     formData.append('stock', document.getElementById('stock').value);
     formData.append('size', document.getElementById('size').value);
     
-    formData.append('thumbnail', document.getElementById('thumbnail').files[0]);
+    let thumbnailFile = document.getElementById('thumbnail').files[0];
     
-    console.log(document.getElementById('title').value);
+	if (thumbnailFile)
+	    formData.append('thumbnail', thumbnailFile);
     
-    fetch('/bookstore/admin/dashboard/product/insert', {
+    formData.append('id', submitBookBtn.dataset.id);
+    
+    fetch('/bookstore/admin/dashboard/product/update', {
         method: 'POST',
         body: formData
     })
@@ -50,7 +53,7 @@ submitBookBtn.addEventListener('click', () => {
     });
 });
 
-
-document.getElementById('cancell-add').addEventListener('click', () => {
+document.getElementById('cancell-edit').addEventListener('click', () => {
+	console.log('akjfao')
 	window.location.href = '/bookstore/admin/dashboard';
 })
