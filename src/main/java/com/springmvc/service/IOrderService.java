@@ -18,4 +18,6 @@ public interface IOrderService {
 	public int updateOrder(Order order);
 	public boolean deleteOrder(int orderId);
 	public int insertOrderProduct(OrderProduct orderProduct);
+	
+	public List<Order> searchOrderByUsername(String username);
 }

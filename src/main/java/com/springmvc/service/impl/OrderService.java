@@ -109,4 +109,13 @@ public class OrderService implements IOrderService{
 		
 		return orderProductId;
 	}
+
+	@Override
+	public List<Order> searchOrderByUsername(String username) {
+		String sql = "SELECT o.* FROM `order` o WHERE o.userId IN ( SELECT u.id FROM `user` u WHERE u.fullname LIKE ? )";
+		
+		List<Order> orders = orderDao.executeQuery(sql, new MapperOrder(), username);
+		
+		return orders;
+	}
 }

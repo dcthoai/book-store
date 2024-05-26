@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 
-                <tbody>
+                <tbody id="order-container" style="text-wrap: nowrap;">
                 	<c:forEach var="order" items="${ orders }">
                 		<tr>
 	                        <td class="" style="min-width: 10rem">${ userService.getUserById(order.userId).getFullname() }</td>
@@ -55,7 +55,7 @@
 	                        <td class="text-center ">${ order.deliveredAt }</td>
 	                        <td>
 	                            <div class="w-100 h-100 d-flex justify-content-evenly">
-	                                <a href="" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+	                                <a href="/bookstore/admin/dashboard/order/update?id=${ order.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -64,4 +64,6 @@
             </table>
         </div>
     </div>
+    
+    <script type="text/javascript" src="/bookstore/admin/assets/js/order.js"></script>
 </body>
