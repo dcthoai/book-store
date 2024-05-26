@@ -1,4 +1,14 @@
 
+button {
+    height: 2.625rem;
+    max-height: 100%;
+    padding: 0 1.6rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.1rem 0.2rem 0 var(--color-shadow);
+    transition: all ease 0.2s;
+}
+
 /* Notify pop up */
 #notify{
 	position: fixed;
@@ -44,7 +54,7 @@
 
 #notify.warning{
     background-color: #fff7e4;
-    color: #ffcb2b;
+    color: #ff9b00;
 }
 
 #notify.error{

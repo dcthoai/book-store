@@ -55,7 +55,7 @@
 	                        <td>
 	                            <div class="w-100 h-100 d-flex justify-content-evenly">
 	                                <a href="/bookstore/admin/dashboard/product/edit?id=${ book.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-	                                <a class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+	                                <a data-id="${ book.id }" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -63,5 +63,7 @@
                 </tbody>
             </table>
         </div>
+        
+        <script src="/bookstore/admin/assets/js/dashboard.js"></script>
     </div>
 </body>

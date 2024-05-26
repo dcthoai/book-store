@@ -20,12 +20,12 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 
 	@Override
 	public int insert(Book book) {
-		String sql = "INSERT INTO books ("
+		String sql = "INSERT INTO book ("
 			    	+ "title, description, size, author, publisher, "
-			    	+ "rate, languageid, categoryid, thumbnailid, "
-			    	+ "pages, weight, purchases, stock, price, "
+			    	+ "languageid, categoryid, thumbnailid, "
+			    	+ "pages, weight, stock, price, "
 			    	+ "discount, releasedate, createdby) "
-			    	+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			    	+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		
 		int bookId = executeInsert(sql, book.getTitle(),
@@ -33,13 +33,11 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 										book.getSize(),
 										book.getAuthor(),
 										book.getPublisher(),
-										book.getRate(),
 										book.getLanguageId(),
 										book.getCategoryId(),
 										book.getThumbnailId(),
 										book.getPages(),
 										book.getWeight(),
-										book.getPurchases(),
 										book.getStock(),
 										book.getPrice(),
 										book.getDiscount(),
@@ -53,8 +51,8 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 	public int update(Book book) {
 		String sql = "UPDATE `bookstore`.`book` SET "
 						+ "title = ?, description = ?, size = ?, author = ?, publisher = ?, "
-				    	+ "rate = ?, languageid = ?, categoryid = ?, thumbnailid = ?, "
-				    	+ "pages = ?, weight = ?, purchases = ?, stock = ?, price + ?, "
+				    	+ "languageid = ?, categoryid = ?, thumbnailid = ?, "
+				    	+ "pages = ?, weight = ?, stock = ?, price = ?, "
 				    	+ "discount = ?, releasedate = ?, modifiedBy = ? "
 						+ "WHERE (`id` = ?)";
 		
@@ -63,13 +61,11 @@ public class BookDAO extends AbstractDAO<Book> implements IBookDAO{
 												book.getSize(),
 												book.getAuthor(),
 												book.getPublisher(),
-												book.getRate(),
 												book.getLanguageId(),
 												book.getCategoryId(),
 												book.getThumbnailId(),
 												book.getPages(),
 												book.getWeight(),
-												book.getPurchases(),
 												book.getStock(),
 												book.getPrice(),
 												book.getDiscount(),

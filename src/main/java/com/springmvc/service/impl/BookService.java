@@ -11,6 +11,7 @@ import com.springmvc.dao.impl.BookDAO;
 import com.springmvc.dao.impl.CategoryDAO;
 import com.springmvc.dao.impl.LanguageDAO;
 import com.springmvc.dto.BookDTO;
+import com.springmvc.dto.BookRequest;
 import com.springmvc.dto.SearchModel;
 import com.springmvc.mapper.MapperBook;
 import com.springmvc.model.Book;
@@ -227,5 +228,26 @@ public class BookService implements IBookService{
 	@Override
 	public List<Book> suggestBooks() {
 		return bookDAO.getRandomBook();
+	}
+	
+	public Book transferRequest(BookRequest bookRequest) {
+		Book book = new Book();
+		
+		book.setId(bookRequest.getId());
+        book.setLanguageId(bookRequest.getLanguageId());
+        book.setCategoryId(bookRequest.getCategoryId());
+        book.setPages(bookRequest.getPages());
+        book.setWeight(bookRequest.getWeight());
+        book.setStock(bookRequest.getStock());
+        book.setTitle(bookRequest.getTitle());
+        book.setDescription(bookRequest.getDescription());
+        book.setSize(bookRequest.getSize());
+        book.setAuthor(bookRequest.getAuthor());
+        book.setPublisher(bookRequest.getPublisher());
+        book.setPrice(bookRequest.getPrice());
+        book.setDiscount(bookRequest.getDiscount());
+        book.setReleaseDate(bookRequest.getReleaseDate());
+        
+        return book;
 	}
 }

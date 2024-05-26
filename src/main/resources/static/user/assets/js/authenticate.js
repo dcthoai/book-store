@@ -15,6 +15,23 @@ function welcomeWebsite(){
     }
 }
 
+function getQuantityCart() {
+	fetch(`/bookstore/cart/quantity-cart`)
+    .then(response => response.json())
+    .then(status => {
+        if(status.success){
+			let quantityCart = parseInt(status.message);
+			
+			document.getElementById('quantity-cart-header').innerText = quantityCart;
+        } else {
+            console.log(status.message);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    })
+}
+
 // Check authentication state when user visit website
 function authenticate(){
     const token = localStorage.getItem('jwtToken');
@@ -39,6 +56,7 @@ function authenticate(){
                 console.log(status.message);
             }
             
+            getQuantityCart();
             welcomeWebsite();
         })
         .catch(error => {
@@ -219,25 +237,7 @@ function logout(){
 openLoadingAnimation();
 setViewsByAuthenticationState();
 
-function getQuantityCart() {
-	fetch(`/bookstore/cart/quantity-cart`)
-    .then(response => response.json())
-    .then(status => {
-        if(status.success){
-			let quantityCart = parseInt(status.message);
-			
-			document.getElementById('quantity-cart-header').innerText = quantityCart;
-        } else {
-            console.log(status.message);
-        }
-    })
-    .catch(error => {
-        console.error(error);
-    })
-}
-
 document.addEventListener('DOMContentLoaded', function(){
     // Check authentication state when user visit site
     authenticate();
-    getQuantityCart();
 });

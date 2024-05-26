@@ -30,7 +30,7 @@
             <div class="col-12 col-lg-8">
                 <label for="files" class="form-label mb-4 fs-6 fw-medium opacity-75">Hình ảnh sản phẩm</label>
                 
-                <div class="d-flex w-100 flex-wrap" id="book-imgs">
+                <div class="d-flex w-100 flex-wrap" id="images-demo">
                     <!-- <div class="img-wrapper me-3 mb-3">
                         <img class="rounded img-fluid" src="/bookstore/admin/assets/images/doi-thua.jpg" alt="product-img">
                     </div>
@@ -105,57 +105,59 @@
         <div class="row mt-5 align-items-center">
             <label for="pages" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Số trang</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="pages" min="0" placeholder="0">
+                <input type="number" class="form-control" name="pages" min="0" placeholder="0" id="pages">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="weight" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Trọng lượng</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="weight" min="0" placeholder="0g">
+                <input type="number" class="form-control" name="weight" min="0" placeholder="0g" id="weight">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="cost" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Giá gốc</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="cost" min="0" placeholder="0đ">
+                <input type="number" class="form-control" name="cost" min="0" placeholder="0đ" id="price">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="discount" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0 fs-6 fw-medium opacity-75">Giảm giá</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="discount" min="0" max="100" placeholder="0%">
+                <input type="number" class="form-control" name="discount" min="0" max="100" placeholder="0%" id="discount">
             </div>
         </div>
 
         <div class="row mt-4 align-items-center">
             <label for="stock" class="col-6 col-md-3 col-lg-3 col-xl-2 form-label m-0">Tồn kho</label>
             <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
-                <input type="number" class="form-control" name="stock" min="0" placeholder="0">
+                <input type="number" class="form-control" name="stock" min="0" placeholder="0" id="stock">
             </div>
         </div>
 
         <div class="row mt-5">
             <div class="col-12 col-md-6 col-xxl-4 mb-4">
                 <label for="dimension" class="form-label fs-6 fw-medium opacity-75">Kích thước</label>
-                <input type="text" class="form-control" id="dimension" name="dimension" placeholder="Dài x rộng x cao (mm)">
+                <input type="text" class="form-control" id="size" name="dimension" placeholder="Dài x rộng x cao (mm)">
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-md-6 col-xxl-4 mb-5">
                 <label for="release-date" class="form-label fs-6 fw-medium opacity-75">Ngày phát hành</label>
-                <input type="date" class="form-control" id="release-date" name="release-date">
+                <input type="date" class="form-control" id="releaseDate" name="release-date">
             </div>
         </div>
 
         <div class="row justify-content-center justify-content-md-start">
             <div class="col-auto">
-                <button type="button" class="btn btn-primary fw-medium px-4 w-auto">Xác nhận</button>
-                <button type="button" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
+                <button type="button" id="submit-book" class="btn btn-primary fw-medium px-4 w-auto">Xác nhận</button>
+                <button type="button" id="cancell" class="btn btn-danger fw-medium px-4 w-auto">Hủy</button>
             </div>    
         </div>
     </div>
+    
+    <script src="/bookstore/admin/assets/js/book.js"></script>
 </body>

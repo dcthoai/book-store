@@ -15,12 +15,13 @@ public class WebConfig implements WebMvcConfigurer{
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/admin/**").addResourceLocations("classpath:/static/admin/");
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/user/");
+		registry.addResourceHandler("/uploads/**").addResourceLocations("file:D:/Workspaces/Java/web/spring-mvc/bookstore/uploads/");
     }
 	
-//	@Bean(name = "multipartResolver")
-//    public CommonsMultipartResolver multipartResolver() {
-//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//        multipartResolver.setMaxUploadSize(2097152); // 2MB
-//        return multipartResolver;
-//    }
+	@Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(10*1024*1024);
+        return resolver;
+    }
 }

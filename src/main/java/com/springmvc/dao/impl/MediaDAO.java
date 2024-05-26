@@ -14,7 +14,7 @@ public class MediaDAO extends AbstractDAO<Media> implements IMediaDAO{
 	@Override
 	public int insert(Media media) {
 		String sql = "INSERT INTO `bookstore`.`media` (`path`, `type`, `createdBy`)"
-						+ " VALUES (?, ?, ?, ?, ?)";
+						+ " VALUES (?, ?, ?)";
 		
 		int mediaId = executeInsert(sql, media.getPath(),
 										 media.getType(),
