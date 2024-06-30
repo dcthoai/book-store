@@ -7,6 +7,7 @@ Explore a vast collection of books across all genres, easily find your favorite 
 - [Features](#features)
 - [Technologies](#technologies)
 - [Project architecture](#architecture)
+- [License](#license)
 
 
 ## Features
@@ -41,5 +42,8 @@ The full-stack ecommerce bookstore website follows a three-tier architecture con
 - **Books Table:** Stores book information, such as title, author, genre, price, and availability.
 - **Users Table:** Stores user registration and authentication data, including roles and permissions.
 - **Orders Table:** Stores customer order details, including the books ordered, quantities, and order status.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
