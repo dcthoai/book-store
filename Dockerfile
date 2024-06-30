@@ -24,7 +24,7 @@ RUN mvn package
 FROM tomcat:9-jdk8-openjdk
 
 # Sao chép file WAR từ giai đoạn build trước đó
-COPY --from=build /app/target/bookstore.war /usr/local/tomcat/webapps/
+COPY --from=build /app/target/ROOT.war /usr/local/tomcat/webapps/
 
 # Câu lệnh để khởi động Tomcat khi container chạy
 CMD ["catalina.sh", "run"]
