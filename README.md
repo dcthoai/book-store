@@ -3,6 +3,7 @@
 
 **Brief Description:**
 Explore a vast collection of books across all genres, easily find your favorite authors, and enjoy a seamless online shopping experience with convenient delivery.
+
 ## Table of Contents
 - [Features](#features)
 - [Technologies](#technologies)
