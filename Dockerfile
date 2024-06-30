@@ -1,16 +1,27 @@
-# Sử dụng image Tomcat 9.0.86 làm nền tảng
-FROM tomcat:9-jdk8-openjdk
+
+# Sử dụng image Maven để build dự án
+FROM maven:3.6.0-jdk-8-slim AS build
 
 # Thêm metadata cho ảnh Docker
 LABEL maintainer="Đàm Công Thoại <dthoai2k3@gmail.com>"
 LABEL version="1.0"
 LABEL description="Image Docker cho ứng dụng Spring MVC bookstore với MySQL"
 
-# Xóa file WAR mẫu có sẵn trong Tomcat
-RUN rm -rf /usr/local/tomcat/webapps/*
+# Thiết lập working directory
+WORKDIR /app
 
-# Sao chép file WAR của ứng dụng Spring vào thư mục webapps của Tomcat
-COPY target/bookstore.war /usr/local/tomcat/webapps/
+# Sao chép mã nguồn vào container
+COPY src ./src
+COPY pom.xml .
+
+# Build ứng dụng Spring MVC
+RUN mvn package
+
+# Sử dụng image Tomcat làm nền tảng
+FROM tomcat:9-jdk8-openjdk
+
+# Sao chép file WAR từ giai đoạn build trước đó
+COPY --from=build /app/target/bookstore.war /usr/local/tomcat/webapps/
 
 # Câu lệnh để khởi động Tomcat khi container chạy
 CMD ["catalina.sh", "run"]
