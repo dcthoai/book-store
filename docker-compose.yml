@@ -1,0 +1,24 @@
+version: '3'
+services:
+  bookstore:
+    build: .  # Build image từ Dockerfile hiện tại
+    ports:
+      - "8080:8080"  # Ánh xạ cổng
+    depends_on:
+      - mysqldb  # Chờ mysqldb khởi động trước khi chạy bookstore
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/bookstore  # URL kết nối đến MySQL
+      SPRING_DATASOURCE_USERNAME: root  # Tên người dùng MySQL
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}  # Mật khẩu MySQL (sử dụng biến môi trường)
+
+  mysqldb:
+    image: mysql:8.0.35  # Sử dụng image MySQL từ Docker Hub
+    restart: always  # Tự động khởi động lại nếu container bị dừng
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  # Mật khẩu root của MySQL (sử dụng biến môi trường)
+      MYSQL_DATABASE: bookstore  # Tạo database bookstore
+    volumes:
+      - db_data:/var/lib/mysql  # Lưu trữ dữ liệu MySQL bên ngoài container
+
+volumes:
+  db_data:  # Tạo một volume để lưu trữ dữ liệu MySQL

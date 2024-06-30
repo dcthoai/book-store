@@ -1,11 +1,10 @@
 # Sử dụng image Tomcat 9.0.86 làm nền tảng
-FROM tomcat:9.0.86-jdk8-openjdk-slim
+FROM tomcat:9.0.86-jdk8-openjdk
 
 # Thêm metadata cho ảnh Docker
 LABEL maintainer="Đàm Công Thoại <dthoai2k3@gmail.com>"
-
-# Thiết lập biến môi trường cho ứng dụng Spring
-ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
+LABEL version="1.0"
+LABEL description="Image Docker cho ứng dụng Spring MVC bookstore với MySQL"
 
 # Xóa file WAR mẫu có sẵn trong Tomcat
 RUN rm -rf /usr/local/tomcat/webapps/*
