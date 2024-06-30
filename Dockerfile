@@ -14,6 +14,9 @@ WORKDIR /app
 COPY src ./src
 COPY pom.xml .
 
+# Sử dụng file cấu hình settings.xml
+#RUN mvn -s /usr/share/maven/ref/settings-docker.xml package
+
 # Build ứng dụng Spring MVC
 RUN mvn package
 
