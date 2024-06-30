@@ -6,6 +6,7 @@ Explore a vast collection of books across all genres, easily find your favorite 
 ## Table of Contents
 - [Features](#features)
 - [Technologies](#technologies)
+- [Project architecture](#architecture)
 
 
 ## Features
