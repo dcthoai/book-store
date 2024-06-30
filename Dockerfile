@@ -1,5 +1,5 @@
 # Sử dụng image Tomcat 9.0.86 làm nền tảng
-FROM tomcat:9.0.86-jdk8-openjdk
+FROM tomcat:9-jdk8-openjdk
 
 # Thêm metadata cho ảnh Docker
 LABEL maintainer="Đàm Công Thoại <dthoai2k3@gmail.com>"
