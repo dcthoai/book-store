@@ -3,7 +3,7 @@
 
 <head>
 	<title>Chỉnh sửa sản phẩm | Admin</title>
-	<link rel="stylesheet" href="/bookstore/admin/assets/css/add-book.css" />
+	<link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/add-book.css" />
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                 <label for="thumbnail" class="form-label mb-4 fs-6 fw-medium opacity-75">Ảnh thumbnail</label>
                 <br>
                 <div class="img-wrapper">
-                    <img id="thumbnail-demo" class="rounded img-fluid" src="/bookstore/${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="thumbnail" id="thumbnail-img">
+                    <img id="thumbnail-demo" class="rounded img-fluid" src="${BASE_URL}/${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="thumbnail" id="thumbnail-img">
                 </div>
             </div>
 
@@ -158,5 +158,5 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="/bookstore/admin/assets/js/editbook.js"></script>
+    <script type="text/javascript" src="${BASE_URL}/static/admin/assets/js/editbook.js"></script>
 </body>

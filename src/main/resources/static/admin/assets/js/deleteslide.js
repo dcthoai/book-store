@@ -6,7 +6,7 @@ deleteSlideBtns.forEach(button => {
 			if (isSuccess){
 				closePopupNotify();
 				
-				fetch(`/bookstore/admin/dashboard/slide/delete?id=${button.dataset.id}`, {
+				fetch(BASE_URL + `/admin/dashboard/slide/delete?id=${button.dataset.id}`, {
 					method: 'DELETE'
 				})
 				.then(response => response.json())

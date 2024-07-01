@@ -8,7 +8,7 @@ const deleteCategoryBtns = document.querySelectorAll('.delete-category-btn');
 const deleteLanguageBtns = document.querySelectorAll('.delete-language-btn');
 
 addCategoryBtn.addEventListener('click', () => {
-	fetch('/bookstore/admin/dashboard/category/add', {
+	fetch(BASE_URL + '/admin/dashboard/category/add', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ addCategoryBtn.addEventListener('click', () => {
 });
 
 addLanguageBtn.addEventListener('click', () => {
-	fetch('/bookstore/admin/dashboard/language/add', {
+	fetch(BASE_URL + '/admin/dashboard/language/add', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ deleteCategoryBtns.forEach(button => {
 			if (isSuccess){
 				closePopupNotify();
 				
-				fetch(`/bookstore/admin/dashboard/category/delete?id=${button.dataset.id}`, {
+				fetch(BASE_URL + `/admin/dashboard/category/delete?id=${button.dataset.id}`, {
 					method: 'DELETE'
 				})
 				.then(response => response.json())
@@ -99,7 +99,7 @@ deleteLanguageBtns.forEach(button => {
 			if (isSuccess){
 				closePopupNotify();
 				
-				fetch(`/bookstore/admin/dashboard/language/delete?id=${button.dataset.id}`, {
+				fetch(BASE_URL + `/admin/dashboard/language/delete?id=${button.dataset.id}`, {
 					method: 'DELETE'
 				})
 				.then(response => response.json())

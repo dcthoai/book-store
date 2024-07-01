@@ -25,7 +25,7 @@
     content: "";
     width: 12rem;
     height: 12rem;
-    background-image: url("../images/dots-yellow.svg");
+    background-image: url("/static/user/assets/images/dots-yellow.svg");
     background-repeat: no-repeat;
     background-size: contain;
     -webkit-transform: translate(-40%, -40%);

@@ -3,7 +3,7 @@
 
 <head>
 	<title>Trang chủ - Book Store</title>
-	<link rel="stylesheet" href="assets/css/home.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/home.css">
 </head>
 
 <body>
@@ -22,12 +22,12 @@
 	                                <p class="mb-4 slide-caption opacity-50 fs-6 text-light">
 	                                    ${ slide.content }
 	                                </p>
-	                                <a href="${ slide.link }" class="btn rounded-5 px-4 py-2 fs-5 fw-medium text-light explore">Xem ngay</a>
+	                                <a href="${BASE_URL}/${ slide.link }" class="btn rounded-5 px-4 py-2 fs-5 fw-medium text-light explore">Xem ngay</a>
 	                            </div>
 	
 	                            <div class="col-sm-12 col-lg-7 pt-5 pt-lg-0 slide-img">
 	                            	<c:set var="media" value="${mediaService.getMediaById(slide.thumbnailId)}"/>
-	                                <img src="${ media.path }" alt="slide image">
+	                                <img src="${BASE_URL}/${ media.path }" alt="slide image">
 	                            </div>
 	                        </div>
 	                    </div>
@@ -52,10 +52,10 @@
             <div class="row justify-content-between">
                 <div class="col-lg-7 mb-5 mb-lg-0">
                     <div class="row align-items-start img-wrapper">
-                        <div class="col-8"><img class="img-1 rounded-4" src="assets/images/trend1.jpg" alt="trending-img"></div>
+                        <div class="col-8"><img class="img-1 rounded-4" src="${BASE_URL}/static/user/assets/images/trend1.jpg" alt="trending-img"></div>
                         <div class="col-4 position-relative">
-                            <img class="img-2 rounded-4" src="assets/images/trend2.png" alt="trending-img">
-                            <img class="img-3 rounded-4" src="assets/images/trend3.jpg" alt="trending-img">
+                            <img class="img-2 rounded-4" src="${BASE_URL}/static/user/assets/images/trend2.png" alt="trending-img">
+                            <img class="img-3 rounded-4" src="${BASE_URL}/static/user/assets/images/trend3.jpg" alt="trending-img">
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         </li>
                     </ul>
 
-                    <a href="/bookstore/shop" class="btn btn-dark mt-4 px-4 py-2 fs-5 fw-medium rounded-5">Xem ngay</a>
+                    <a href="${BASE_URL}/shop" class="btn btn-dark mt-4 px-4 py-2 fs-5 fw-medium rounded-5">Xem ngay</a>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                     <h2 class="fs-2 text-dark">Blog mới</h2>
                 </div>
                 <div class="col-md-6 pt-4 text-start text-md-end">
-                    <a href="/bookstore/blog" class="fs-6 text-decoration-none text-dark">Xem tất cả</a>
+                    <a href="${BASE_URL}/blog" class="fs-6 text-decoration-none text-dark">Xem tất cả</a>
                 </div>
             </div>
 
@@ -104,7 +104,7 @@
             		<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
 	                    <div class="post-entry">
 	                    	<c:set var="media" value="${mediaService.getMediaById(blog.thumbnailId)}"/>
-	                        <a href="#" class="post-thumbnail"><img src="${ media.path }" alt="Image" class="img-fluid rounded-4"></a>
+	                        <a href="#" class="post-thumbnail"><img src="${BASE_URL}/${ media.path }" alt="Image" class="img-fluid rounded-4"></a>
 	                        <div class="mt-4">
 	                            <h3><a class="text-decoration-none text-dark fs-4" href="#">${ blog.title }</a></h3>
 	                            <div class="meta">
@@ -116,7 +116,6 @@
 	                    </div>
 	                </div>
             	</c:forEach>
-            	
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 
 <head>
 	<title>Cập nhật đơn hàng | Admin</title>
-	<link rel="stylesheet" href="/bookstore/admin/assets/css/add-book.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/add-book.css">
 </head>
 
 <body>
@@ -45,5 +45,5 @@
          </div>
      </div>
      
-     <script type="text/javascript" src="/bookstore/admin/assets/js/update-order.js"></script>
+     <script type="text/javascript" src="${BASE_URL}/static/admin/assets/js/update-order.js"></script>
 </body>

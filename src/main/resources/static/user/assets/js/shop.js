@@ -8,8 +8,8 @@ const sortbyOptions = document.getElementById('sort-by-options');
 function getDataBook(book){
     const html = `<div class="col-lg-3 col-md-4 col-6 mb-4">
                     <div class="product">
-                        <a href="/bookstore/product?id=${ book.id }" class="product__link">
-                            <div class="product__img"><img src="${ book.thumbnailPath }" alt="product image"></div>
+                        <a href="${BASE_URL}/product?id=${ book.id }" class="product__link">
+                            <div class="product__img"><img src="${BASE_URL}/${ book.thumbnailPath }" alt="product image"></div>
 
                             <div class="product__info p-3 pt-2">
                                 <h6 class="name mb-2">${ book.title }</h6>
@@ -42,7 +42,7 @@ function searchBookByKeyword(){
     let keyword = inputSearch.value.trim();
 
     if (keyword){
-        fetch(`/bookstore/shop/search?name=${keyword}`)
+        fetch(BASE_URL + `/shop/search?name=${keyword}`)
         .then(response => response.json())
         .then(data => {
             let resultsHtml = 'Không tìm thấy sản phẩm nào.';
@@ -85,7 +85,7 @@ inputSearch.addEventListener('keydown', function(event){
 sortbyOptions.addEventListener('change', function(){
     const option = sortbyOptions.value;
 
-    fetch(`/bookstore/shop/search/sort?by=${option}`)
+    fetch(BASE_URL + `/shop/search/sort?by=${option}`)
     .then(response => response.json())
     .then(data => {
         let resultsHtml = 'Không tìm thấy sản phẩm nào';
@@ -113,7 +113,7 @@ sortbyOptions.addEventListener('change', function(){
 })
 
 document.addEventListener('DOMContentLoaded', function(){
-    fetch(`/bookstore/shop/get`)
+    fetch(BASE_URL + `/shop/get`)
     .then(response => response.json())
     .then(data => {
         let resultsHtml = 'Không tìm thấy sản phẩm nào';
@@ -197,7 +197,7 @@ filterPriceBtn.addEventListener('click', () => {
 });
 
 function filterBookBySearchModel() {
-	fetch('/bookstore/shop/filter', {
+	fetch(BASE_URL + '/shop/filter', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

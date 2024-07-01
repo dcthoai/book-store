@@ -13,8 +13,7 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/admin/**").addResourceLocations("classpath:/static/admin/");
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/user/");
+		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 		registry.addResourceHandler("/uploads/**").addResourceLocations("file:D:/Workspaces/Java/web/spring-mvc/bookstore/uploads/");
     }
 	

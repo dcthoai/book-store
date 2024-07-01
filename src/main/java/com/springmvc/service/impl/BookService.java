@@ -233,7 +233,8 @@ public class BookService implements IBookService{
 	public Book transferRequest(BookRequest bookRequest) {
 		Book book = new Book();
 		
-		book.setId(bookRequest.getId());
+		if (bookRequest.getId() != null)
+			book.setId(bookRequest.getId());
         book.setLanguageId(bookRequest.getLanguageId());
         book.setCategoryId(bookRequest.getCategoryId());
         book.setPages(bookRequest.getPages());

@@ -6,11 +6,11 @@ const deliveriedBtn = document.getElementById('deliveried-at-btn');
 const cancelOrder = document.getElementById('cancell-order');
 
 cancelOrder.addEventListener('click', () => {
-	window.location.href = '/bookstore/admin/dashboard/order';
+	window.location.href = BASE_URL + '/admin/dashboard/order';
 })
 
 updateOrderBtn.addEventListener('click', () => {
-	fetch('/bookstore/admin/dashboard/order/update', {
+	fetch(BASE_URL + '/admin/dashboard/order/update', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ updateOrderBtn.addEventListener('click', () => {
 
 
 deliveriedBtn.addEventListener('click', () => {
-	fetch(`/bookstore/admin/dashboard/order/update/deliveried?id=${ deliveriedBtn.dataset.id }`, {
+	fetch(BASE_URL + `/admin/dashboard/order/update/deliveried?id=${ deliveriedBtn.dataset.id }`, {
 		method: 'POST'
 	})
 	.then(response => response.json())

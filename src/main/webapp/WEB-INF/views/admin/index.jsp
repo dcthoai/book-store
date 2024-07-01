@@ -15,8 +15,8 @@
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS custom -->
-    <link rel="stylesheet" href="/bookstore/admin/assets/css/styles.css">
-    <link rel="stylesheet" href="/bookstore/admin/assets/css/notify.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/styles.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/notify.css">
 </head>
 
 <body>
@@ -74,13 +74,17 @@
         </div>
     </div>
 
+    <script>
+    	var BASE_URL = "${BASE_URL}";
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     	crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
-    <script src="/bookstore/admin/assets/js/notify.js"></script>
-    <script src="/bookstore/admin/assets/js/validator.js"></script>
-    <script src="/bookstore/admin/assets/js/main.js"></script>
+    <script src="${BASE_URL}/static/admin/assets/js/notify.js"></script>
+    <script src="${BASE_URL}/static/admin/assets/js/validator.js"></script>
+    <script src="${BASE_URL}/static/admin/assets/js/main.js"></script>
 </body>
 </html>

@@ -80,7 +80,7 @@
     content: "";
     width: 12rem;
     height: 12rem;
-    background-image: url("../images/dots-green.svg");
+    background-image: url("/static/user/assets/images/dots-green.svg");
     background-size: contain;
     background-repeat: no-repeat;
     -webkit-transform: translate(-40%, -40%);

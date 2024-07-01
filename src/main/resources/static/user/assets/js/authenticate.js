@@ -16,7 +16,7 @@ function welcomeWebsite(){
 }
 
 function getQuantityCart() {
-	fetch(`/bookstore/cart/quantity-cart`)
+	fetch(BASE_URL + `/cart/quantity-cart`)
     .then(response => response.json())
     .then(status => {
         if(status.success){
@@ -37,7 +37,7 @@ function authenticate(){
     const token = localStorage.getItem('jwtToken');
 
     if(token){
-        fetch(`/bookstore/authenticate`, {
+        fetch(BASE_URL + `/authenticate`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ function validateLogin(){
 function register(user){
     openLoadingAnimation();
 
-    fetch('/bookstore/register', {
+    fetch(BASE_URL + '/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -155,7 +155,7 @@ function register(user){
 function login(user){
     openLoadingAnimation();
 
-    fetch('/bookstore/login', {
+    fetch(BASE_URL + '/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -202,7 +202,7 @@ function logout(){
     openLoadingAnimation();
     const token = localStorage.getItem('jwtToken');
 	
-    fetch(`/bookstore/logout`, {
+    fetch(BASE_URL + `/logout`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

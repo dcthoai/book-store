@@ -3,9 +3,9 @@
 
 <head>
    
-    <link rel="stylesheet" href="assets/css/test/order.css">
-    <link rel="stylesheet" href="assets/css/test/reset.css">
-    <link rel="stylesheet" href="assets/css/test/base.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/order.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/reset.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/base.css">
 </head>
 <body>
 
@@ -17,9 +17,9 @@
             	<c:forEach var="order" items="${ orders }">
             		<c:set var="book" value="${ orderService.getFirstProduct(order.id) }"/>
             		<div class="order">
-	                    <a class="order-demo" href="/bookstore/order?id=${ order.id }">
+	                    <a class="order-demo" href="${BASE_URL}/order?id=${ order.id }">
 	                        <div class="order-demo__img">
-	                            <img src="${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="image-product">
+	                            <img src="${BASE_URL}/${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="image-product">
 	                        </div>
 	
 	                        <div class="order-demo__info">
@@ -42,7 +42,6 @@
 	                </div>
             	</c:forEach>
             </div>
-            
         </div>
     </div>
 

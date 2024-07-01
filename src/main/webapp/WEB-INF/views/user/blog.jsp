@@ -3,12 +3,12 @@
 
 <head>
 	<title>Blog - Book Store</title>
- 	<link rel="stylesheet" href="assets/css/blog.css">
+ 	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/blog.css">
 </head>
 
 <body>
     <div class="banner">
-        <img class="w-100" src="assets/images/blog-bgg.jpg" alt="" class="banner__img">
+        <img class="w-100" src="${BASE_URL}/static/user/assets/images/blog-bgg.jpg" alt="" class="banner__img">
     </div>
 
     <div class="blogs">
@@ -17,7 +17,7 @@
                 <c:forEach var="blog" items="${ blogs }">
                 	<div class="col-6 col-md-4">
 	                    <div class="blog w-100">
-	                        <img class="w-100" style="aspect-ratio: 7/5;" src="${ mediaService.getMediaById(blog.thumbnailId).getPath() }" alt="" class="blog__thumbnail">
+	                        <img class="w-100" style="aspect-ratio: 7/5;" src="${BASE_URL}/${ mediaService.getMediaById(blog.thumbnailId).getPath() }" alt="" class="blog__thumbnail">
 	                        <div class="blog__info">
 	                            <div class="blog__info-date">
 	                                <i class="fa-regular fa-calendar-check me-2"></i>
@@ -26,7 +26,7 @@
 	    
 	                            <h4 class="blog__info-title">${ blog.title }</h4>
 	                            
-	                            <a href="/bookstore/blog?id=${ blog.id }" class="blog__info-link">Xem thêm</a>
+	                            <a href="${BASE_URL}/blog?id=${ blog.id }" class="blog__info-link">Xem thêm</a>
 	                        </div>
 	                    </div>
 	                </div>

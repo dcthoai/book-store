@@ -3,7 +3,7 @@
 
 <head>
 	<title>Sản phẩm - Book Store</title>
-	<link rel="stylesheet" href="assets/css/product.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/product.css">
 </head>
 
 <body>
@@ -31,17 +31,17 @@
                 <div class="row">
                     <div class="col-4 col-sm-3">
                         <div class="product__imgs">
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
-                            <div class="img-wrapper mb-2 p-1"><img src="${ media.path }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${BASE_URL}/${ media.path }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${BASE_URL}/${ media.path }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${BASE_URL}/${ media.path }" alt="product image"></div>
+                            <div class="img-wrapper mb-2 p-1"><img src="${BASE_URL}/${ media.path }" alt="product image"></div>
                             <a href="" class="img-wrapper p-1">+5</a>
                         </div>
                     </div>
 
                     <div class="col-8">
                         <div class="product__img pt-2">
-                            <img src="${ media.path }" alt="product image">
+                            <img src="${BASE_URL}/${ media.path }" alt="product image">
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
 
     <!-- Voucher -->
     <div class="section-voucher container">
-        <h4 class="ps-2 pt-2 fs-4"><img class="pb-1" src="assets/images/ico_coupon_red.svg" alt=""> Ưu đãi</h4>
+        <h4 class="ps-2 pt-2 fs-4"><img class="pb-1" src="${BASE_URL}/static/user/assets/images/ico_coupon_red.svg" alt=""> Ưu đãi</h4>
 
         <div class="list-voucher">
             <div class="voucher-wrapper">
@@ -119,7 +119,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="104.554" height="125.395" viewBox="0 0 104.554 125.395" class="cart2-svg-icon">
                             <path id="Frame_icon_web" d="M95.424,124.4H47.593l-33.592,0a12,12,0,0,1-12-12V12A12,12,0,0,1,14,0H80.785l.255,0H95.424a10.364,10.364,0,0,0,10.129,10.165l-.005,4.374a2.907,2.907,0,1,0,0,5.813v2.324a2.907,2.907,0,1,0,0,5.814v2.324a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.912v2.324a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.911v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.912,2.912,0,0,0,2.915,2.9V55.22a2.907,2.907,0,1,0,0,5.813v2.324a2.907,2.907,0,1,0,0,5.813V71.5a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.912v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.912,2.912,0,0,0,2.915,2.9v2.324a2.907,2.907,0,1,0,0,5.814V95.9a2.907,2.907,0,1,0,0,5.814v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.916,2.916,0,0,0,2.915,2.911l0,3.987A10.328,10.328,0,0,0,95.423,124.2c0,.065,0,.131,0,.2h0Z" transform="translate(-1.501 0.499)" fill="#FFB323" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"></path>
                         </svg>
-                        <img src="assets/images/ico_promotion.svg" alt="">
+                        <img src="${BASE_URL}/static/user/assets/images/ico_promotion.svg" alt="">
                     </div>
 
                     <div class="voucher__info">
@@ -142,7 +142,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="104.554" height="125.395" viewBox="0 0 104.554 125.395" class="cart2-svg-icon">
                             <path id="Frame_icon_web" d="M95.424,124.4H47.593l-33.592,0a12,12,0,0,1-12-12V12A12,12,0,0,1,14,0H80.785l.255,0H95.424a10.364,10.364,0,0,0,10.129,10.165l-.005,4.374a2.907,2.907,0,1,0,0,5.813v2.324a2.907,2.907,0,1,0,0,5.814v2.324a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.912v2.324a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.911v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.912,2.912,0,0,0,2.915,2.9V55.22a2.907,2.907,0,1,0,0,5.813v2.324a2.907,2.907,0,1,0,0,5.813V71.5a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.912v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.912,2.912,0,0,0,2.915,2.9v2.324a2.907,2.907,0,1,0,0,5.814V95.9a2.907,2.907,0,1,0,0,5.814v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.916,2.916,0,0,0,2.915,2.911l0,3.987A10.328,10.328,0,0,0,95.423,124.2c0,.065,0,.131,0,.2h0Z" transform="translate(-1.501 0.499)" fill="#FFB323" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"></path>
                         </svg>
-                        <img src="assets/images/ico_promotion.svg" alt="">
+                        <img src="${BASE_URL}/static/user/assets/images/ico_promotion.svg" alt="">
                     </div>
                     
                     <div class="voucher__info">
@@ -165,7 +165,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="104.554" height="125.395" viewBox="0 0 104.554 125.395" class="cart2-svg-icon">
                             <path id="Frame_icon_web" d="M95.424,124.4H47.593l-33.592,0a12,12,0,0,1-12-12V12A12,12,0,0,1,14,0H80.785l.255,0H95.424a10.364,10.364,0,0,0,10.129,10.165l-.005,4.374a2.907,2.907,0,1,0,0,5.813v2.324a2.907,2.907,0,1,0,0,5.814v2.324a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.912v2.324a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.911v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.912,2.912,0,0,0,2.915,2.9V55.22a2.907,2.907,0,1,0,0,5.813v2.324a2.907,2.907,0,1,0,0,5.813V71.5a2.907,2.907,0,0,0-2.06.852,2.874,2.874,0,0,0-.855,2.05,2.917,2.917,0,0,0,2.915,2.912v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.912,2.912,0,0,0,2.915,2.9v2.324a2.907,2.907,0,1,0,0,5.814V95.9a2.907,2.907,0,1,0,0,5.814v2.324a2.906,2.906,0,0,0-2.06.852,2.876,2.876,0,0,0-.855,2.051,2.916,2.916,0,0,0,2.915,2.911l0,3.987A10.328,10.328,0,0,0,95.423,124.2c0,.065,0,.131,0,.2h0Z" transform="translate(-1.501 0.499)" fill="#FFB323" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"></path>
                         </svg>
-                        <img src="assets/images/ico_promotion.svg" alt="">
+                        <img src="${BASE_URL}/static/user/assets/images/ico_promotion.svg" alt="">
                     </div>
                     
                     <div class="voucher__info">
@@ -193,9 +193,9 @@
         	<c:forEach var="book" items="${ bookSuggesstion }">
         		<div class="col-6 col-sm-4 col-md-3 col-xl-2">
 	                <div class="product">
-	                    <a href="/bookstore/product?id=${ book.id }" class="product__link">
+	                    <a href="${BASE_URL}/product?id=${ book.id }" class="product__link">
 	                        <div class="product__img">
-	                            <img src="${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="product image">
+	                            <img src="${BASE_URL}/${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="product image">
 	                        </div>
 	
 	                        <div class="product__info pt-2">
@@ -267,7 +267,7 @@
     </div>
 
     <!-- Rating -->
-    <div class="rating container">
+    <%-- <div class="rating container">
         <h4>Đánh giá sản phẩm</h4>
 
         <div class="d-flex">
@@ -320,7 +320,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> --%>
     
-    <script src="assets/js/product.js"></script>
+    <script src="${BASE_URL}/static/user/assets/js/product.js"></script>
 </body>

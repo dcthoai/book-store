@@ -6,7 +6,7 @@ const searchOrderInput = document.getElementById('search-order-input');
 searchOrderBtn.addEventListener('click', () => {
 	let key = searchOrderInput.value.trim();
 	
-	fetch(`/bookstore/admin/dashboard/order/search?customer=${ key }`)
+	fetch(BASE_URL + `/admin/dashboard/order/search?customer=${ key }`)
 	.then(response => response.json())
 	.then(data => {
 		let resultsHtml2 = 'Không tìm thấy đơn hàng nào.';

@@ -53,7 +53,7 @@
 }
 
 .content .navbar-left .accordion-button::after{
-    background-image: url(../images/icon-down.png) !important;
+    background-image: url(/static/admin/images/icon-down.png) !important;
     background-size: 0.75rem;
     background-position: center;
 }

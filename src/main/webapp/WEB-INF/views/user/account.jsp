@@ -2,8 +2,8 @@
 <%@ include file="/common/taglib.jsp" %>
 
 <head>
-    <link rel="stylesheet" href="assets/css/test/account.css">
-	<link rel="stylesheet" href="assets/css/test/responsive.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/account.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/responsive.css">
 </head>
 <body>
     
@@ -184,5 +184,5 @@
         </div>
     </div>
 
-	<script src="assets/js/account.js"></script>
+	<script src="${BASE_URL}/static/user/assets/js/account.js"></script>
 </body>

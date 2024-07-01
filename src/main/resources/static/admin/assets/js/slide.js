@@ -15,7 +15,7 @@ submitSlideBtn.addEventListener('click', () => {
     formData.append('link', document.getElementById('link').value);
     formData.append('thumbnail', document.getElementById('thumbnail').files[0]);
     
-    fetch('/bookstore/admin/dashboard/slide/add', {
+    fetch(BASE_URL + '/admin/dashboard/slide/add', {
         method: 'POST',
         body: formData
     })
@@ -39,5 +39,5 @@ submitSlideBtn.addEventListener('click', () => {
 
 
 document.getElementById('cancell-slide').addEventListener('click', () => {
-	window.location.href = '/bookstore/admin/dashboard/slide';
+	window.location.href = BASE_URL + '/admin/dashboard/slide';
 })

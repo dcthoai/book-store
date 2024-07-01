@@ -55,7 +55,7 @@
 	                        <td class="text-center ">${ order.deliveredAt }</td>
 	                        <td>
 	                            <div class="w-100 h-100 d-flex justify-content-evenly">
-	                                <a href="/bookstore/admin/dashboard/order/update?id=${ order.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+	                                <a href="${BASE_URL}/admin/dashboard/order/update?id=${ order.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -65,5 +65,5 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="/bookstore/admin/assets/js/order.js"></script>
+    <script type="text/javascript" src="${BASE_URL}/static/admin/assets/js/order.js"></script>
 </body>

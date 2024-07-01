@@ -3,7 +3,7 @@
 
 <head>
 	<title>Thêm sản phẩm | Admin</title>
-	<link rel="stylesheet" href="/bookstore/admin/assets/css/add-book.css" />
+	<link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/add-book.css" />
 </head>
 
 <body>
@@ -153,5 +153,5 @@
         </div>
     </div>
     
-    <script src="/bookstore/admin/assets/js/book.js"></script>
+    <script src="${BASE_URL}/static/admin/assets/js/book.js"></script>
 </body>

@@ -2,7 +2,7 @@
 function logout() {
 	const token = localStorage.getItem('AdminToken');
 	
-	fetch('/bookstore/admin/logout', {
+	fetch(BASE_URL + '/admin/logout', {
 		method: 'POST',
 		headers: {
             'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ function logout() {
 			localStorage.removeItem('AdminToken');
 			
 			setTimeout(() => {
-				window.location.href = '/bookstore/admin';
+				window.location.href = BASE_URL + '/admin';
 			}, 1000);
 		} else {
 			openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');
@@ -42,7 +42,7 @@ function deleteBooksListener() {
 				if (isSuccess){
 					closePopupNotify();
 					
-					fetch(`/bookstore/admin/dashboard/product/delete?id=${button.dataset.id}`, {
+					fetch(BASE_URL + `/admin/dashboard/product/delete?id=${button.dataset.id}`, {
 						method: 'DELETE'
 					})
 					.then(response => response.json())
@@ -69,13 +69,13 @@ function deleteBooksListener() {
 
 deleteBooksListener();
 
-const adminSearchBookButton = document.getElementById("search-book-button");
+const adminSearchBookBtn = document.getElementById("search-book-button");
 const adminSearchBookInput = document.getElementById('search-book-input');
 const resultsBookadmin = document.getElementById('search-book-container');
 
-adminSearchBookButton.addEventListener('click', () => {
+adminSearchBookBtn.addEventListener('click', () => {
 	let key = adminSearchBookInput.value.trim();
-	fetch(`/bookstore/admin/dashboard/product/search?name=${ key }`)
+	fetch(BASE_URL + `/admin/dashboard/product/search?name=${ key }`)
 	.then(response => response.json())
 	.then(data => {
 		let resultsHtml1 = 'Không tìm thấy sản phẩm nào.';
@@ -98,8 +98,12 @@ adminSearchBookButton.addEventListener('click', () => {
 		                        <td class="table-date text-center ">${ book.createdDate }</td>
 		                        <td>
 		                            <div class="w-100 h-100 d-flex justify-content-evenly">
-		                                <a href="/bookstore/admin/dashboard/product/edit?id=${ book.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
-		                                <a data-id="${ book.id }" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
+		                                <a href="${BASE_URL}/admin/dashboard/product/edit?id=${ book.id }" class="flex-fill edit-book">
+											<i class="fa-regular fa-pen-to-square"></i>
+										</a>
+		                                <a data-id="${ book.id }" class="flex-fill delete-book">
+											<i class="fa-regular fa-trash-can"></i>
+										</a>
 		                            </div>
 		                        </td>
 		                    </tr>

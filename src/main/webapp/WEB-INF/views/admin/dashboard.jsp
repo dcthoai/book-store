@@ -14,7 +14,7 @@
             <button type="button" class="ms-2 btn btn-primary py-0 fw-medium" id="search-book-button">Tìm kiếm</button>
         </div>
 
-        <a href="/bookstore/admin/dashboard/product/add" class="text-decoration-none">
+        <a href="${BASE_URL}/admin/dashboard/product/add" class="text-decoration-none">
             <button type="button" class="btn btn-primary py-0 fw-medium add-new">Thêm sách</button>
         </a>
     </div>
@@ -53,7 +53,7 @@
 	                        <td class="table-date text-center ">${ book.createdDate }</td>
 	                        <td>
 	                            <div class="w-100 h-100 d-flex justify-content-evenly">
-	                                <a href="/bookstore/admin/dashboard/product/edit?id=${ book.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+	                                <a href="${BASE_URL}/admin/dashboard/product/edit?id=${ book.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
 	                                <a data-id="${ book.id }" class="flex-fill delete-book"><i class="fa-regular fa-trash-can"></i></a>
 	                            </div>
 	                        </td>
@@ -63,6 +63,6 @@
             </table>
         </div>
         
-        <script src="/bookstore/admin/assets/js/dashboard.js"></script>
+        <script src="${BASE_URL}/static/admin/assets/js/dashboard.js"></script>
     </div>
 </body>

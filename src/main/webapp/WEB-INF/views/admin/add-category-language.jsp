@@ -3,7 +3,7 @@
 
 <head>
 	<title>Thêm thông tin sản phẩm | Admin</title>
-	<link rel="stylesheet" href="/bookstore/admin/assets/css/add-book.css" />
+	<link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/add-book.css" />
 </head>
 
 <body>
@@ -60,7 +60,7 @@
 		                        <td class="text-center ">${ category.modifiedDate }</td>
 		                        <td>
 		                            <div class="w-100 h-100 d-flex justify-content-evenly">
-		                                <a href="/bookstore/admin/dashboard/category/update?id=${ category.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+		                                <a href="${BASE_URL}/admin/dashboard/category/update?id=${ category.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
 		                                <a data-id="${ category.id }" class="flex-fill delete-book delete-category-btn"><i class="fa-regular fa-trash-can"></i></a>
 		                            </div>
 		                        </td>
@@ -95,7 +95,7 @@
 		                        <td class="text-center ">${ language.modifiedDate }</td>
 		                        <td>
 		                            <div class="w-100 h-100 d-flex justify-content-evenly">
-		                                <a href="/bookstore/admin/dashboard/language/update?id=${ language.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+		                                <a href="${BASE_URL}/admin/dashboard/language/update?id=${ language.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
 		                                <a data-id="${ language.id }" class="flex-fill delete-book delete-language-btn"><i class="fa-regular fa-trash-can"></i></a>
 		                            </div>
 		                        </td>
@@ -107,5 +107,5 @@
 	    </div>
     </div>
 
-	<script type="text/javascript" src="/bookstore/admin/assets/js/category-language.js"></script>
+	<script type="text/javascript" src="${BASE_URL}/static/admin/assets/js/category-language.js"></script>
 </body>

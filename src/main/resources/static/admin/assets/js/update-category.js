@@ -3,7 +3,7 @@ const updateCategoryBtn = document.getElementById('update-category-btn');
 const categoryInput = document.getElementById('category');
 
 updateCategoryBtn.addEventListener('click', () => {
-	fetch('/bookstore/admin/dashboard/category/update', {
+	fetch(BASE_URL + '/admin/dashboard/category/update', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

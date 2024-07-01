@@ -1,6 +1,6 @@
 
 function login(user){
-	fetch('/bookstore/admin/login', {
+	fetch(BASE_URL + '/admin/login', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ function login(user){
 			openPopupNotify('Đăng nhập thành công', '', 'success');
 			
 			setTimeout(() => {
-				window.location.href = '/bookstore/admin/dashboard';
+				window.location.href = BASE_URL + '/admin/dashboard';
 			}, 1000);
 		} else {
 			openPopupNotify('Thất bại', status.message, 'error');

@@ -15,8 +15,8 @@
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS custom -->
-    <link rel="stylesheet" href="/bookstore/admin/assets/css/notify.css">
-    <link rel="stylesheet" href="/bookstore/admin/assets/css/dashboard.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/notify.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/dashboard.css">
     <decorator:head></decorator:head>
 </head>
 
@@ -54,7 +54,7 @@
 
     <!-- Body -->
     <nav class="navbar navbar-expand fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="/bookstore/admin/dashboard">Quản trị viên</a>
+        <a class="navbar-brand ps-3" href="${BASE_URL}/admin/dashboard">Quản trị viên</a>
 
         <button class="btn btn-dark btn-sm order-1 order-lg-0 ms-md-5 me-3 me-lg-0" type="button" data-bs-toggle="collapse" data-bs-target="#sideBarNav">
             <i class="fas fa-bars"></i>
@@ -91,22 +91,22 @@
                         <div id="collapse-general" class="accordion-collapse collapse show" data-bs-parent="#accordionNav">
                             <div class="accordion-body px-0 pt-0">
                                 <div class="">
-                                    <a href="/bookstore/admin/dashboard" class="text-decoration-none">
+                                    <a href="${BASE_URL}/admin/dashboard" class="text-decoration-none">
                                     	<div class="navbtn">Sản phẩm</div>
                                     </a>
-                                    <a href="/bookstore/admin/dashboard/category" class="text-decoration-none">
+                                    <a href="${BASE_URL}/admin/dashboard/category" class="text-decoration-none">
                                     	<div class="navbtn">Danh mục sản phẩm</div>
                                     </a>
-                                    <a href="/bookstore/admin/dashboard/blog" class="text-decoration-none">
+                                    <a href="${BASE_URL}/admin/dashboard/blog" class="text-decoration-none">
                                     	<div class="navbtn">Blogs</div>
                                     </a>
-                                    <a href="/bookstore/admin/dashboard/slide" class="text-decoration-none">
+                                    <a href="${BASE_URL}/admin/dashboard/slide" class="text-decoration-none">
                                     	<div class="navbtn">Quảng cáo</div>
                                     </a>
-                                    <a href="/bookstore/admin/dashboard/order" class="text-decoration-none">
+                                    <a href="${BASE_URL}/admin/dashboard/order" class="text-decoration-none">
                                     	<div class="navbtn">Đơn hàng</div>
                                     </a>
-                                    <a href="/bookstore/admin/dashboard/account" class="text-decoration-none">
+                                    <a href="${BASE_URL}/admin/dashboard/account" class="text-decoration-none">
                                     	<div class="navbtn">Người dùng</div>
                                     </a>
                                 </div>
@@ -178,7 +178,7 @@
         </div>
 
 		
-    	<script src="/bookstore/admin/assets/js/notify.js"></script>
+    	<script src="${BASE_URL}/static/admin/assets/js/notify.js"></script>
     
         <div class="vh-100 content-wrapper px-2 px-lg-4">
         	<decorator:body></decorator:body>
@@ -186,12 +186,16 @@
     </div>
     <!-- End Body -->
 
+    <script>
+    	var BASE_URL = "${BASE_URL}";
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     		crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
-    <script src="/bookstore/admin/assets/js/dashboard.js"></script>
+    <script src="${BASE_URL}/static/admin/assets/js/dashboard.js"></script>
 
     <script>
         // Kiểm tra kích thước màn hình và đóng phần tử collapse nếu trên thiết bị di động

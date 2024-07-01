@@ -3,7 +3,7 @@
 
 <head>
 	<title>Thêm bài viết mới | Admin</title>
-	<link rel="stylesheet" href="/bookstore/admin/assets/css/add-book.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/add-book.css">
 </head>
 
 <body>

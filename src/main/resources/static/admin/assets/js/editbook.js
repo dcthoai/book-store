@@ -31,7 +31,7 @@ submitBookBtn.addEventListener('click', () => {
     
     formData.append('id', submitBookBtn.dataset.id);
     
-    fetch('/bookstore/admin/dashboard/product/update', {
+    fetch(BASE_URL + '/admin/dashboard/product/update', {
         method: 'POST',
         body: formData
     })
@@ -55,5 +55,5 @@ submitBookBtn.addEventListener('click', () => {
 
 document.getElementById('cancell-edit').addEventListener('click', () => {
 	console.log('akjfao')
-	window.location.href = '/bookstore/admin/dashboard';
+	window.location.href = BASE_URL + '/admin/dashboard';
 })

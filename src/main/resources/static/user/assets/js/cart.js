@@ -11,7 +11,7 @@ var paymentBtn = document.getElementById('payment-btn');
 
 function updateCartProduct(cartProduct, inputIndex){
 	
-	fetch('/bookstore/cart/update', {
+	fetch(BASE_URL + '/cart/update', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ function updateCartProduct(cartProduct, inputIndex){
 }
 
 function deleteCartProduct(cartProductId){
-	fetch('/bookstore/cart/delete', {
+	fetch(BASE_URL + '/cart/delete', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ paymentBtn.addEventListener('click', () => {
 
 function saveOrderCache(cartProducts) {
 	
-	fetch('/bookstore/order/cache', {
+	fetch(BASE_URL + '/order/cache', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -185,7 +185,7 @@ function saveOrderCache(cartProducts) {
 	.then(response => response.json())
 	.then(status => {
 		if (status.success){
-			window.location.href = `/bookstore/payment`;
+			window.location.href = BASE_URL + `/payment`;
 		} else {
 			openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');
             console.log(status.message);

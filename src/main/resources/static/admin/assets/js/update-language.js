@@ -3,7 +3,7 @@ const updateLanguegeBtn = document.getElementById('update-language-btn');
 const languageInput = document.getElementById('language');
 
 updateLanguegeBtn.addEventListener('click', () => {
-	fetch('/bookstore/admin/dashboard/language/update', {
+	fetch(BASE_URL + '/admin/dashboard/language/update', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

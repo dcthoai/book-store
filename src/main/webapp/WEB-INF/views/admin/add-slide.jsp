@@ -3,7 +3,7 @@
 
 <head>
 	<title>Banner quảng cáo | Admin</title>
-	<link rel="stylesheet" href="/bookstore/admin/assets/css/add-book.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/admin/assets/css/add-book.css">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
          <div class="row mt-3 mb-5">
              <div class="col-12 col-lg-8 col-xxl-6 mb-4">
                  <label for="slide-product-link" class="form-label fs-6 fw-medium opacity-75">Đường dẫn sản phẩm</label>
-                 <input type="text" class="form-control" id="link" name="slide-product-link" placeholder="">
+                 <input type="text" class="form-control" id="link" name="slide-product-link">
              </div>
          </div>
 
@@ -55,5 +55,5 @@
          </div>
      </div>
 
-	<script type="text/javascript" src="/bookstore/admin/assets/js/slide.js"></script>
+	<script type="text/javascript" src="${BASE_URL}/static/admin/assets/js/slide.js"></script>
 </body>

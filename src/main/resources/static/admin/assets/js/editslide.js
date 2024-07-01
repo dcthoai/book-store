@@ -21,7 +21,7 @@ submitSlideBtn.addEventListener('click', () => {
     
     formData.append('id', submitSlideBtn.dataset.id);
     
-    fetch('/bookstore/admin/dashboard/slide/update', {
+    fetch(BASE_URL + '/admin/dashboard/slide/update', {
         method: 'POST',
         body: formData
     })
@@ -45,5 +45,5 @@ submitSlideBtn.addEventListener('click', () => {
 
 
 document.getElementById('cancell-slide').addEventListener('click', () => {
-	window.location.href = '/bookstore/admin/dashboard/slide';
+	window.location.href = BASE_URL + '/admin/dashboard/slide';
 })

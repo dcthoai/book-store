@@ -3,7 +3,7 @@
 
 <head>
 	<title>Mua sắm - Book Store</title>
-	<link rel="stylesheet" href="assets/css/shop.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/shop.css">
 </head>
 
 <body>
@@ -145,9 +145,9 @@
                         
                         	<div class="col-lg-3 col-md-4 col-6 mb-4">
 	                            <div class="product">
-	                                <a href="/bookstore/product?id=${ book.id }" class="product__link">
+	                                <a href="${BASE_URL}/product?id=${ book.id }" class="product__link">
 	                                	<c:set var="media" value="${mediaService.getMediaById(book.thumbnailId)}"/>
-	                                    <div class="product__img"><img src="${ media.path }" alt="product image"></div>
+	                                    <div class="product__img"><img src="${BASE_URL}/${ media.path }" alt="product image"></div>
 	
 	                                    <div class="product__info p-3 pt-2">
 	                                        <h6 class="name mb-2">${ book.title }</h6>
@@ -192,5 +192,5 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="assets/js/shop.js"></script>
+    <script type="text/javascript" src="${BASE_URL}/static/user/assets/js/shop.js"></script>
 </body>

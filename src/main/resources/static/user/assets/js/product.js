@@ -24,7 +24,7 @@ decreaseNumber.addEventListener('click', function(){
 addToCart.addEventListener('click', function(){
 	let bookId = addToCart.dataset.product;
 	
-	fetch('/bookstore/cart/add', {
+	fetch(BASE_URL + '/cart/add', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ buyNow.addEventListener('click', function(){
 		"quantity": productQuantity.value
 	})
     
-    fetch('/bookstore/order/cache', {
+    fetch(BASE_URL + '/order/cache', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ buyNow.addEventListener('click', function(){
 	.then(response => response.json())
 	.then(status => {
 		if (status.success){
-			window.location.href = `/bookstore/payment`;
+			window.location.href = BASE_URL + `/payment`;
 		} else {
 			openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');
             console.log(status.message);

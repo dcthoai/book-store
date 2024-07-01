@@ -3,10 +3,10 @@
 
 <head>
 
-	<link rel="stylesheet" href="assets/css/test/reset.css">
-    <link rel="stylesheet" href="assets/css/test/base.css">
-    <link rel="stylesheet" href="assets/css/test/responsive.css">
-    <link rel="stylesheet" href="assets/css/test/orderdetail.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/reset.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/base.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/responsive.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/orderdetail.css">
 </head>
 
 <body>
@@ -26,8 +26,8 @@
             <h4 class="list-product__heading">Danh sách sản phẩm:</h4>
             
            	<c:forEach var="orderProduct" items="${ orderProducts }">
-           		<a class="product" href="/bookstore/product?id=${ orderProduct.first.id }">
-                    <img class="product__img" src="${ mediaService.getMediaById(orderProduct.first.thumbnailId).getPath() }">
+           		<a class="product" href="${BASE_URL}/product?id=${ orderProduct.first.id }">
+                    <img class="product__img" src="${BASE_URL}/${ mediaService.getMediaById(orderProduct.first.thumbnailId).getPath() }">
                     
                     <div class="product__info">
                         <h4 class="info__heading">${ orderProduct.first.title }</h4>

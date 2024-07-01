@@ -3,7 +3,7 @@
 
 <head>
 	<title>Về chúng tôi - Book Store</title>
-	<link rel="stylesheet" href="assets/css/about.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/about.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                     <div class="row my-5">
                         <div class="col-6 col-md-6">
                             <div class="icon mb-3">
-                                <img src="assets/images/bag.svg" alt="Image">
+                                <img src="${BASE_URL}/static/user/assets/images/bag.svg" alt="Image">
                             </div>
     
                             <h3 class="fs-5 text-dark">Mua hàng nhanh chóng</h3>
@@ -34,7 +34,7 @@
     
                         <div class="col-6 col-md-6">
                             <div class="icon mb-3">
-                                <img src="assets/images/return.svg" alt="Image">
+                                <img src="${BASE_URL}/static/user/assets/images/return.svg" alt="Image">
                             </div>
           
                             <h3 class="fs-5 text-dark">Hoàn trả miễn phí</h3>
@@ -47,7 +47,7 @@
     
                         <div class="col-6 col-md-6">
                             <div class="icon mb-3">
-                                <img src="assets/images/truck.svg" alt="Image">
+                                <img src="${BASE_URL}/static/user/assets/images/truck.svg" alt="Image">
                             </div>
                             
                             <h3 class="fs-5 text-dark">Nhanh &amp; Tiết kiệm</h3>
@@ -59,7 +59,7 @@
     
                         <div class="col-6 col-md-6">
                             <div class="icon mb-3">
-                                <img src="assets/images/support.svg" alt="Image">
+                                <img src="${BASE_URL}/static/user/assets/images/support.svg" alt="Image">
                             </div>
     
                             <h3 class="fs-5 text-dark">Hỗ trợ 24/7</h3>
@@ -70,7 +70,7 @@
     
                 <div class="col-lg-5">
                     <div class="mt-5 mt-lg-0 pb-5 img-wrapper">
-                        <img class="w-100 h-auto rounded-4" src="assets/images/why-choose-us-img.jpg" alt="Image">
+                        <img class="w-100 h-auto rounded-4" src="${BASE_URL}/static/user/assets/images/why-choose-us-img.jpg" alt="Image">
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 
 <head>
 	<title>Giỏ hàng - Book Store</title>
-	<link rel="stylesheet" href="assets/css/cart.css">
+	<link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/cart.css">
 </head>
 
 <body>
@@ -14,8 +14,8 @@
                 <h4 class="text-dark fw-bold">Shop</h4>
 
                 <div>
-                    <a class="text-decoration-none text-dark" href="/bookstore/home">Home</a>
-                    <a class="text-decoration-none text-dark" href="/bookstore/shop">
+                    <a class="text-decoration-none text-dark" href="${BASE_URL}/home">Home</a>
+                    <a class="text-decoration-none text-dark" href="${BASE_URL}/shop">
                     	<i class="fa-solid fa-angle-right px-2"></i>
                     	Shop
                     </a>
@@ -64,7 +64,7 @@
 	                    <div class="row g-0">
 	                        <div class="col-3 col-sm-4 col-lg-2 d-flex align-items-center justify-content-start">
 	                            <div class="w-100 product__img">
-	                            	<a href="/bookstore/product?id=${ book.id }">
+	                            	<a href="${BASE_URL}/product?id=${ book.id }">
 	                                	<img src="${ media.path }" alt="product image">
 	                            	</a>
 	                            </div>
@@ -75,7 +75,7 @@
 	                                <div class="col-12 col-lg-5 pb-md-3 pb-lg-0 d-flex flex-column justify-content-md-between product__info">
 	                                    <div class="pe-sm-3">
 	                                        <h5 class="pe-2 fs-6 text-black title">
-	                                        	<a href="/bookstore/product?id=${ book.id }">${ book.title }</a>
+	                                        	<a href="${BASE_URL}/product?id=${ book.id }">${ book.title }</a>
 	                                        </h5>
 	                                        <p class="m-0 d-none d-md-block fw-semibold">
 	                                        	Tác giả: 
@@ -138,5 +138,5 @@
 	    </div>
     </div>
 
-	<script src="assets/js/cart.js"></script>
+	<script src="${BASE_URL}/static/user/assets/js/cart.js"></script>
 </body>

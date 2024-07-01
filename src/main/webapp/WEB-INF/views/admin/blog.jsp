@@ -14,7 +14,7 @@
             <button type="button" class="ms-2 btn btn-primary py-0 fw-medium" id="search-blog-button">Tìm kiếm</button>
         </div>
 
-        <a href="/bookstore/admin/dashboard/blog/add" class="text-decoration-none">
+        <a href="${BASE_URL}/admin/dashboard/blog/add" class="text-decoration-none">
             <button type="button" class="btn btn-primary py-0 fw-medium add-new">Thêm bài viết</button>
         </a>
     </div>

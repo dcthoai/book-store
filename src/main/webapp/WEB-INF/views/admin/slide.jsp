@@ -9,7 +9,7 @@
 	<h4 class="p-3 ps-lg-0 fs-4 text-light fw-semibold">Banner quảng cáo</h4>
 
     <div class="w-100 d-flex justify-content-end my-4">
-        <a href="/bookstore/admin/dashboard/slide/add" class="text-decoration-none">
+        <a href="${BASE_URL}/admin/dashboard/slide/add" class="text-decoration-none">
             <button type="button" class="btn btn-primary ms-auto py-0 fw-medium add-new">Thêm banner</button>
         </a>
     </div>
@@ -46,7 +46,7 @@
 	                        <td class="text-center ">${ slide.modifiedDate }</td>
 	                        <td>
 	                            <div class="w-100 h-100 d-flex justify-content-evenly">
-	                                <a href="/bookstore/admin/dashboard/slide/update?id=${ slide.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
+	                                <a href="${BASE_URL}/admin/dashboard/slide/update?id=${ slide.id }" class="flex-fill edit-book"><i class="fa-regular fa-pen-to-square"></i></a>
 	                                <a data-id="${ slide.id }" class="flex-fill delete-book delete-slide-btn"><i class="fa-regular fa-trash-can"></i></a>
 	                            </div>
 	                        </td>
@@ -57,5 +57,5 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="/bookstore/admin/assets/js/deleteslide.js"></script>
+    <script type="text/javascript" src="${BASE_URL}/static/admin/assets/js/deleteslide.js"></script>
 </body>

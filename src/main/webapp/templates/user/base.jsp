@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><decorator:title></decorator:title></title>
 	
-	<link rel="shortcut icon" href="./assets/images/favi.png" type="image/x-icon">
+	<link rel="shortcut icon" href="${BASE_URL}/static/user/assets/images/favi.png" type="image/x-icon">
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap">
     <!-- CSS icon from Font Awesome -->
@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
     		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS custom -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/notify.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/styles.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/notify.css">
     <decorator:head></decorator:head>
 </head>
 
@@ -27,7 +27,7 @@
 	<!-- Header -->
     <header class="header navbar navbar-expand-md py-4">
         <div class="container">
-            <a href="/bookstore/home" class="fs-3 fw-bold">BookStore.</a>
+            <a href="${BASE_URL}/home" class="fs-3 fw-bold">BookStore.</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-navbar">
                 <span class="navbar-toggler-icon"></span>
@@ -35,16 +35,16 @@
 
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="custom-navbar-link navbar-nav ms-auto mt-4 mt-md-0">
-                    <li class="mt-3 mt-md-0 me-2 me-lg-4 active"><a class="p-2" href="/bookstore/">Home</a></li>
-                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/shop">Shop</a></li>
-                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/blog">Blogs</a></li>
-                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/about">About us</a></li>
-                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="/bookstore/contact">Contact us</a></li>
+                    <li class="mt-3 mt-md-0 me-2 me-lg-4 active"><a class="p-2" href="${BASE_URL}/">Home</a></li>
+                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="${BASE_URL}/shop">Shop</a></li>
+                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="${BASE_URL}/blog">Blogs</a></li>
+                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="${BASE_URL}/about">About us</a></li>
+                    <li class="mt-3 mt-md-0 me-2 me-lg-4"><a class="p-2" href="${BASE_URL}/contact">Contact us</a></li>
                 </ul>
                 
                 <ul class="navbar-nav mt-2 mt-md-0 fs-5">
                     <li class="mt-4 mt-md-0 mx-md-2 mx-lg-4">
-                        <a class="p-2 d-block h-100 position-relative" href="/bookstore/cart">
+                        <a class="p-2 d-block h-100 position-relative" href="${BASE_URL}/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
 							<span class="quantity-cart fs-6" id="quantity-cart-header">0</span>
                         </a>
@@ -52,14 +52,14 @@
                     <li class="mt-3 mt-md-0 ms-1">
                         <div class="user" id="user-controls">
                             <div id="user-button" class="user__button w-100 h-100">
-                            	<img class="user__button-avatar" src="assets/images/post-1.jpg" alt="avatar">
+                            	<img class="user__button-avatar" src="${BASE_URL}/static/user/assets/images/post-1.jpg" alt="avatar">
                             	<i class="user__button-icon fa-solid fa-user text-light"></i>
                             </div>
                                 
                             <div class="user__nav" id="user-nav">
-                                <a href="/bookstore/account">Tài khoản</a>
-                                <a href="/bookstore/cart">Giỏ hàng</a>
-                                <a href="/bookstore/order">Đơn hàng</a>
+                                <a href="${BASE_URL}/account">Tài khoản</a>
+                                <a href="${BASE_URL}/cart">Giỏ hàng</a>
+                                <a href="${BASE_URL}/order">Đơn hàng</a>
                                 <a href="">Trợ giúp</a>
                                 
                                 <button id="logout" class="logout">Đăng xuất</button>
@@ -144,7 +144,7 @@
             </div>
 
             <div class="row pt-5 pb-2">
-                <a href="index.html" class="footer__logo fs-2 fw-bold">BookStore.</a>
+                <a href="${BASE_URL}/" class="footer__logo fs-2 fw-bold">BookStore.</a>
             </div>
 
             <div class="row">
@@ -172,10 +172,10 @@
 
                         <div class="col-6 col-md-4">
                             <ul class="lh-lg">
-                                <li><a href="/bookstore/about">Về chúng tôi</a></li>
-                                <li><a href="/bookstore/shop">Dịch vụ</a></li>
-                                <li><a href="/bookstore/blog">Blog</a></li>
-                                <li><a href="/bookstore/contact">Liên hệ</a></li>
+                                <li><a href="${BASE_URL}/about">Về chúng tôi</a></li>
+                                <li><a href="${BASE_URL}/shop">Dịch vụ</a></li>
+                                <li><a href="${BASE_URL}/blog">Blog</a></li>
+                                <li><a href="${BASE_URL}/contact">Liên hệ</a></li>
                             </ul>
                         </div>
 
@@ -207,15 +207,19 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+    	var BASE_URL = "${BASE_URL}";
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     		crossorigin="anonymous"></script>
     
     <!-- Custom JS -->
-    <script src="assets/js/notify.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/validator.js"></script>
-   	<script src="assets/js/authenticate.js"></script>
+    <script src="${BASE_URL}/static/user/assets/js/notify.js"></script>
+    <script src="${BASE_URL}/static/user/assets/js/main.js"></script>
+    <script src="${BASE_URL}/static/user/assets/js/validator.js"></script>
+   	<script src="${BASE_URL}/static/user/assets/js/authenticate.js"></script>
 </body>
 </html>

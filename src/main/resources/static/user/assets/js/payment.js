@@ -21,7 +21,7 @@ paymentConfirmBtn.addEventListener('click', () => {
 	let phone = document.querySelector('input[name="payment-phone"]').value.trim();
 	let address = document.querySelector('input[name="payment-address"]').value.trim();
 	
-	fetch('/bookstore/payment/add', {
+	fetch(BASE_URL + '/payment/add', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ paymentConfirmBtn.addEventListener('click', () => {
 			openPopupNotify('Đặt hàng thành công', '', 'success');
 			
 			setTimeout(() => {
-				window.location.href = "/bookstore/cart";
+				window.location.href = BASE_URL + "/cart";
 			}, 2000);
 		} else {
 			openPopupNotify('Thất bại', 'Rất tiếc khi có lỗi, vui lòng thử lại sau.', 'error');

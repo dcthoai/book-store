@@ -2,8 +2,8 @@
 <%@ include file="/common/taglib.jsp" %>
 
 <head>
-    <link rel="stylesheet" href="assets/css/test/payment.css">
-    <link rel="stylesheet" href="assets/css/test/responsive.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/payment.css">
+    <link rel="stylesheet" href="${BASE_URL}/static/user/assets/css/test/responsive.css">
 </head>
 
 <body>
@@ -39,7 +39,7 @@
                     <input type="radio" name="payment-method" disabled value="zalo-pay">
                     <div class="des">
                         <div class="des__icon">
-                            <img src="assets/images/zalopay.jpg" alt="ZaloPay">
+                            <img src="${BASE_URL}/static/user/assets/images/zalopay.jpg" alt="ZaloPay">
                         </div>
                         <span class="des__heading">Ví ZaloPay</span>
                     </div>
@@ -49,7 +49,7 @@
                     <input type="radio" name="payment-method" disabled value="momo-pay">
                     <div class="des">
                         <div class="des__icon">
-                            <img src="assets/images/momopay.jpg" alt="MomoPay">                    
+                            <img src="${BASE_URL}/static/user/assets/images/momopay.jpg" alt="MomoPay">                    
                         </div>
                         <span class="des__heading">Ví Momo</span>
                     </div>
@@ -59,7 +59,7 @@
                     <input type="radio" name="payment-method" disabled value="banking-pay">
                     <div class="des">
                         <div class="des__icon">
-                            <img src="assets/images/atmpay.jpg" alt="ATMPay">
+                            <img src="${BASE_URL}/static/user/assets/images/atmpay.jpg" alt="ATMPay">
                         </div>
                         <span class="des__heading">ATM/Internet Banking</span>
                     </div>
@@ -69,7 +69,7 @@
                     <input type="radio" name="payment-method" checked value="cash-pay">
                     <div class="des">
                         <div class="des__icon">
-                            <img src="assets/images/cashpay.jpg" alt="CashPay">
+                            <img src="${BASE_URL}/static/user/assets/images/cashpay.jpg" alt="CashPay">
                         </div>
                         <span class="des__heading">Thanh toán bằng tiền mặt khi nhận hàng</span>
                     </div>
@@ -88,12 +88,12 @@
             		
             		<div class="product">
 	                    <div class="product__img">
-	                        <a href="/bookstore/product?id=${ book.id }"><img src="${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="image-product"></a>
+	                        <a href="${BASE_URL}/product?id=${ book.id }"><img src="${BASE_URL}/${ mediaService.getMediaById(book.thumbnailId).getPath() }" alt="image-product"></a>
 	                    </div>
 	
 	                    <div class="product__info">
 	                        <div class="description">
-	                            <div class="description__heading"><a href="/bookstore/product?id=${ book.id }">${ book.title }</a></div>
+	                            <div class="description__heading"><a href="${BASE_URL}/product?id=${ book.id }">${ book.title }</a></div>
 	                            <div class="description__price">
 	                                ${ book.getSellPrice() }đ 
 	                                <del>${ book.price }đ</del>
@@ -115,7 +115,7 @@
             <div style="max-width: 960px; margin: 0 auto;" class="d-flex flex-column flex-sm-row align-items-center justify-content-center d-md-block px-5 px-lg-0">
                 <div class="ps-0 pe-4 wrapper">
                     <div class="payment__controls-back d-none d-md-block">
-                        <a href="/bookstore/cart">
+                        <a href="${BASE_URL}/cart">
                             <i class="fa-solid fa-angle-left"></i>
                             <p>Quay lại giỏ hàng</p>
                         </a>
@@ -134,5 +134,5 @@
         </div>
     </div>
 
-	<script src="assets/js/payment.js"></script>
+	<script src="${BASE_URL}/static/user/assets/js/payment.js"></script>
 </body>
